@@ -20,11 +20,13 @@ class Register
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var Classroom
      * @ORM\ManyToOne(targetEntity="Classroom")
      */
     protected $classroom;
+
     /**
      * @var Promote
      * @ORM\ManyToOne(targetEntity="Promote")

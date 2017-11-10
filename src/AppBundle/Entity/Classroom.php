@@ -28,7 +28,6 @@ class Classroom
      */
     private $name;
 
-
     /**
      * Get id
      *

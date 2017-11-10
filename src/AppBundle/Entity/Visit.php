@@ -41,7 +41,6 @@ class Visit
      */
     protected $internship;
 
-
     /**
      * Get id
      *

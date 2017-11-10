@@ -28,7 +28,6 @@ class Certificate
      */
     private $name;
 
-
     /**
      * Get id
      *

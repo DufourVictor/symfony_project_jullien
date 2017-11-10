@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-abstract class User extends BaseUser
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -18,22 +18,28 @@ abstract class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $firstName;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $lastName;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $phone;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();

@@ -20,6 +20,7 @@ class Internship
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
     /**
      * @var \DateTime
      * @ORM\Column(name="startDate", type="datetime")
@@ -36,11 +37,13 @@ class Internship
      * @ORM\ManyToOne(targetEntity="Company")
      */
     protected $company;
+
     /**
      * @var Student
      * @ORM\ManyToOne(targetEntity="Student")
      */
     protected $student;
+
     /**
      * @var ProfesionnalReferent
      * @ORM\ManyTOOne(targetEntity="ProfesionnalReferent")
