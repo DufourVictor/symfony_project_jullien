@@ -1,48 +1,27 @@
 <?php
-
-namespace AppBundle\Entity;
-
-use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
-
+namespace AppBundle\Traits;
 /**
- * Class User
- * @ORM\MappedSuperclass()
+ * Class CommentInformations
  */
-abstract class User extends BaseUser
+trait CommentInformations
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $firstName;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $lastName;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $phone;
-
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * @return string
@@ -58,14 +37,6 @@ abstract class User extends BaseUser
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
