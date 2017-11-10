@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Promotes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for promote in promotes %}
+            <tr>
+                <td><a href="{{ path('promo_show', { 'id': promote.id }) }}">{{ promote.id }}</a></td>
+                <td>{{ promote.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('promo_show', { 'id': promote.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('promo_edit', { 'id': promote.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('promo_new') }}">Create a new promote</a>
+        </li>
+    </ul>
+{% endblock %}
