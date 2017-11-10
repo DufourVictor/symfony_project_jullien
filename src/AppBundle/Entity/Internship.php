@@ -36,7 +36,22 @@ class Internship
      * @ORM\ManyToOne(targetEntity="Company")
      */
     protected $company;
+    /**
+     * @var Student
+     * @ORM\ManyToOne(targetEntity="Student")
+     */
+    protected $student;
+    /**
+     * @var ProfesionnalReferent
+     * @ORM\ManyTOOne(targetEntity="ProfesionnalReferent")
+     */
+    protected $profesionnalReferent;
 
+    /**
+     * @var EducationalReferent
+     * @ORM\MAnyToOne(targetEntity="EducationalReferent")
+     */
+    protected $educationalReferent;
 
     /**
      * Get id
@@ -94,6 +109,54 @@ class Internship
     public function setCompany($company)
     {
         $this->company = $company;
+    }
+
+    /**
+     * @return Student
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+
+    /**
+     * @return ProfesionnalReferent
+     */
+    public function getProfesionnalReferent()
+    {
+        return $this->profesionnalReferent;
+    }
+
+    /**
+     * @param ProfesionnalReferent $profesionnalReferent
+     */
+    public function setProfesionnalReferent($profesionnalReferent)
+    {
+        $this->profesionnalReferent = $profesionnalReferent;
+    }
+
+    /**
+     * @return EducationalReferent
+     */
+    public function getEducationalReferent()
+    {
+        return $this->educationalReferent;
+    }
+
+    /**
+     * @param EducationalReferent $educationalReferent
+     */
+    public function setEducationalReferent($educationalReferent)
+    {
+        $this->educationalReferent = $educationalReferent;
     }
 }
 
