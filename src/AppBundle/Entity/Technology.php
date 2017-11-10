@@ -28,7 +28,6 @@ class Technology
      */
     private $name;
 
-
     /**
      * Get id
      *

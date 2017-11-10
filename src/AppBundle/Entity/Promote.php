@@ -28,7 +28,6 @@ class Promote
      */
     private $name;
 
-
     /**
      * Get id
      *

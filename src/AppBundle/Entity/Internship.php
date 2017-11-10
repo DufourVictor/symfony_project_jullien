@@ -20,12 +20,13 @@ class Internship
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var \DateTime
      * @ORM\Column(name="startDate", type="datetime")
      */
     protected $startDate;
+
     /**
      * @var \DateTime
      * @ORM\Column(name="endDate", type="datetime")

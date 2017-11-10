@@ -56,7 +56,6 @@ class Company
      */
     private $phoneNumber;
 
-
     /**
      * Get id
      *
