@@ -71,7 +71,7 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: AppBundle\Entity\EducationalReferent
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
