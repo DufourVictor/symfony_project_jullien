@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Internships list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Startdate</th>
+                <th>Enddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internship in internships %}
+            <tr>
+                <td><a href="{{ path('stage_show', { 'id': internship.id }) }}">{{ internship.id }}</a></td>
+                <td>{% if internship.startDate %}{{ internship.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stage_show', { 'id': internship.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stage_edit', { 'id': internship.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stage_new') }}">Create a new internship</a>
+        </li>
+    </ul>
+{% endblock %}

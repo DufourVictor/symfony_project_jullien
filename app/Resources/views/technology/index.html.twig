@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Technologies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for technology in technologies %}
+            <tr>
+                <td><a href="{{ path('technologie_show', { 'id': technology.id }) }}">{{ technology.id }}</a></td>
+                <td>{{ technology.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('technologie_show', { 'id': technology.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('technologie_edit', { 'id': technology.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('technologie_new') }}">Create a new technology</a>
+        </li>
+    </ul>
+{% endblock %}

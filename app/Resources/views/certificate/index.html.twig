@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Certificates list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for certificate in certificates %}
+            <tr>
+                <td><a href="{{ path('diplome_show', { 'id': certificate.id }) }}">{{ certificate.id }}</a></td>
+                <td>{{ certificate.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('diplome_show', { 'id': certificate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('diplome_edit', { 'id': certificate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('diplome_new') }}">Create a new certificate</a>
+        </li>
+    </ul>
+{% endblock %}
