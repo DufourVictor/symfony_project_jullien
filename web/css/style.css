@@ -1,0 +1,48 @@
+body header nav {
+  height: 64px;
+}
+body header nav #logo-container img {
+  padding: 5px 0;
+  max-height: 64px;
+}
+body header nav .hide-on-med-and-down {
+  display: block !important;
+  font-weight: bold;
+}
+@media only screen and (max-width: 992px) {
+  body header nav .hide-on-med-and-down li {
+    display: none;
+  }
+}
+body header nav .hide-on-med-and-down .welcome {
+  float: right;
+  font-size: 12px;
+  margin-left: 70px;
+}
+body header nav .hide-on-med-and-down .welcome i {
+  font-size: 17px;
+}
+body header nav .hide-on-med-and-down i.left {
+  margin-right: 5px;
+}
+body #sidenav-overlay {
+  z-index: 996;
+}
+body footer.page-footer {
+  padding-top: 0;
+}
+body footer .footer-copyright {
+  font-size: 13px;
+}
+body footer .footer-copyright a {
+  color: #FFFFFF;
+}
+body footer .footer-copyright a.left {
+  text-transform: uppercase;
+}
+body footer .footer-copyright a.first {
+  margin-right: 50px;
+}
+body footer .footer-copyright .separator {
+  margin: 0 10px;
+}
