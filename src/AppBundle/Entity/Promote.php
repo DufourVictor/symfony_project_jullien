@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,20 @@ class Promote
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection[]|Classroom
+     * @ORM\ManyToMany(targetEntity="Classroom")
+     */
+    protected $classroom;
+
+    /**
+     * Promote constructor.
+     */
+    function __construct()
+    {
+        $this->classroom = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,6 +75,22 @@ class Promote
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Classroom|ArrayCollection[]
+     */
+    public function getClassroom()
+    {
+        return $this->classroom;
+    }
+
+    /**
+     * @param Classroom|ArrayCollection[] $classroom
+     */
+    public function setClassroom($classroom)
+    {
+        $this->classroom = $classroom;
     }
 }
 
