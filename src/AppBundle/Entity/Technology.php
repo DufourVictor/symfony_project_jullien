@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,20 @@ class Technology
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection[]|Internship
+     * @ORM\ManyToMany(targetEntity="Internship")
+     */
+    protected $internships;
+
+    /**
+     * Technology constructor.
+     */
+    function __construct()
+    {
+        $this->internships = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +76,20 @@ class Technology
     {
         return $this->name;
     }
-}
 
+    /**
+     * @return Internship|ArrayCollection[]
+     */
+    public function getInternships()
+    {
+        return $this->internships;
+    }
+
+    /**
+     * @param Internship|ArrayCollection[] $internships
+     */
+    public function setInternships($internships)
+    {
+        $this->internships = $internships;
+    }
+}
