@@ -1,94 +1,101 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        {% endblock %}
-    </head>
-    <body>
-        {% block header %}
-            <header>
-                <div class="navbar-fixed">
-                    <nav class="indigo darken-4" role="navigation">
-                        <div class="nav-wrapper container">
-                            <a id="logo-container" href="#" class="brand-logo">
-                                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="responsive-img"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <header>
+        <div class="navbar-fixed">
+            <nav class="indigo darken-4" role="navigation">
+                <div class="nav-wrapper container">
+                    <a id="logo-container" href="#" class="brand-logo">
+                        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="responsive-img"/>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="{{ path('stage_index') }}">
+                                <i class="material-icons left">business_center</i>Stages
                             </a>
-                            <ul class="right hide-on-med-and-down">
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">business_center</i>Stages
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">business</i>Entreprises
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">pageview</i>Suivi scolarité
-                                    </a>
-                                </li>
-                                <div class="welcome">
-                                    <i class="material-icons left">person</i> Bienvenue Fethi
-                                </div>
-                            </ul>
-
-                            <ul id="nav-mobile" class="side-nav">
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">business_center</i>Stages
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">business</i>Entreprises
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="material-icons left">pageview</i>Suivi scolarité
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" data-activates="nav-mobile" class="button-collapse">
-                                <i class="material-icons">menu</i>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons left">business</i>Entreprises
                             </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons left">pageview</i>Suivi scolarité
+                            </a>
+                        </li>
+                        <div class="welcome">
+                            {% if app.user is defined and app.user is not null %}
+                                <i class="material-icons left">person</i> Bienvenue {{ app.user.firstName }}
+                            {% else %}
+                                <i class="material-icons left">person</i> Connexion
+                            {% endif %}
                         </div>
-                    </nav>
-                </div>
-            </header>
-        {% endblock %}
+                    </ul>
 
+                    <ul id="nav-mobile" class="side-nav">
+                        <li>
+                            <a href="#">
+                                <i class="material-icons left">business_center</i>Stages
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons left">business</i>Entreprises
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons left">pageview</i>Suivi scolarité
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse">
+                        <i class="material-icons">menu</i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+{% endblock %}
+<div class="row">
+    <div class="col s12 m4 l2"></div>
+    <div class="col s12 m4 l8">
         {% block body %}{% endblock %}
+    </div>
+</div>
+{% block footer %}
+    <footer class="page-footer indigo darken-4">
+        <div class="footer-copyright">
+            <div class="container">
+                <a class="left" href="#">Mentions légales</a>
+                <span class="left separator">|</span>
+                <a class="left" href="#">Politique de cookies</a>
+                <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
+                    Lycée privé Saint-Vincent
+                </a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
 
-        {% block footer %}
-            <footer class="page-footer indigo darken-4">
-                <div class="footer-copyright">
-                    <div class="container">
-                        <a class="left" href="#">Mentions légales</a>
-                        <span class="left separator">|</span>
-                        <a class="left" href="#">Politique de cookies</a>
-                        <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
-                            Lycée privé Saint-Vincent
-                        </a>
-                    </div>
-                </div>
-            </footer>
-        {% endblock %}
-
-        {% block javascripts %}
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-            <script src="{{ asset('js/scripts.js') }}"></script>
-        {% endblock %}
-    </body>
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}
+</body>
 </html>

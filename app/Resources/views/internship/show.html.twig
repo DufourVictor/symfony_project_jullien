@@ -1,36 +1,63 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Détail du stage{% endblock %}
 {% block body %}
-    <h1>Internship</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ internship.id }}</td>
-            </tr>
-            <tr>
-                <th>Startdate</th>
-                <td>{% if internship.startDate %}{{ internship.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Enddate</th>
-                <td>{% if internship.endDate %}{{ internship.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('stage_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('stage_edit', { 'id': internship.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {% if internship.student is defined and internship is not null %}
+        <h1>{{ internship.student.fullName }} -
+            {% if internship.student.register is defined and  internship.student.register is not null %}
+                {% if internship.student.register.classroom is defined and internship.student.register.classroom is not null %}
+                    {{ internship.student.register..name }}
+                {% endif %}
+            {% endif %}
+        </h1>
+    {% endif %}
+    <div class="card-panel indigo darken-4">
+        <div class="row">
+            <div class="col s6">
+                <p class="white-text">Entreprise :
+                    {% if internship.company is defined and internship.company is not null %}
+                        <b>{{ internship.company.name }}</b>
+                    {% endif %}
+                </p>
+                <p class="white-text">
+                    Responsable technique :
+                    {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
+                        <b>{{ internship.profesionnalReferent.fullName }}</b>
+                    {% endif %}
+                </p>
+                <p class="white-text">
+                    Responsable pédagogique :
+                    {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
+                        <b>{{ internship.educationalReferent.fullName }}</b>
+                    {% endif %}
+                </p>
+                <p class="white-text">
+                    Année concernée : <b>{{ internship.startDate|date('Y') }}</b>
+                </p>
+            </div>
+            <div class="col s6">
+                <p class="white-text">Observation</p>
+                <p class="white-text"><b>kfsfjsegjfgsjekgfyesg</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <h3>Visites liées au stage</h3>
+        </div>
+        <div class="col s6">
+            <a href="{{ path('visite_new') }}" class="waves-effect waves-light btn indigo darken-4">
+                Nouvelle visite
+            </a>
+        </div>
+    </div>
+    {% if internship.visit is defined and internship.visit is not null %}
+        {% for visit in internship.visit %}
+            <div class="row">
+                <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
+                <p><b>Observations :</b></p>
+                <p>{{ visit.comment }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
 {% endblock %}

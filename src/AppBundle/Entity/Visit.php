@@ -37,7 +37,7 @@ class Visit
 
     /**
      * @var Internship
-     * @ORM\ManyToOne(targetEntity="Internship")
+     * @ORM\ManyToOne(targetEntity="Internship", inversedBy="visit")
      */
     protected $internship;
 

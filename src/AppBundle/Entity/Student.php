@@ -42,9 +42,15 @@ class Student
     protected $certificate;
 
     /**
+     * @var Register
+     * @ORM\OneToMany(targetEntity="Register", mappedBy="student")
+     */
+    protected $register;
+
+    /**
      * Student constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $this->certificate = new ArrayCollection();
     }
@@ -105,5 +111,21 @@ class Student
     public function setCertificate($certificate)
     {
         $this->certificate = $certificate;
+    }
+
+    /**
+     * @return Register
+     */
+    public function getRegister()
+    {
+        return $this->register;
+    }
+
+    /**
+     * @param Register $register
+     */
+    public function setRegister($register)
+    {
+        $this->register = $register;
     }
 }

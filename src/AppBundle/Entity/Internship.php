@@ -65,6 +65,12 @@ class Internship
     protected $technologies;
 
     /**
+     * @var Visit
+     * @ORM\OneToMany(targetEntity="Visit", mappedBy="internship")
+     */
+    protected $visit;
+
+    /**
      * Internship constructor.
      */
     function __construct()
@@ -192,5 +198,21 @@ class Internship
     public function setTechnologies($technologies)
     {
         $this->technologies = $technologies;
+    }
+
+    /**
+     * @return Visit
+     */
+    public function getVisit()
+    {
+        return $this->visit;
+    }
+
+    /**
+     * @param Visit $visit
+     */
+    public function setVisit($visit)
+    {
+        $this->visit = $visit;
     }
 }
