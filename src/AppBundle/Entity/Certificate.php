@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,20 @@ class Certificate
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection[]|Student
+     * @ORM\ManyToMany(targetEntity="Student")
+     */
+    protected $student;
+
+    /**
+     * Certificate constructor.
+     */
+    function __construct()
+    {
+        $this->student = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +76,20 @@ class Certificate
     {
         return $this->name;
     }
-}
 
+    /**
+     * @return Student|ArrayCollection[]
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param Student|ArrayCollection[] $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+}

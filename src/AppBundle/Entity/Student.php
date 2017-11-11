@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\CommentInformations;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,6 +34,20 @@ class Student
      * @ORM\Column(type="string")
      */
     protected $email;
+
+    /**
+     * @var ArrayCollection[]|Certificate
+     * @ORM\ManyToMany(targetEntity="Certificate")
+     */
+    protected $certificate;
+
+    /**
+     * Student constructor.
+     */
+    function __construct()
+    {
+        $this->certificate = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -75,5 +90,20 @@ class Student
     {
         $this->email = $email;
     }
-}
 
+    /**
+     * @return Certificate|ArrayCollection[]
+     */
+    public function getCertificate()
+    {
+        return $this->certificate;
+    }
+
+    /**
+     * @param Certificate|ArrayCollection[] $certificate
+     */
+    public function setCertificate($certificate)
+    {
+        $this->certificate = $certificate;
+    }
+}

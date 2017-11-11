@@ -34,6 +34,12 @@ class Register
     protected $promote;
 
     /**
+     * @var Student
+     * @ORM\ManyToOne(targetEntity="Student")
+     */
+    protected $student;
+
+    /**
      * Get id
      *
      * @return int
@@ -74,5 +80,20 @@ class Register
     {
         $this->promote = $promote;
     }
-}
 
+    /**
+     * @return Student
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+}

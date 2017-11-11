@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,9 +54,23 @@ class Internship
 
     /**
      * @var EducationalReferent
-     * @ORM\MAnyToOne(targetEntity="EducationalReferent")
+     * @ORM\ManyToOne(targetEntity="EducationalReferent")
      */
     protected $educationalReferent;
+
+    /**
+     * @var ArrayCollection[]|Technology
+     * @ORM\ManyToMany(targetEntity="Technology")
+     */
+    protected $technologies;
+
+    /**
+     * Internship constructor.
+     */
+    function __construct()
+    {
+        $this->technologies = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -162,5 +177,20 @@ class Internship
     {
         $this->educationalReferent = $educationalReferent;
     }
-}
 
+    /**
+     * @return Technology|ArrayCollection[]
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    /**
+     * @param Technology|ArrayCollection[] $technologies
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
+    }
+}

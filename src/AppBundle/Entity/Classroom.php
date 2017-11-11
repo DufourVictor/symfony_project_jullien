@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,14 +20,28 @@ class Classroom
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
+
+    /**
+     * @var ArrayCollection[]|Promote
+     * @ORM\ManyToMany(targetEntity="Promote")
+     */
+    protected $promote;
+
+    /**
+     * Classroom constructor.
+     */
+    public function __construct()
+    {
+        $this->promote = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,5 +76,20 @@ class Classroom
     {
         return $this->name;
     }
-}
 
+    /**
+     * @return Promote|ArrayCollection[]
+     */
+    public function getPromote()
+    {
+        return $this->promote;
+    }
+
+    /**
+     * @param Promote|ArrayCollection[] $promote
+     */
+    public function setPromote($promote)
+    {
+        $this->promote = $promote;
+    }
+}
