@@ -74,6 +74,7 @@ html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[
 html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password] {
   border-bottom: 1px solid #9E9E9E;
   box-shadow: 0 1px 0 0 #9E9E9E;
+  color: #FFFFFF;
 }
 html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=text] + label,
 html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password] + label {
