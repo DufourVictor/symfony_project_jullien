@@ -1,48 +1,120 @@
-body header nav {
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+}
+html body.login {
+  background: url("../img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+html body .wrapper {
+  min-height: 100%;
+  margin-bottom: -50px;
+  padding-bottom: 50px;
+}
+html body .wrapper header nav {
   height: 64px;
 }
-body header nav #logo-container img {
+html body .wrapper header nav #logo-container img {
   padding: 5px 0;
   max-height: 64px;
 }
-body header nav .hide-on-med-and-down {
+html body .wrapper header nav .hide-on-med-and-down {
   display: block !important;
   font-weight: bold;
 }
 @media only screen and (max-width: 992px) {
-  body header nav .hide-on-med-and-down li {
+  html body .wrapper header nav .hide-on-med-and-down li {
     display: none;
   }
 }
-body header nav .hide-on-med-and-down .welcome {
+html body .wrapper header nav .hide-on-med-and-down .welcome {
   float: right;
   font-size: 12px;
   margin-left: 70px;
 }
-body header nav .hide-on-med-and-down .welcome i {
+html body .wrapper header nav .hide-on-med-and-down .welcome i {
   font-size: 17px;
 }
-body header nav .hide-on-med-and-down i.left {
+html body .wrapper header nav .hide-on-med-and-down i.left {
   margin-right: 5px;
 }
-body #sidenav-overlay {
+html body .wrapper #sidenav-overlay {
   z-index: 996;
 }
-body footer.page-footer {
-  padding-top: 0;
+html body .wrapper .valign-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
-body footer .footer-copyright {
-  font-size: 13px;
+html body .wrapper .valign-wrapper .valign {
+  width: 100%;
 }
-body footer .footer-copyright a {
+html body .wrapper .valign-wrapper .valign .form .form-login {
+  background-color: #252835;
+  border: 1px solid #626366;
+  border-radius: 10px;
+  padding: 20px 50px;
+  opacity: 0.9;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login h4 {
+  margin-bottom: 30px;
+  color: #9E9E9E;
+  text-align: center;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .error {
+  color: #C62828;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=text],
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password] {
+  border-bottom: 1px solid #9E9E9E;
+  box-shadow: 0 1px 0 0 #9E9E9E;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=text] + label,
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password] + label {
+  color: #9E9E9E;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=text]:focus,
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password]:focus {
+  border-bottom: 1px solid #FFFFFF;
+  box-shadow: 0 1px 0 0 #FFFFFF;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=text]:focus + label,
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field input[type=password]:focus + label {
   color: #FFFFFF;
 }
-body footer .footer-copyright a.left {
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field .prefix.active {
+  color: #FFFFFF;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .input-field i {
+  color: #9E9E9E;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .center-align {
+  margin-bottom: 15px;
+}
+html body .wrapper .valign-wrapper .valign .form .form-login .center-align button {
+  background-color: #1A237E;
+}
+html body footer.page-footer {
+  padding-top: 0;
+}
+html body footer .footer-copyright {
+  font-size: 13px;
+}
+html body footer .footer-copyright a {
+  color: #FFFFFF;
+}
+html body footer .footer-copyright a.left {
   text-transform: uppercase;
 }
-body footer .footer-copyright a.first {
+html body footer .footer-copyright a.first {
   margin-right: 50px;
 }
-body footer .footer-copyright .separator {
+html body footer .footer-copyright .separator {
   margin: 0 10px;
 }
