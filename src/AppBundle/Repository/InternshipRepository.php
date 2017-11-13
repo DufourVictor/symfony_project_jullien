@@ -1,13 +1,19 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\Student;
 use Doctrine\ORM\EntityRepository;
+
 /**
  * Class InternshipRepository
  */
 class InternshipRepository extends EntityRepository
 {
+    /**
+     * @param Student $student
+     * @return array
+     */
     public function findStagesForUser(Student $student)
     {
         return $this->createQueryBuilder('i')
@@ -15,5 +21,22 @@ class InternshipRepository extends EntityRepository
             ->setParameter('student', $student)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param Student $student
+     * @return array
+     */
+    public function findYearPromotionForUser(Student $student)
+    {
+        return $this->createQueryBuilder('i')
+            ->select('p.name')
+            ->innerJoin('i.student', 's')
+            ->innerJoin('s.register', 'r')
+            ->innerJoin('r.promote', 'p')
+            ->where('i.student = :student')
+            ->setParameter('student', $student)
+            ->getQuery()
+            ->getScalarResult();
     }
 }

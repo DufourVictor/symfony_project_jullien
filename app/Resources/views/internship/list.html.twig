@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Liste des stages{% endblock %}
 {% block body %}
-    <a href="{{ path('stage_new') }}" class="waves-effect waves-light btn indigo darken-4 right">
+    <a href="{{ path('stage_new', {'id': student.id}) }}" class="waves-effect waves-light btn indigo darken-4 right">
             Ajouter un stage
     </a>
     <table>

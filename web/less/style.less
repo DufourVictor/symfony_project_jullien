@@ -1,67 +1,155 @@
-body {
-    header {
-        nav {
-            height: 64px;
+html {
+    height: 100%;
 
-            #logo-container {
-                img {
-                    padding: 5px 0;
-                    max-height: 64px;
+    body {
+        height: 100%;
+
+        &.login {
+            background: url("../img/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .wrapper {
+            min-height: 100%;
+            margin-bottom: -50px;
+            padding-bottom: 50px;
+
+            header {
+                nav {
+                    height: 64px;
+
+                    #logo-container {
+                        img {
+                            padding: 5px 0;
+                            max-height: 64px;
+                        }
+                    }
+
+                    .hide-on-med-and-down {
+                        display: block !important;
+                        font-weight: bold;
+
+                        @media only screen and (max-width: 992px) {
+                            li {
+                                display: none;
+                            }
+                        }
+                        .welcome {
+                            float: right;
+                            font-size: 12px;
+                            margin-left: 70px;
+
+                            i {
+                                font-size: 17px;
+                            }
+                        }
+
+                        i.left {
+                            margin-right: 5px;
+                        }
+                    }
                 }
             }
 
-            .hide-on-med-and-down {
-                display: block !important;
-                font-weight: bold;
+            #sidenav-overlay {
+                z-index: 996;
+            }
 
-                @media only screen and (max-width: 992px) {
-                    li {
-                        display: none;
+            .valign-wrapper {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+
+                .valign {
+                    width: 100%;
+
+                    .form {
+                        .form-login {
+                            background-color: #0D1137;
+                            border: 1px solid #000000;
+                            border-radius: 10px;
+                            padding: 20px 50px;
+                            opacity: 0.9;
+
+                            h4 {
+                                margin-bottom: 30px;
+                                color: #9E9E9E;
+                                text-align: center;
+                            }
+
+                            .error {
+                                color: #C62828;
+                                text-align: center;
+                                margin-bottom: 20px;
+                                font-size: 20px;
+                            }
+
+                            .input-field {
+                                input[type=text], input[type=password] {
+                                    border-bottom: 1px solid #9E9E9E;
+                                    box-shadow: 0 1px 0 0 #9E9E9E;
+                                    color: #FFFFFF;
+
+                                    & + label {
+                                        color: #9E9E9E;
+                                    }
+
+                                    &:focus {
+                                        border-bottom: 1px solid #FFFFFF;
+                                        box-shadow: 0 1px 0 0 #FFFFFF;
+
+                                        & + label {
+                                            color: #FFFFFF;
+                                        }
+                                    }
+                                }
+
+                                .prefix.active {
+                                    color: #FFFFFF;
+                                }
+
+                                i {
+                                    color: #9E9E9E;
+                                }
+                            }
+
+                            .center-align {
+                                margin-bottom: 15px;
+
+                                button {
+                                    background-color: #1A237E;
+                                }
+                            }
+                        }
                     }
-                }
-                .welcome {
-                    float: right;
-                    font-size: 12px;
-                    margin-left: 70px;
-
-                    i {
-                        font-size: 17px;
-                    }
-                }
-
-                i.left {
-                    margin-right: 5px;
                 }
             }
         }
-    }
 
-    #sidenav-overlay {
-        z-index: 996;
-    }
-
-    footer {
-        &.page-footer {
-            padding-top: 0;
-        }
-
-        .footer-copyright {
-            font-size: 13px;
-
-            a {
-                color: #FFFFFF;
-
-                &.left {
-                    text-transform: uppercase;
-                }
-
-                &.first {
-                    margin-right: 50px;
-                }
+        footer {
+            &.page-footer {
+                padding-top: 0;
             }
 
-            .separator {
-                margin: 0 10px;
+            .footer-copyright {
+                font-size: 13px;
+
+                a {
+                    color: #FFFFFF;
+
+                    &.left {
+                        text-transform: uppercase;
+                    }
+
+                    &.first {
+                        margin-right: 50px;
+                    }
+                }
+
+                .separator {
+                    margin: 0 10px;
+                }
             }
         }
     }

@@ -24,13 +24,13 @@ class Internship
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="startDate", type="datetime")
+     * @ORM\Column(name="startDate", type="datetime", nullable=true)
      */
     protected $startDate;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     protected $endDate;
 
@@ -69,6 +69,12 @@ class Internship
      * @ORM\OneToMany(targetEntity="Visit", mappedBy="internship")
      */
     protected $visit;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $concernYear;
 
     /**
      * Internship constructor.
@@ -214,5 +220,21 @@ class Internship
     public function setVisit($visit)
     {
         $this->visit = $visit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConcernYear()
+    {
+        return $this->concernYear;
+    }
+
+    /**
+     * @param string $concernYear
+     */
+    public function setConcernYear($concernYear)
+    {
+        $this->concernYear = $concernYear;
     }
 }

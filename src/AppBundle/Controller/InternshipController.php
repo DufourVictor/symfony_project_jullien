@@ -2,9 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Internship;
-use AppBundle\Entity\Register;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Visit;
 use AppBundle\Form\InternshipType;
@@ -61,24 +59,32 @@ class InternshipController extends Controller
 
         return $this->render('internship/list.html.twig', [
             'internships' => $internships,
+            'student' => $student,
         ]);
     }
 
     /**
      * @param Request $request
-     *
+     * @param $id
      * @return RedirectResponse|Response
      *
-     * @Route("/new", name="stage_new")
+     * @Route("/{id}/new", name="stage_new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $internship = new Internship();
-        $form = $this->createForm(InternshipType::class, $internship);
+        $em = $this->getDoctrine()->getManager();
+        $student = $em->getRepository(Student::class)->find($id);
+        $years = $this->getDoctrine()->getRepository(Internship::class)->findYearPromotionForUser($student);
+        $concernYear = [];
+        foreach ($years as $key => $value){
+            array_push($concernYear, $value['name']);
+        }
+        $form = $this->createForm(InternshipType::class, $internship, ['years' => $concernYear]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $internship->setStudent($student);
             $em->persist($internship);
             $em->flush();
 
