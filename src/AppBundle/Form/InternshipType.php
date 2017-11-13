@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -51,12 +52,16 @@ class InternshipType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 'required' => false,
+            ])
+            ->add('comment', TextareaType::class, [
+                'label' => 'Observations',
+                'required' => false,
             ]);
-            /*->add('concernYear', ChoiceType::class, [
-                'label' => 'Année concercé',
-                'multiple' => false,
-                'choices' => $options['years'],
-            ]);*/
+        /*->add('concernYear', ChoiceType::class, [
+            'label' => 'Année concercé',
+            'multiple' => false,
+            'choices' => $options['years'],
+        ]);*/
     }
 
     /**

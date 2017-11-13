@@ -77,6 +77,12 @@ class Internship
     protected $concernYear;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $comment;
+
+    /**
      * Internship constructor.
      */
     function __construct()
@@ -236,5 +242,21 @@ class Internship
     public function setConcernYear($concernYear)
     {
         $this->concernYear = $concernYear;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 }

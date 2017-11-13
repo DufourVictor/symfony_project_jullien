@@ -60,6 +60,14 @@
                 {{ form_widget(form.endDate, {'attr': {'class': 'browser-default'} }) }}
             </div>
         </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.comment) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.comment, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
         <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Valider"/>
         {{ form_end(form) }}
     </div>
