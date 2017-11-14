@@ -35,6 +35,9 @@ class InternshipController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $student = $form->getData()->getStudent();
+                if(null === $student){
+                    throw new \Exception('Utilisateur non trouvé');
+                }
                 return $this->redirectToRoute('stage_list', ['id' => $student->getId()]);
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'L\'élève n\'a pas été trouvé');
@@ -46,13 +49,19 @@ class InternshipController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param $id
+     *
      * @return Response
+     * @throws \Exception
      *
      * @Route("/liste-stages/{id}", name="stage_list")
      */
     public function listAction($id)
     {
+        if (null === $id)
+        {
+            throw new \Exception('Utilisateur non trouvé');
+        }
         $em = $this->getDoctrine()->getManager();
         $student = $em->getRepository(Student::class)->find($id);
         $internships = $em->getRepository(Internship::class)->findStagesForUser($student);
