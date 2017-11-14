@@ -27,34 +27,34 @@ class InternshipType extends AbstractType
     {
         $builder
             ->add('startDate', DateTimeType::class, [
-                'label' => 'Date de début',
+                'label'    => 'Date de début',
                 'required' => false,
             ])
             ->add('endDate', DateTimeType::class, [
-                'label' => 'Date de début',
+                'label'    => 'Date de début',
                 'required' => false,
             ])
             ->add('company', EntityType::class, [
-                'class' => Company::class,
+                'class'        => Company::class,
                 'choice_label' => 'name',
             ])
             ->add('profesionnalReferent', EntityType::class, [
-                'class' => ProfesionnalReferent::class,
+                'class'        => ProfesionnalReferent::class,
                 'choice_label' => 'firstName',
             ])
             ->add('educationalReferent', EntityType::class, [
-                'class' => EducationalReferent::class,
-                'choice_label' => 'firstName'
+                'class'        => EducationalReferent::class,
+                'choice_label' => 'firstName',
             ])
             ->add('technologies', EntityType::class, [
-                'class' => Technology::class,
+                'class'        => Technology::class,
                 'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => false,
-                'required' => false,
+                'multiple'     => true,
+                'expanded'     => false,
+                'required'     => false,
             ])
             ->add('comment', TextareaType::class, [
-                'label' => 'Observations',
+                'label'    => 'Observations',
                 'required' => false,
             ]);
         /*->add('concernYear', ChoiceType::class, [
@@ -69,10 +69,10 @@ class InternshipType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Internship',
-            'years' => null,
-        ));
+            'years'      => null,
+        ]);
     }
 
     /**
@@ -82,6 +82,5 @@ class InternshipType extends AbstractType
     {
         return 'appbundle_internship';
     }
-
 
 }

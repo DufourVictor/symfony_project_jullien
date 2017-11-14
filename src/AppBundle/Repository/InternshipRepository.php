@@ -12,6 +12,7 @@ class InternshipRepository extends EntityRepository
 {
     /**
      * @param Student $student
+     *
      * @return array
      */
     public function findStagesForUser(Student $student)
@@ -25,6 +26,7 @@ class InternshipRepository extends EntityRepository
 
     /**
      * @param Student $student
+     *
      * @return array
      */
     public function findYearPromotionForUser(Student $student)
