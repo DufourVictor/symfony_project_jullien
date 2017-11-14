@@ -11,7 +11,9 @@
 - in your project folder run `vagrant up`
 - `bin/console d:d:c`
 - `bin/console d:s:u --force`
-- Create user with fos user `bin.console fos:user:create myUsername`
+- Create user with fos user `bin/console fos:user:create myUsername`
 
+- If cache problem `vagrant ssh`
+- `sudo chmod 777 /var/www/var`
 - go to http://symfony_project.dev/app_dev.php/ 
 
