@@ -67,10 +67,10 @@ class InternshipType extends AbstractType
                 'query_builder' => function (EntityRepository $ir) use ($internship) {
                     return $ir->createQueryBuilder('i')
                         ->select('p.name')
-                        ->join('i.student', 's')
-                        ->join('s.register', 'r')
-                        ->join('r.promote', 'p')
-                        ->where('r.student = :student')
+                        ->leftJoin('i.student', 's')
+                        ->leftJoin('s.register', 'r')
+                        ->leftJoin('r.promote', 'p')
+                        ->where('i.student = :student')
                         ->setParameter('student', $internship->getStudent());
                 },
             ]);
