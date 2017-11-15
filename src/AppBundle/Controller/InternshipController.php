@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Student;
-use AppBundle\Entity\Visit;
 use AppBundle\Form\InternshipType;
 use AppBundle\Form\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -87,12 +86,8 @@ class InternshipController extends Controller
         $internship  = new Internship();
         $em          = $this->getDoctrine()->getManager();
         $student     = $em->getRepository(Student::class)->find($id);
-        $years       = $this->getDoctrine()->getRepository(Internship::class)->findYearPromotionForUser($student);
-        $concernYear = [];
-        foreach ($years as $key => $value) {
-            array_push($concernYear, $value['name']);
-        }
-        $form = $this->createForm(InternshipType::class, $internship, ['years' => $concernYear]);
+        $internship->setStudent($student);
+        $form = $this->createForm(InternshipType::class, $internship);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
