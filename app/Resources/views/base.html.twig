@@ -38,9 +38,12 @@
                                             <i class="material-icons left">pageview</i>Suivi scolarité
                                         </a>
                                     </li>
-                                    <div class="welcome">
-                                        <i class="material-icons left">person</i> Bienvenue Fethi
-                                    </div>
+                                    <li class="welcome">
+                                        <a href="#!" class="dropdown-button" data-activates="dropdown1" data-beloworigin="true">
+                                            <i class="material-icons left">person</i> Bienvenue {{ app.user.firstName }}
+                                            <i class="mdi-navigation-arrow-drop-down right"></i>
+                                        </a>
+                                    </li>
                                 </ul>
 
                                 <ul id="nav-mobile" class="side-nav">
@@ -65,6 +68,14 @@
                                 </a>
                             </div>
                         </nav>
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li class="collection-item avatar">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                <i class="material-icons">power_settings_new</i>
+                                Déconnexion
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </header>
             {% endblock %}
