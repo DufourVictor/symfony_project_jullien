@@ -3,9 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Promote;
+use AppBundle\Form\PromoteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Promote controller.
@@ -15,32 +20,44 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class PromoteController extends Controller
 {
     /**
-     * Lists all promote entities.
+     * @param Request $request
+     * @return RedirectResponse|Response
      *
      * @Route("/", name="promo_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $promotes = $em->getRepository('AppBundle:Promote')->findAll();
-
-        return $this->render('promote/index.html.twig', array(
+        $promotes = $em->getRepository(Promote::class)->findBy([], ['id' => 'DESC']);
+        $promote = new Promote();
+        $form = $this->createForm(PromoteType::class, $promote);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em->persist($promote);
+                $em->flush();
+                $this->addFlash('success', 'Année scolaire ajouté avec succès');
+                return $this->redirectToRoute('promo_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'erreur durant l\'ajout de d\'une année scolaire');
+            }
+        }
+        return $this->render('promote/index.html.twig', [
             'promotes' => $promotes,
-        ));
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * Creates a new promote entity.
+     * @param Request $request
+     * @return RedirectResponse|Response
      *
      * @Route("/new", name="promo_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $promote = new Promote();
-        $form = $this->createForm('AppBundle\Form\PromoteType', $promote);
+        $form = $this->createForm(PromoteType::class, $promote);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,86 +68,33 @@ class PromoteController extends Controller
             return $this->redirectToRoute('promo_show', array('id' => $promote->getId()));
         }
 
-        return $this->render('promote/new.html.twig', array(
+        return $this->render('promote/new.html.twig', [
             'promote' => $promote,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
-     * Finds and displays a promote entity.
-     *
-     * @Route("/{id}", name="promo_show")
-     * @Method("GET")
-     */
-    public function showAction(Promote $promote)
-    {
-        $deleteForm = $this->createDeleteForm($promote);
-
-        return $this->render('promote/show.html.twig', array(
-            'promote' => $promote,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing promote entity.
-     *
-     * @Route("/{id}/edit", name="promo_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Promote $promote)
-    {
-        $deleteForm = $this->createDeleteForm($promote);
-        $editForm = $this->createForm('AppBundle\Form\PromoteType', $promote);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('promo_edit', array('id' => $promote->getId()));
-        }
-
-        return $this->render('promote/edit.html.twig', array(
-            'promote' => $promote,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a promote entity.
+     * @param Promote $promote
+     * @return RedirectResponse
+     * @throws \Exception
      *
      * @Route("/{id}", name="promo_delete")
-     * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Promote $promote)
+    public function deleteAction(Promote $promote)
     {
-        $form = $this->createDeleteForm($promote);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (null === $promote) {
+            throw new \Exception('Cette année n\'existe pas');
+        }
+        try {
             $em = $this->getDoctrine()->getManager();
             $em->remove($promote);
             $em->flush();
+            $this->addFlash('success', 'Année supprimé avec succes');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'Une erreur est survenu lors de la suppresion de l\année scolaire');
         }
 
         return $this->redirectToRoute('promo_index');
-    }
-
-    /**
-     * Creates a form to delete a promote entity.
-     *
-     * @param Promote $promote The promote entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Promote $promote)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('promo_delete', array('id' => $promote->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
