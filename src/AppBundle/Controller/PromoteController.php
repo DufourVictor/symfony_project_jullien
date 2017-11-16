@@ -77,13 +77,14 @@ class PromoteController extends Controller
     /**
      * @param Promote $promote
      * @return RedirectResponse
+     * @throws \Exception
      *
      * @Route("/{id}", name="promo_delete")
      */
     public function deleteAction(Promote $promote)
     {
         if (null === $promote) {
-            return new Exception('Cette année n\'existe pas');
+            throw new \Exception('Cette année n\'existe pas');
         }
         try {
             $em = $this->getDoctrine()->getManager();

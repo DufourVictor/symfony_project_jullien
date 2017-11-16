@@ -34,8 +34,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('promo_index') }}">
-                                            <i class="material-icons left">pageview</i>Suivi scolarité
+                                        <a class="dropdown-button" data-activates="dropdownSuivi" data-beloworigin="true">
+                                            <i class="material-icons left">pageview</i> Suivi scolarité
+                                            <i class="mdi-navigation-arrow-drop-down right"></i>
                                         </a>
                                     </li>
                                     <li class="welcome">
@@ -73,6 +74,18 @@
                                 <a href="{{ path('fos_user_security_logout') }}">
                                 <i class="material-icons">power_settings_new</i>
                                 Déconnexion
+                                </a>
+                            </li>
+                        </ul>
+                        <ul id="dropdownSuivi" class="dropdown-content">
+                            <li class="collection-item avatar">
+                                <a href="{{ path('promo_index') }}">
+                                    Années scolaires
+                                </a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <a href="{{ path('diplome_index') }}">
+                                    Liste des BAC
                                 </a>
                             </li>
                         </ul>

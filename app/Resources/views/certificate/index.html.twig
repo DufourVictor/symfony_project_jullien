@@ -1,39 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Certificates list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for certificate in certificates %}
-            <tr>
-                <td><a href="{{ path('diplome_show', { 'id': certificate.id }) }}">{{ certificate.id }}</a></td>
-                <td>{{ certificate.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('diplome_show', { 'id': certificate.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('diplome_edit', { 'id': certificate.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('diplome_new') }}">Create a new certificate</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col s6">
+            <h1>Liste des BAC</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for certificate in certificates %}
+                    <tr>
+                        <td>{{ certificate.name }}</td>
+                        <td>
+                            <a href="{{ path('diplome_delete', { 'id': certificate.id }) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s6">
+            <h1>Ajouter un nouveau BAC</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Ajouter" class="waves-effect waves-light btn indigo darken-4"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
