@@ -1,39 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Promotes list</h1>
+    <div class="row">
+        <div class="col s6">
+            <h1>Liste des années scolaires</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Année</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for promote in promotes %}
+                    <tr>
+                        <td>{{ promote.name }}</td>
+                        <td>
+                            <a href="{{ path('promo_delete', { 'id': promote.id }) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s6">
+            <h1>Ajouter une année</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for promote in promotes %}
-            <tr>
-                <td><a href="{{ path('promo_show', { 'id': promote.id }) }}">{{ promote.id }}</a></td>
-                <td>{{ promote.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('promo_show', { 'id': promote.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('promo_edit', { 'id': promote.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('promo_new') }}">Create a new promote</a>
-        </li>
-    </ul>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Ajouter" class="waves-effect waves-light btn indigo darken-4"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
