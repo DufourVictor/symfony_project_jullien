@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des stages{% endblock %}
+{% block body %}
+    <a href="{{ path('stage_new', {'id': student.id}) }}" class="waves-effect waves-light btn indigo darken-4 right">
+        Ajouter un stage
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>Année</th>
+            <th>Entreprise</th>
+            <th>Référent pédagogique</th>
+            <th>Référent proféssionnel</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for internship in internships %}
+            <tr>
+                <td>{{ internship.startDate|date('Y') }}</td>
+                <td>
+                    {% if internship.company is defined and internship.company is not null %}
+                        {{ internship.company.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
+                        {{ internship.educationalReferent.fullName }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
+                        {{ internship.profesionnalReferent.fullName }}
+                    {% endif %}
+                </td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stage_show', { 'id': internship.id }) }}"
+                               class="waves-effect waves-light btn indigo darken-4">
+                                Voir
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

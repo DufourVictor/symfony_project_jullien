@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Visit
@@ -37,9 +38,17 @@ class Visit
 
     /**
      * @var Internship
-     * @ORM\ManyToOne(targetEntity="Internship")
+     * @ORM\ManyToOne(targetEntity="Internship", inversedBy="visit")
      */
     protected $internship;
+
+    /**
+     * Visit constructor.
+     */
+    function __construct()
+    {
+        $this->dateVisit = new \DateTime();
+    }
 
     /**
      * Get id

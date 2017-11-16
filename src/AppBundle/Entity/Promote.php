@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * promote
  *
  * @ORM\Table(name="promote")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\promoteRepository")
+ * @ORM\Entity()
  */
 class Promote
 {

@@ -1,16 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Internship creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('stage_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <h1>Nouveau stage</h1>
+    <div class="row">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.company) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.company, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.educationalReferent) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.educationalReferent, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.profesionnalReferent) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.profesionnalReferent, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.technologies) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.technologies, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.concernYear) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.concernYear, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.startDate) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.startDate, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.endDate) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.endDate, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                {{ form_label(form.comment) }}
+            </div>
+            <div class="col s4">
+                {{ form_widget(form.comment, {'attr': {'class': 'browser-default'} }) }}
+            </div>
+        </div>
+        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Valider"/>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

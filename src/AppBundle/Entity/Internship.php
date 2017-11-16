@@ -24,13 +24,13 @@ class Internship
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="startDate", type="datetime")
+     * @ORM\Column(name="startDate", type="datetime", nullable=true)
      */
     protected $startDate;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     protected $endDate;
 
@@ -63,6 +63,24 @@ class Internship
      * @ORM\ManyToMany(targetEntity="Technology")
      */
     protected $technologies;
+
+    /**
+     * @var Visit
+     * @ORM\OneToMany(targetEntity="Visit", mappedBy="internship")
+     */
+    protected $visit;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $concernYear;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $comment;
 
     /**
      * Internship constructor.
@@ -192,5 +210,53 @@ class Internship
     public function setTechnologies($technologies)
     {
         $this->technologies = $technologies;
+    }
+
+    /**
+     * @return Visit
+     */
+    public function getVisit()
+    {
+        return $this->visit;
+    }
+
+    /**
+     * @param Visit $visit
+     */
+    public function setVisit($visit)
+    {
+        $this->visit = $visit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConcernYear()
+    {
+        return $this->concernYear;
+    }
+
+    /**
+     * @param string $concernYear
+     */
+    public function setConcernYear($concernYear)
+    {
+        $this->concernYear = $concernYear;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 }

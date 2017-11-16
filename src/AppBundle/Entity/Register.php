@@ -35,7 +35,7 @@ class Register
 
     /**
      * @var Student
-     * @ORM\ManyToOne(targetEntity="Student")
+     * @ORM\ManyToOne(targetEntity="Student", inversedBy="register")
      */
     protected $student;
 

@@ -3,9 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Internship;
+use AppBundle\Entity\Student;
+use AppBundle\Form\InternshipType;
+use AppBundle\Form\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Internship controller.
@@ -15,122 +20,101 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class InternshipController extends Controller
 {
     /**
-     * Lists all internship entities.
+     * @param Request $request
+     *
+     * @return Response
      *
      * @Route("/", name="stage_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $internships = $em->getRepository('AppBundle:Internship')->findAll();
+        $form = $this->createForm(RegisterSelectorType::class, null);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $student = $form->getData()->getStudent();
+                if (null === $student) {
+                    throw new \Exception('Utilisateur non trouvé');
+                }
 
-        return $this->render('internship/index.html.twig', array(
-            'internships' => $internships,
-        ));
+                return $this->redirectToRoute('stage_list', ['id' => $student->getId()]);
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'L\'élève n\'a pas été trouvé');
+            }
+        }
+
+        return $this->render('internship/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * Creates a new internship entity.
+     * @param $id
      *
-     * @Route("/new", name="stage_new")
-     * @Method({"GET", "POST"})
+     * @return Response
+     * @throws \Exception
+     *
+     * @Route("/liste-stages/{id}", name="stage_list")
      */
-    public function newAction(Request $request)
+    public function listAction($id)
     {
-        $internship = new Internship();
-        $form = $this->createForm('AppBundle\Form\InternshipType', $internship);
+        if (null === $id) {
+            throw new \Exception('Utilisateur non trouvé');
+        }
+        $em          = $this->getDoctrine()->getManager();
+        $student     = $em->getRepository(Student::class)->find($id);
+        $internships = $em->getRepository(Internship::class)->findStagesForUser($student);
+
+        return $this->render('internship/list.html.twig', [
+            'internships' => $internships,
+            'student'     => $student,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param         $id
+     *
+     * @return RedirectResponse|Response
+     *
+     * @Route("/{id}/new", name="stage_new")
+     */
+    public function newAction(Request $request, $id)
+    {
+        $internship  = new Internship();
+        $em          = $this->getDoctrine()->getManager();
+        $student     = $em->getRepository(Student::class)->find($id);
+        $internship->setStudent($student);
+        $form = $this->createForm(InternshipType::class, $internship);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $internship->setStudent($student);
             $em->persist($internship);
             $em->flush();
 
-            return $this->redirectToRoute('stage_show', array('id' => $internship->getId()));
+            return $this->redirectToRoute('stage_show', ['id' => $internship->getId()]);
         }
 
-        return $this->render('internship/new.html.twig', array(
+        return $this->render('internship/new.html.twig', [
             'internship' => $internship,
-            'form' => $form->createView(),
-        ));
+            'form'       => $form->createView(),
+        ]);
     }
 
     /**
-     * Finds and displays a internship entity.
+     * @param Internship $internship
+     *
+     * @return Response
      *
      * @Route("/{id}", name="stage_show")
-     * @Method("GET")
      */
     public function showAction(Internship $internship)
     {
-        $deleteForm = $this->createDeleteForm($internship);
-
-        return $this->render('internship/show.html.twig', array(
+        return $this->render('internship/show.html.twig', [
             'internship' => $internship,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing internship entity.
-     *
-     * @Route("/{id}/edit", name="stage_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Internship $internship)
-    {
-        $deleteForm = $this->createDeleteForm($internship);
-        $editForm = $this->createForm('AppBundle\Form\InternshipType', $internship);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('stage_edit', array('id' => $internship->getId()));
-        }
-
-        return $this->render('internship/edit.html.twig', array(
-            'internship' => $internship,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a internship entity.
-     *
-     * @Route("/{id}", name="stage_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Internship $internship)
-    {
-        $form = $this->createDeleteForm($internship);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($internship);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('stage_index');
-    }
-
-    /**
-     * Creates a form to delete a internship entity.
-     *
-     * @param Internship $internship The internship entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Internship $internship)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('stage_delete', array('id' => $internship->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        ]);
     }
 }
