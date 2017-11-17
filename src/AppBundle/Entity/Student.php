@@ -36,8 +36,8 @@ class Student
     protected $email;
 
     /**
-     * @var ArrayCollection[]|Certificate
-     * @ORM\ManyToMany(targetEntity="Certificate")
+     * @var Certificate[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Certificate", mappedBy="student")
      */
     protected $certificate;
 
@@ -98,7 +98,7 @@ class Student
     }
 
     /**
-     * @return Certificate|ArrayCollection[]
+     * @return Certificate[]|ArrayCollection
      */
     public function getCertificate()
     {
@@ -106,7 +106,7 @@ class Student
     }
 
     /**
-     * @param Certificate|ArrayCollection[] $certificate
+     * @param Certificate[]|ArrayCollection $certificate
      */
     public function setCertificate($certificate)
     {

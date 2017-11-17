@@ -31,7 +31,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="CompanyType", mappedBy="company")
      */
     private $type;
 

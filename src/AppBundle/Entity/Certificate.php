@@ -30,8 +30,8 @@ class Certificate
     private $name;
 
     /**
-     * @var ArrayCollection[]|Student
-     * @ORM\ManyToMany(targetEntity="Student")
+     * @var Student[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Student", inversedBy="certificate")
      */
     protected $student;
 
@@ -78,7 +78,7 @@ class Certificate
     }
 
     /**
-     * @return Student|ArrayCollection[]
+     * @return Student[]|ArrayCollection
      */
     public function getStudent()
     {
@@ -86,7 +86,7 @@ class Certificate
     }
 
     /**
-     * @param Student|ArrayCollection[] $student
+     * @param Student[]|ArrayCollection $student
      */
     public function setStudent($student)
     {
