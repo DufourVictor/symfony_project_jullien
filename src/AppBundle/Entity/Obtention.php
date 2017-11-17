@@ -27,11 +27,13 @@ class Obtention
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+
     /**
      * @var Student
      * @ORM\ManyToOne(targetEntity="Student")
      */
     protected $student;
+
     /**
      * @var Certificate
      * @ORM\ManyToOne(targetEntity="Certificate")

@@ -29,12 +29,6 @@ class CompanyType
     private $name;
 
     /**
-     * @var Company
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="type")
-     */
-    protected $company;
-
-    /**
      * @return int
      */
     public function getId()
@@ -64,22 +58,6 @@ class CompanyType
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return Company
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param Company $company
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
     }
 }
 
