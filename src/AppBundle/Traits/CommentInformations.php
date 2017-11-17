@@ -23,10 +23,14 @@ trait CommentInformations
      */
     protected $phone;
 
+    /**
+     * @return string
+     */
     public function getFullName()
     {
         return $this->firstName .' '. $this->getLastName();
     }
+
     /**
      * @return string
      */
