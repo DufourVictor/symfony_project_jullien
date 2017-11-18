@@ -79,12 +79,15 @@ class BruteForceListener implements EventSubscriberInterface
             return;
         }
 
-        if (null !== $client->getDate() && $client->getDate() > new \DateTime()) {
-            throw new AccessDeniedException();
-        } else {
-            // Remettre le nombre de tentatives à 0
-            $this->entityManager->persist($client);
-            $this->entityManager->flush();
+        if (null !== $client->getDate()) {
+            if ($client->getDate() > new \DateTime()) {
+                throw new AccessDeniedException();
+            } else {
+                $client->setDate(null);
+                $client->setNumberOfTentative(1);
+                $this->entityManager->persist($client);
+                $this->entityManager->flush();
+            }
         }
     }
 }

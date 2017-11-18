@@ -30,20 +30,6 @@ class Certificate
     private $name;
 
     /**
-     * @var Student[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Student", inversedBy="certificate")
-     */
-    protected $student;
-
-    /**
-     * Certificate constructor.
-     */
-    function __construct()
-    {
-        $this->student = new ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return int
@@ -54,22 +40,6 @@ class Certificate
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Certificate
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
      * @return string
      */
     public function getName()
@@ -78,18 +48,10 @@ class Certificate
     }
 
     /**
-     * @return Student[]|ArrayCollection
+     * @param string $name
      */
-    public function getStudent()
+    public function setName(string $name)
     {
-        return $this->student;
-    }
-
-    /**
-     * @param Student[]|ArrayCollection $student
-     */
-    public function setStudent($student)
-    {
-        $this->student = $student;
+        $this->name = $name;
     }
 }

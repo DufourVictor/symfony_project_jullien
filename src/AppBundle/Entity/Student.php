@@ -36,8 +36,8 @@ class Student
     protected $email;
 
     /**
-     * @var Certificate[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Certificate", mappedBy="student")
+     * @var CertificateObtention[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="CertificateObtention", mappedBy="student")
      */
     protected $certificate;
 
@@ -76,7 +76,7 @@ class Student
     /**
      * @param string $address
      */
-    public function setAddress($address)
+    public function setAddress(string $address)
     {
         $this->address = $address;
     }
@@ -92,13 +92,13 @@ class Student
     /**
      * @param string $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
 
     /**
-     * @return Certificate[]|ArrayCollection
+     * @return CertificateObtention[]|ArrayCollection
      */
     public function getCertificate()
     {
@@ -106,11 +106,20 @@ class Student
     }
 
     /**
-     * @param Certificate[]|ArrayCollection $certificate
+     * @param CertificateObtention[]|ArrayCollection $certificate
      */
     public function setCertificate($certificate)
     {
         $this->certificate = $certificate;
+    }
+
+    /**
+     * @param $certificate
+     * @return $this
+     */
+    public function addCertificate($certificate) {
+        $this->certificate[] = $certificate;
+        return $this;
     }
 
     /**
@@ -124,7 +133,7 @@ class Student
     /**
      * @param Register $register
      */
-    public function setRegister($register)
+    public function setRegister(Register $register)
     {
         $this->register = $register;
     }
