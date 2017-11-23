@@ -36,7 +36,7 @@ class Student
 
     /**
      * @var CertificateObtention[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="CertificateObtention", mappedBy="student")
+     * @ORM\OneToMany(targetEntity="CertificateObtention", mappedBy="student", cascade={"persist"})
      */
     protected $certificate;
 
@@ -108,6 +108,19 @@ class Student
     public function setCertificate($certificate)
     {
         $this->certificate = $certificate;
+    }
+
+    /**
+     * @param $certificate
+     * @return $this
+     */
+    public function addCertificate($certificate)
+    {
+        if ($this->certificate->contains($certificate) === false) {
+            $this->certificate->add($certificate);
+            $this->certificate->setStudent($this);
+        }
+        return $this;
     }
 
     /**

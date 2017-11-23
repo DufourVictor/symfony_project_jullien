@@ -37,6 +37,7 @@ class StudentType extends AbstractType
                 'entry_type' => CertificateObtentionType::class,
                 'allow_add' => true,
                 'prototype' => true,
+                'by_reference' => false,
             ]);
     }
 
