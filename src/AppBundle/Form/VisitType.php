@@ -18,6 +18,7 @@ class VisitType extends AbstractType
         $builder
             ->add('dateVisit', DateTimeType::class, [
                 'label' => 'Date de visite',
+                'widget' => 'single_text'
             ])
             ->add('comment', TextareaType::class, [
                 'label' => 'Observation',

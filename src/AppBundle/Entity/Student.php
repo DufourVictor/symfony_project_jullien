@@ -24,16 +24,15 @@ class Student
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="address", type="text")
+     * @ORM\Column(type="string")
      */
-    protected $address;
+    protected $email;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    protected $email;
+    protected $address;
 
     /**
      * @var CertificateObtention[]|ArrayCollection
@@ -56,29 +55,11 @@ class Student
     }
 
     /**
-     * Get id
-     *
-     * @return int
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress(string $address)
-    {
-        $this->address = $address;
     }
 
     /**
@@ -90,11 +71,27 @@ class Student
     }
 
     /**
-     * @param string $email
+     * @param $email
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 
     /**
@@ -114,15 +111,6 @@ class Student
     }
 
     /**
-     * @param $certificate
-     * @return $this
-     */
-    public function addCertificate($certificate) {
-        $this->certificate[] = $certificate;
-        return $this;
-    }
-
-    /**
      * @return Register
      */
     public function getRegister()
@@ -137,4 +125,6 @@ class Student
     {
         $this->register = $register;
     }
+
+
 }
