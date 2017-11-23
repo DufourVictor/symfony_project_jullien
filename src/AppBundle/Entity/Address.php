@@ -8,26 +8,27 @@ use Doctrine\ORM\Mapping\Column;
 /**
  * Class Address
  * @ORM\Embeddable()
+ * @ORM\Table(name="address")
  */
 class Address
 {
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
     protected $street;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
     protected $postalCode;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
     protected $city;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      */
     protected $country;
 
@@ -105,5 +106,12 @@ class Address
     {
         $this->country = $country;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function fullAddress(){
+        return $this->getStreet() .' '.$this->getCity().' '.$this->getPostalCode().' '.$this->getCountry();
     }
 }

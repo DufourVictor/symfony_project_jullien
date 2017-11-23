@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\CompanyType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Company controller.
@@ -15,27 +19,41 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class CompanyController extends Controller
 {
     /**
-     * Lists all company entities.
+     * @param Request $request
+     * @return RedirectResponse|Response
      *
      * @Route("/", name="entreprise_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $companies = $em->getRepository('AppBundle:Company')->findAll();
+        $companies = $em->getRepository(Company::class)->findAll();
+        $company = new Company();
+        $form = $this->createForm(\AppBundle\Form\CompanyType::class, $company);
+        $form->handleRequest($request);
 
-        return $this->render('company/index.html.twig', array(
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em->persist($company);
+                $em->flush();
+                $this->addFlash('success', 'Entreprise ajouté avec succès');
+                return $this->redirectToRoute('entreprise_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur durant l\'ajout d\'une entreprise');
+            }
+        }
+        return $this->render('company/index.html.twig', [
             'companies' => $companies,
-        ));
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * Creates a new company entity.
+     * @param Request $request
+     * @return RedirectResponse|Response
      *
      * @Route("/new", name="entreprise_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -58,19 +76,20 @@ class CompanyController extends Controller
     }
 
     /**
-     * Finds and displays a company entity.
+     * @param $id
+     * @return Response
      *
      * @Route("/{id}", name="entreprise_show")
-     * @Method("GET")
      */
-    public function showAction(Company $company)
+    public function showAction($id)
     {
+        $company = $this->getDoctrine()->getRepository(Company::class)->find($id);
         $deleteForm = $this->createDeleteForm($company);
 
-        return $this->render('company/show.html.twig', array(
+        return $this->render('company/show.html.twig', [
             'company' => $company,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -130,7 +149,6 @@ class CompanyController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('entreprise_delete', array('id' => $company->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
