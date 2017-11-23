@@ -1,27 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block title %}Stages - Recherche{% endblock %}
 {% block body %}
-    <h1>Gestion des stages</h1>
-    <h3>Rechercher un élève</h3>
-<div class="row">
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col s2">
-            {{ form_label(form.classroom) }}
-        </div>
-        <div class="col s4">
-            {{ form_widget(form.classroom, {'attr': {'class': 'browser-default'} }) }}
+    <h3>Gestion des stages</h3>
+    <h5>Rechercher un élève</h5>
+
+    <div class="container-form">
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    {{ form_row(form.classroom) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    {{ form_row(form.student) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    <button type="submit" class="btn waves-effect waves-light indigo darken-4">
+                        Rechercher
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
         </div>
     </div>
-    <div class="row">
-        <div class="col s2">
-            {{ form_label(form.student) }}
-        </div>
-        <div class="col s4">
-            {{ form_widget(form.student, {'attr': {'class': 'browser-default'} }) }}
-        </div>
-    </div>
-    <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Rechercher"/>
-    {{ form_end(form) }}
-</div>
 {% endblock %}
