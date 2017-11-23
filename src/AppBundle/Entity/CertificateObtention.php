@@ -26,7 +26,7 @@ class CertificateObtention
      *
      * @ORM\Column(name="date", type="datetime")
      */
-    private $date;
+    protected $date;
 
     /**
      * @var Student
@@ -39,7 +39,6 @@ class CertificateObtention
      * @ORM\ManyToOne(targetEntity="Certificate")
      */
     protected $certificate;
-
 
     /**
      * Get id

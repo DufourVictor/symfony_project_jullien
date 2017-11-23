@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CertificateObtention;
 use AppBundle\Entity\Student;
 use AppBundle\Form\RegisterSelectorType;
 use AppBundle\Form\StudentType;
@@ -60,14 +61,11 @@ class StudentController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                dump($student);
                 $em->persist($student);
                 $em->flush();
                 $this->addFlash('success', 'Élève ajouté');
                 return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
             } catch (\Exception $e) {
-                dump($e->getMessage());
-                die;
                 $this->addFlash('danger', 'Erreur durant l\'ajout d\'un élève');
             }
         }
@@ -87,6 +85,8 @@ class StudentController extends Controller
      */
     public function showAction(Student $student, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $class = $em->getRepository(CertificateObtention::class)->findBy(['student' => $student]);
         if (null === $student) {
             throw new \Exception('Élève non trouvé');
         }
@@ -94,7 +94,6 @@ class StudentController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($student);
                 $em->flush();
                 $this->addFlash('success', 'Élève modifié');
@@ -107,6 +106,7 @@ class StudentController extends Controller
 
         return $this->render('student/show.html.twig', [
             'student' => $student,
+            'class' => $class,
             'form' => $form->createView(),
         ]);
     }

@@ -25,13 +25,46 @@
                 {{ form_row(form.phone) }}
             </div>
             <div class="col s6">
-                {% for certificate in form.certificate %}
-                    {{ form_row(certificate) }}
-                {% endfor %}
+                <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}">
+                    {% for certificate in form.certificate %}
+                        {{ form_row(certificate) }}
+                    {% endfor %}
+                </ul>
+                <input type="text" id="add-another-certificate"/>
             </div>
 
         </div>
         <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Valider"/>
     </div>
     {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var certificateCount = document.querySelector("#certificate-fields-list").dataset.length;
+
+        document.querySelector('#add-another-certificate').addEventListener('clic', function () {
+
+        })
+        jQuery(document).ready(function () {
+            jQuery('#add-another-certificate').click(function (e) {
+                e.preventDefault();
+
+                var certificateList = jQuery('#certificate-fields-list');
+
+                // grab the prototype template
+                var newWidget = certificateList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, certificateCount);
+                certificateCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(certificateCount);
+            });
+        })
+    </script>
 {% endblock %}

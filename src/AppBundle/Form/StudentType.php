@@ -24,14 +24,19 @@ class StudentType extends AbstractType
             ->add('lastName', TextType::class, [
                 'label' => 'Nom'
             ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse'
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'E-mail'
             ])
             ->add('phone', TextType::class, [
                 'label' => 'Numéro de téléphone'
             ])
-            ->add('certificate', CertificateObtentionType::class, [
-                'data_class' => null,
+            ->add('certificate', CollectionType::class, [
+                'entry_type' => CertificateObtentionType::class,
+                'allow_add' => true,
+                'prototype' => true,
             ]);
     }
 
