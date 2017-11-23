@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ student.fullName }}</h1>
+    <h3>Informations</h3>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col s6">
+            {{ form_row(form.lastName) }}
+        </div>
+        <div class="col s6">
+            {{ form_row(form.firstName) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            {{ form_row(form.phone) }}
+        </div>
+        <div class="col s6">
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+    <div class="row">
+        {% for certificate in form.certificate %}
+            <div class="col s6">
+                {{ form_row(certificate) }}
+            </div>
+        {% endfor %}
+    </div>
+    <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Modifier"/>
+    {{ form_end(form) }}
+
+{% endblock %}
