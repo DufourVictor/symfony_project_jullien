@@ -28,8 +28,6 @@ class InternshipController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(RegisterSelectorType::class, null);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
