@@ -61,11 +61,16 @@ class PromoteController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($promote);
-            $em->flush();
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($promote);
+                $em->flush();
+                $this->addFlash('success', 'Promotion ajouté');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur durant l\'ajout d\une promotion');
+            }
 
-            return $this->redirectToRoute('promo_show', array('id' => $promote->getId()));
+            return $this->redirectToRoute('promo_show', ['id' => $promote->getId()]);
         }
 
         return $this->render('promote/new.html.twig', [

@@ -24,20 +24,19 @@ class Student
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="address", type="text")
-     */
-    protected $address;
-
-    /**
-     * @var string
      * @ORM\Column(type="string")
      */
     protected $email;
 
     /**
-     * @var ArrayCollection[]|Certificate
-     * @ORM\ManyToMany(targetEntity="Certificate")
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    protected $address;
+
+    /**
+     * @var CertificateObtention[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="CertificateObtention", mappedBy="student")
      */
     protected $certificate;
 
@@ -56,29 +55,11 @@ class Student
     }
 
     /**
-     * Get id
-     *
-     * @return int
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
     }
 
     /**
@@ -90,7 +71,7 @@ class Student
     }
 
     /**
-     * @param string $email
+     * @param $email
      */
     public function setEmail($email)
     {
@@ -98,7 +79,23 @@ class Student
     }
 
     /**
-     * @return Certificate|ArrayCollection[]
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return CertificateObtention[]|ArrayCollection
      */
     public function getCertificate()
     {
@@ -106,7 +103,7 @@ class Student
     }
 
     /**
-     * @param Certificate|ArrayCollection[] $certificate
+     * @param CertificateObtention[]|ArrayCollection $certificate
      */
     public function setCertificate($certificate)
     {
@@ -124,8 +121,10 @@ class Student
     /**
      * @param Register $register
      */
-    public function setRegister($register)
+    public function setRegister(Register $register)
     {
         $this->register = $register;
     }
+
+
 }

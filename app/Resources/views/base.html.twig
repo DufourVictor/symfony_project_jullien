@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
@@ -111,28 +111,34 @@
                                     Liste des BAC
                                 </a>
                             </li>
+                            <li class="collection-item avatar indigo darken-4">
+                                <a href="{{ path('stage_index') }}">
+                                    <i class="material-icons">school</i>
+                                    Recherche des élèves
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </header>
             {% endblock %}
 
-            {% block body %}{% endblock %}
-        </div>
+    {% block body %}{% endblock %}
+</div>
 
-        {% block footer %}
-            <footer class="page-footer indigo darken-4">
-                <div class="footer-copyright">
-                    <div class="container">
-                        <a class="left" href="#">Mentions légales</a>
-                        <span class="left separator">|</span>
-                        <a class="left" href="#">Politique de cookies</a>
-                        <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
-                            Lycée privé Saint-Vincent
-                        </a>
-                    </div>
-                </div>
-            </footer>
-        {% endblock %}
+{% block footer %}
+    <footer class="page-footer indigo darken-4">
+        <div class="footer-copyright">
+            <div class="container">
+                <a class="left" href="#">Mentions légales</a>
+                <span class="left separator">|</span>
+                <a class="left" href="#">Politique de cookies</a>
+                <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
+                    Lycée privé Saint-Vincent
+                </a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
 
 {% block javascripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

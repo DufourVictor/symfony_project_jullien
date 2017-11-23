@@ -22,3 +22,4 @@ $(document).ready(function () {
         $('.dropdown-logout > .arrow').toggleClass("down");
     });
 });
+$('select').material_select();

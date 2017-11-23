@@ -31,7 +31,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="CompanyType")
      */
     private $type;
 
@@ -43,9 +43,9 @@ class Company
     private $turnover;
 
     /**
-     * @var string
+     * @var Address
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Embedded(class="Address")
      */
     private $address;
 
@@ -139,27 +139,19 @@ class Company
     }
 
     /**
-     * Set address
-     *
-     * @param string $address
-     *
-     * @return Company
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string
+     * @return Address
      */
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * @param Address $address
+     */
+    public function setAddress(Address $address)
+    {
+        $this->address = $address;
     }
 
     /**

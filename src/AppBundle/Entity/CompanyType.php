@@ -2,16 +2,15 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Certificate
+ * Company
  *
- * @ORM\Table(name="certificate")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CertificateRepository")
+ * @ORM\Table(name="company_type")
+ * @ORM\Entity()
  */
-class Certificate
+class CompanyType
 {
     /**
      * @var int
@@ -30,13 +29,19 @@ class Certificate
     private $name;
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -48,10 +53,11 @@ class Certificate
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
     public function setName($name)
     {
         $this->name = $name;
     }
 }
+
