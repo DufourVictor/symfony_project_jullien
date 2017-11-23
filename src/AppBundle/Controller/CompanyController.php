@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
-use AppBundle\Entity\CompanyType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,7 +29,7 @@ class CompanyController extends Controller
 
         $companies = $em->getRepository(Company::class)->findAll();
         $company = new Company();
-        $form = $this->createForm(\AppBundle\Form\CompanyType::class, $company);
+        $form = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -38,41 +37,18 @@ class CompanyController extends Controller
                 $em->persist($company);
                 $em->flush();
                 $this->addFlash('success', 'Entreprise ajouté avec succès');
+
                 return $this->redirectToRoute('entreprise_index');
             } catch (\Exception $e) {
+                dump($e->getMessage(), $company);die;
                 $this->addFlash('danger', 'Erreur durant l\'ajout d\'une entreprise');
             }
         }
+
         return $this->render('company/index.html.twig', [
             'companies' => $companies,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @param Request $request
-     * @return RedirectResponse|Response
-     *
-     * @Route("/new", name="entreprise_new")
-     */
-    public function newAction(Request $request)
-    {
-        $company = new Company();
-        $form = $this->createForm('AppBundle\Form\CompanyType', $company);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($company);
-            $em->flush();
-
-            return $this->redirectToRoute('entreprise_show', array('id' => $company->getId()));
-        }
-
-        return $this->render('company/new.html.twig', array(
-            'company' => $company,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
