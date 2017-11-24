@@ -45,7 +45,7 @@ class Visit
     /**
      * Visit constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $this->dateVisit = new \DateTime();
     }
