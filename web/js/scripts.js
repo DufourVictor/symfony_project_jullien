@@ -36,4 +36,3 @@ jQuery(document).ready(function () {
         certificateWrapper.appendChild(newLi);
     });
 })
-$('select').material_select();

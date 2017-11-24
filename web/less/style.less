@@ -20,9 +20,10 @@ html {
                     height: 64px;
 
                     #logo-container {
+                        height: 100%;
+
                         img {
                             padding: 5px 0;
-                            max-height: 64px;
                         }
                     }
 
@@ -203,36 +204,52 @@ html {
                 text-align: center;
             }
 
-            table {
-                margin-top: 10px;
-            }
+            .container {
+                table {
+                    margin-top: 10px;
+                }
 
-            .container-form {
-                margin-top: 30px;
-
-                form {
+                .collapsible-body {
                     .row {
                         margin-bottom: 0;
 
-                        .select-wrapper {
-                            input, .caret {
-                                color: #1A237E;
-                            }
-
-                            .dropdown-content {
-                                span {
-                                    color: #1A237E;
-                                }
-                            }
+                        .btn-floating {
+                            margin-top: -10px;
                         }
 
-                        .btn {
-                            width: 100%;
-                            padding-left: 0;
+                        p {
+                            margin-top: 0;
+                        }
+                    }
+                }
 
-                            .material-icons {
-                                position: absolute;
-                                margin-left: 10px;
+                &-form {
+                    margin-top: 30px;
+
+                    form {
+                        .row {
+                            margin-bottom: 0;
+
+                            .select-wrapper {
+                                input, .caret {
+                                    color: #1A237E;
+                                }
+
+                                .dropdown-content {
+                                    span {
+                                        color: #1A237E;
+                                    }
+                                }
+                            }
+
+                            .btn {
+                                width: 100%;
+                                padding-left: 0;
+
+                                .material-icons {
+                                    position: absolute;
+                                    margin-left: 10px;
+                                }
                             }
                         }
                     }
