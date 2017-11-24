@@ -37,9 +37,15 @@ class ClientFailure
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $date;
+    protected $dateBan;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $dateTentative;
 
     /**
      * Get id
@@ -109,17 +115,40 @@ class ClientFailure
     /**
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateBan()
     {
-        return $this->date;
+        return $this->dateBan;
     }
 
     /**
-     * @param \DateTime $date
+     * @param \DateTime $dateBan
+     *
+     * @return $this
      */
-    public function setDate($date)
+    public function setDateBan($dateBan)
     {
-        $this->date = $date;
+        $this->dateBan = $dateBan;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateTentative()
+    {
+        return $this->dateTentative;
+    }
+
+    /**
+     * @param \DateTime $dateTentative
+     *
+     * @return $this
+     */
+    public function setDateTentative($dateTentative)
+    {
+        $this->dateTentative = $dateTentative;
+
+        return $this;
     }
 }
-
