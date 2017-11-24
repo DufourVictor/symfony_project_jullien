@@ -22,21 +22,15 @@ $(document).ready(function () {
         $('.dropdown-logout > .arrow').toggleClass("down");
     });
 });
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     var certificateWrapper = document.querySelector('#certificate-fields-list');
     var certificateCount = certificateWrapper.dataset.length;
 
-    document.querySelector('#add-another-certificate').addEventListener('click', function(e) {
+    document.querySelector('#add-another-certificate').addEventListener('click', function (e) {
         e.preventDefault();
-        // grab the prototype template
         var newWidget = certificateWrapper.dataset.prototype;
-        // replace the "__name__" used in the id and name of the prototype
-        // with a number that's unique to your emails
-        // end name attribute looks like name="contact[emails][2]"
         newWidget = newWidget.replace(/__name__/g, certificateCount);
         certificateCount++;
-
-        // create a new list element and add it to the list
         var newLi = document.createElement('li');
         newLi.innerHTML = newWidget;
         certificateWrapper.appendChild(newLi);
