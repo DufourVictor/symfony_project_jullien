@@ -12,7 +12,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class RegisterType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,7 +31,7 @@ class RegisterType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -38,14 +39,4 @@ class RegisterType extends AbstractType
             'data_class' => 'AppBundle\Entity\Register'
         ));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_register';
-    }
-
-
 }

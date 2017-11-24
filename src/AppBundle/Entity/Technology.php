@@ -38,7 +38,7 @@ class Technology
     /**
      * Technology constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $this->internships = new ArrayCollection();
     }

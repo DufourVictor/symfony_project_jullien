@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Internship;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Company controller.
@@ -15,122 +19,69 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class CompanyController extends Controller
 {
     /**
-     * Lists all company entities.
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
      *
      * @Route("/", name="entreprise_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $companies = $em->getRepository('AppBundle:Company')->findAll();
-
-        return $this->render('company/index.html.twig', array(
-            'companies' => $companies,
-        ));
-    }
-
-    /**
-     * Creates a new company entity.
-     *
-     * @Route("/new", name="entreprise_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $company = new Company();
-        $form = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $companies = $em->getRepository(Company::class)->findAll();
+        $company   = new Company();
+        $form      = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($company);
-            $em->flush();
+            try {
+                $em->persist($company);
+                $em->flush();
+                $this->addFlash('success', 'Entreprise ajouté avec succès');
 
-            return $this->redirectToRoute('entreprise_show', array('id' => $company->getId()));
+                return $this->redirectToRoute('entreprise_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur durant l\'ajout d\'une entreprise');
+            }
         }
 
-        return $this->render('company/new.html.twig', array(
-            'company' => $company,
-            'form' => $form->createView(),
-        ));
+        return $this->render('company/index.html.twig', [
+            'companies' => $companies,
+            'form'      => $form->createView(),
+        ]);
     }
 
     /**
-     * Finds and displays a company entity.
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
      *
      * @Route("/{id}", name="entreprise_show")
-     * @Method("GET")
      */
-    public function showAction(Company $company)
+    public function showAction(Request $request, $id)
     {
-        $deleteForm = $this->createDeleteForm($company);
-
-        return $this->render('company/show.html.twig', array(
-            'company' => $company,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing company entity.
-     *
-     * @Route("/{id}/edit", name="entreprise_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Company $company)
-    {
-        $deleteForm = $this->createDeleteForm($company);
-        $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('entreprise_edit', array('id' => $company->getId()));
-        }
-
-        return $this->render('company/edit.html.twig', array(
-            'company' => $company,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a company entity.
-     *
-     * @Route("/{id}", name="entreprise_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Company $company)
-    {
-        $form = $this->createDeleteForm($company);
+        $em          = $this->getDoctrine()->getManager();
+        $company     = $em->getRepository(Company::class)->find($id);
+        $internships = $em->getRepository(Internship::class)->findInternshipForCompany($company);
+        $form        = $this->createForm('AppBundle\Form\CompanyType', $company, ['company' => $company]);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($company);
-            $em->flush();
+            try {
+                $em->persist($company);
+                $em->flush();
+                $this->addFlash('success', 'Entreprise modifié avec succès');
+
+                return $this->redirectToRoute('entreprise_index');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur durant la modification de l\'entreprise');
+            }
         }
-
-        return $this->redirectToRoute('entreprise_index');
-    }
-
-    /**
-     * Creates a form to delete a company entity.
-     *
-     * @param Company $company The company entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Company $company)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('entreprise_delete', array('id' => $company->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->render('company/show.html.twig', [
+            'company'    => $company,
+            'interships' => $internships,
+            'form'       => $form->createView(),
+        ]);
     }
 }

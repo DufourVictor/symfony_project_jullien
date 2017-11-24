@@ -111,11 +111,11 @@ class Student
     }
 
     /**
-     * @param $certificate
+     * @param Certificate $certificate
      *
      * @return $this
      */
-    public function addCertificate($certificate)
+    public function addCertificate(Certificate $certificate)
     {
         $certificate->setStudent($this);
         $this->certificate->add($certificate);
@@ -124,11 +124,11 @@ class Student
     }
 
     /**
-     * @param $certificate
+     * @param Certificate $certificate
      *
      * @return $this
      */
-    public function removeCertificate($certificate)
+    public function removeCertificate(Certificate $certificate)
     {
         $this->certificate->removeElement($certificate);
 

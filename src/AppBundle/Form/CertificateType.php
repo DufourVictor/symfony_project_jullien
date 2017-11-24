@@ -10,7 +10,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CertificateType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,9 +21,9 @@ class CertificateType extends AbstractType
                 'data' => 'BAC ',
             ]);
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -30,14 +31,4 @@ class CertificateType extends AbstractType
             'data_class' => 'AppBundle\Entity\Certificate'
         ));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_certificate';
-    }
-
-
 }

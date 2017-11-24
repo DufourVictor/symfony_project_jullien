@@ -1,48 +1,51 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Entreprise - détails{% endblock %}
 {% block body %}
-    <h1>Company</h1>
+    <h1>Informations de l'entreprise</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.type) }}
+    {{ form_row(form.turnover) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.profesionnalReferent) }}
+    {{ form_row(form.address) }}
+    <input type="submit">
+    {{ form_end(form) }}
+    <a href="{{ path('profesionnalReferent_new') }}">Ajouter un référent</a>
+    <a href="{{ path('entreprise_index') }}">Retour à la liste</a>
 
     <table>
+        <thead>
+        <tr>
+            <th>Année</th>
+            <th>Elève</th>
+            <th>Référent pédagogique</th>
+            <th>Référent professionnel</th>
+            <th>Action</th>
+        </tr>
+        </thead>
         <tbody>
+        {% for internship in interships %}
             <tr>
-                <th>Id</th>
-                <td>{{ company.id }}</td>
+                <td>{{ internship.startDate|date('Y') }}/ {{ internship.endDate|date('Y') }}</td>
+                <td>
+                    {% if internship.student is defined and internship.student is not null %}
+                        {{ internship.student.fullName }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
+                        {{ internship.educationalReferent.fullName }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
+                        {{ internship.profesionnalReferent.fullName }}
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('stage_show', {'id': internship.id}) }}">Voir détail</a></td>
             </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ company.name }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ company.type }}</td>
-            </tr>
-            <tr>
-                <th>Turnover</th>
-                <td>{{ company.turnover }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ company.address }}</td>
-            </tr>
-            <tr>
-                <th>Phonenumber</th>
-                <td>{{ company.phoneNumber }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('entreprise_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('entreprise_edit', { 'id': company.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

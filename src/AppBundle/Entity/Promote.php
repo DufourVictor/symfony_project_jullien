@@ -38,7 +38,7 @@ class Promote
     /**
      * Promote constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $this->classroom = new ArrayCollection();
     }

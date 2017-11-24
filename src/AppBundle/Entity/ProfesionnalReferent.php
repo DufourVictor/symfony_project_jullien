@@ -23,7 +23,7 @@ class ProfesionnalReferent
 
     /**
      * @var Company
-     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="profesionnalReferent")
      */
     protected $company;
 
@@ -40,6 +40,7 @@ class ProfesionnalReferent
     {
         return $this->id;
     }
+
     /**
      * @return Company
      */

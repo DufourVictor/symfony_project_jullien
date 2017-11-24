@@ -85,7 +85,7 @@ class Internship
     /**
      * Internship constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $this->technologies = new ArrayCollection();
     }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,7 +30,7 @@ class Company
     private $name;
 
     /**
-     * @var string
+     * @var CompanyType
      *
      * @ORM\ManyToOne(targetEntity="CompanyType")
      */
@@ -43,9 +44,9 @@ class Company
     private $turnover;
 
     /**
-     * @var Address
+     * @var string
      *
-     * @ORM\Embedded(class="Address")
+     * @ORM\Column(type="text")
      */
     private $address;
 
@@ -55,6 +56,21 @@ class Company
      * @ORM\Column(name="phoneNumber", type="string", length=255)
      */
     private $phoneNumber;
+
+    /**
+     * @var ProfesionnalReferent[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ProfesionnalReferent", mappedBy="company")
+     */
+    protected $profesionnalReferent;
+
+    /**
+     * Company constructor.
+     */
+    public function __construct()
+    {
+        $this->profesionnalReferent = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -91,27 +107,19 @@ class Company
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Company
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
+     * @return CompanyType
      */
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param CompanyType $type
+     */
+    public function setType(CompanyType $type)
+    {
+        $this->type = $type;
     }
 
     /**
@@ -139,7 +147,7 @@ class Company
     }
 
     /**
-     * @return Address
+     * @return string
      */
     public function getAddress()
     {
@@ -147,9 +155,9 @@ class Company
     }
 
     /**
-     * @param Address $address
+     * @param string $address
      */
-    public function setAddress(Address $address)
+    public function setAddress($address)
     {
         $this->address = $address;
     }
@@ -176,6 +184,52 @@ class Company
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
+    }
+
+    /**
+     * @return ProfesionnalReferent[]|ArrayCollection
+     */
+    public function getProfesionnalReferent()
+    {
+        return $this->profesionnalReferent;
+    }
+
+    /**
+     * @param ProfesionnalReferent[]|ArrayCollection $profesionnalReferent
+     *
+     * @return $this
+     */
+    public function setProfesionnalReferent($profesionnalReferent)
+    {
+        $this->profesionnalReferent = $profesionnalReferent;
+
+        return $this;
+    }
+
+    /**
+     * @param ProfesionnalReferent $profesionnalReferent
+     *
+     * @return $this
+     */
+    public function addProfesionnalReferent(ProfesionnalReferent $profesionnalReferent)
+    {
+        $profesionnalReferent->setCompany($this);
+        $this->profesionnalReferent->add($profesionnalReferent);
+
+        return $this;
+    }
+
+    /**
+     * @param ProfesionnalReferent $profesionnalReferent
+     *
+     * @return $this
+     */
+    public function removeProfesionnalReferent(ProfesionnalReferent $profesionnalReferent)
+    {
+        $profesionnalReferent->setCompany(null);
+        $this->profesionnalReferent->removeElement($profesionnalReferent);
+
+        return $this;
     }
 }
 
