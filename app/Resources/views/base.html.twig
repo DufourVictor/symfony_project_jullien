@@ -1,149 +1,149 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-            {% block stylesheets %}
-                <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-                <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-            {% endblock %}
-        </head>
-        <body>
-            <div class="wrapper">
-                {% block header %}
-                    <header>
-                        <div class="navbar-fixed">
-                            <nav class="indigo darken-4" role="navigation">
-                                <div class="nav-wrapper container">
-                                    <a id="logo-container" href="{{ path('homepage') }}" class="brand-logo">
-                                        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="responsive-img"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+</head>
+<body>
+<div class="wrapper">
+    {% block header %}
+        <header>
+            <div class="navbar-fixed">
+                <nav class="indigo darken-4" role="navigation">
+                    <div class="nav-wrapper container">
+                        <a id="logo-container" href="{{ path('homepage') }}" class="brand-logo">
+                            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="responsive-img"/>
+                        </a>
+                        <ul class="right hide-on-med-and-down">
+                            <li>
+                                <a href="{{ path('stage_index') }}">
+                                    <i class="material-icons left">business_center</i>Stages
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="material-icons left">business</i>Entreprises
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-button dropdown-suivi" data-activates="dropdownSuivi" data-beloworigin="true">
+                                    <i class="material-icons left">pageview</i> Suivi scolarité
+                                    <i class="material-icons right arrow">arrow_drop_down</i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-button dropdown-logout" data-activates="dropdownLogout" data-beloworigin="true">
+                                    <i class="material-icons left">person</i> Bienvenue {{ app.user.firstName }}
+                                    <i class="material-icons right arrow">arrow_drop_down</i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul id="nav-mobile" class="side-nav">
+                            <li>
+                                <a href="{{ path('stage_index') }}" class="waves-effect waves-indigo">
+                                    <i class="material-icons left">business_center</i>Stages
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect waves-indigo">
+                                    <i class="material-icons left">business</i>Entreprises
+                                </a>
+                            </li>
+                            <ul class="collapsible" data-collapsible="expandable">
+                                <li>
+                                    <a class="waves-effect waves-indigo collapsible-header">
+                                        <i class="material-icons left">pageview</i>Suivi scolarité
+                                        <i class="material-icons right arrow">arrow_drop_down</i>
                                     </a>
-                                    <ul class="right hide-on-med-and-down">
-                                        <li>
-                                            <a href="{{ path('stage_index') }}">
-                                                <i class="material-icons left">business_center</i>Stages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="material-icons left">business</i>Entreprises
-                                            </a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-button dropdown-suivi" data-activates="dropdownSuivi" data-beloworigin="true">
-                                                <i class="material-icons left">pageview</i> Suivi scolarité
-                                                <i class="material-icons right arrow">arrow_drop_down</i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-button dropdown-logout" data-activates="dropdownLogout" data-beloworigin="true">
-                                                <i class="material-icons left">person</i> Bienvenue {{ app.user.firstName }}
-                                                <i class="material-icons right arrow">arrow_drop_down</i>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                    <ul id="nav-mobile" class="side-nav">
-                                        <li>
-                                            <a href="{{ path('stage_index') }}" class="waves-effect waves-indigo">
-                                                <i class="material-icons left">business_center</i>Stages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="waves-effect waves-indigo">
-                                                <i class="material-icons left">business</i>Entreprises
-                                            </a>
-                                        </li>
-                                        <ul class="collapsible" data-collapsible="expandable">
+                                    <div class="collapsible-body">
+                                        <ul>
                                             <li>
-                                                <a class="waves-effect waves-indigo collapsible-header">
-                                                    <i class="material-icons left">pageview</i>Suivi scolarité
-                                                    <i class="material-icons right arrow">arrow_drop_down</i>
+                                                <a href="{{ path('promo_index') }}" class="waves-effect waves-indigo">
+                                                    <i class="material-icons">date_range</i>Années scolaires
                                                 </a>
-                                                <div class="collapsible-body">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="{{ path('promo_index') }}" class="waves-effect waves-indigo">
-                                                                <i class="material-icons">date_range</i>Années scolaires
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
                                             </li>
                                         </ul>
-
-                                        <hr>
-
-                                        <li>
-                                            <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-indigo">
-                                                <i class="material-icons">power_settings_new</i>
-                                                Déconnexion
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <a href="#" data-activates="nav-mobile" class="button-collapse">
-                                        <i class="material-icons">menu</i>
-                                    </a>
-                                </div>
-                            </nav>
-                            <ul id="dropdownLogout" class="dropdown-content dropdown-logout">
-                                <li class="collection-item avatar indigo darken-4">
-                                    <a href="{{ path('fos_user_security_logout') }}">
-                                        <i class="material-icons">power_settings_new</i>
-                                        Déconnexion
-                                    </a>
+                                    </div>
                                 </li>
                             </ul>
-                            <ul id="dropdownSuivi" class="dropdown-content dropdown-suivi">
-                                <li class="collection-item avatar indigo darken-4">
-                                    <a href="{{ path('promo_index') }}">
-                                        <i class="material-icons">date_range</i>
-                                        Années scolaires
-                                    </a>
-                                </li>
-                                <li class="collection-item avatar indigo darken-4">
-                                    <a href="{{ path('diplome_index') }}">
-                                        <i class="material-icons">school</i>
-                                        Liste des BAC
-                                    </a>
-                                </li>
-                                <li class="collection-item avatar indigo darken-4">
-                                    <a href="{{ path('stage_index') }}">
-                                        <i class="material-icons">search</i>
-                                        Recherche des élèves
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </header>
-                {% endblock %}
 
-                {% block body %}{% endblock %}
-            </div>
+                            <hr>
 
-        {% block footer %}
-            <footer class="page-footer indigo darken-4">
-                <div class="footer-copyright">
-                    <div class="container">
-                        <a class="left" href="#">Mentions légales</a>
-                        <span class="left separator">|</span>
-                        <a class="left" href="#">Politique de cookies</a>
-                        <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
-                            Lycée privé Saint-Vincent
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-indigo">
+                                    <i class="material-icons">power_settings_new</i>
+                                    Déconnexion
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" data-activates="nav-mobile" class="button-collapse">
+                            <i class="material-icons">menu</i>
                         </a>
                     </div>
-                </div>
-            </footer>
-        {% endblock %}
+                </nav>
+                <ul id="dropdownLogout" class="dropdown-content dropdown-logout">
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <i class="material-icons">power_settings_new</i>
+                            Déconnexion
+                        </a>
+                    </li>
+                </ul>
+                <ul id="dropdownSuivi" class="dropdown-content dropdown-suivi">
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('promo_index') }}">
+                            <i class="material-icons">date_range</i>
+                            Années scolaires
+                        </a>
+                    </li>
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('diplome_index') }}">
+                            <i class="material-icons">school</i>
+                            Liste des BAC
+                        </a>
+                    </li>
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('stage_index') }}">
+                            <i class="material-icons">search</i>
+                            Recherche des élèves
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+    {% endblock %}
 
-        {% block javascripts %}
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
-            <script src="{{ asset('js/scripts.js') }}"></script>
-        {% endblock %}
-    </body>
+    {% block body %}{% endblock %}
+</div>
+
+{% block footer %}
+    <footer class="page-footer indigo darken-4">
+        <div class="footer-copyright">
+            <div class="container">
+                <a class="left" href="#">Mentions légales</a>
+                <span class="left separator">|</span>
+                <a class="left" href="#">Politique de cookies</a>
+                <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
+                    Lycée privé Saint-Vincent
+                </a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}
+</body>
 </html>
