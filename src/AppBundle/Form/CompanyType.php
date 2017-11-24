@@ -3,6 +3,8 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ProfesionnalReferent;
+use AppBundle\Repository\CompanyRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -18,12 +20,13 @@ class CompanyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $company = $options['company'];
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
             ])
             ->add('type', EntityType::class, [
-                'class' => \AppBundle\Entity\CompanyType::class,
+                'class'        => \AppBundle\Entity\CompanyType::class,
                 'choice_label' => 'name',
             ])
             ->add('turnover', MoneyType::class, [
@@ -33,9 +36,17 @@ class CompanyType extends AbstractType
                 'label' => 'numéro de téléphone',
             ])
             ->add('profesionnalReferent', EntityType::class, [
-                'label' => 'Référent professionnel',
-                'class' => ProfesionnalReferent::class,
-                'choice_label' => 'fullName',
+                'class'         => ProfesionnalReferent::class,
+                'label'         => 'Référent professionnel',
+                'choice_label'  => 'fullName',
+                'multiple'      => true,
+                'by_reference'  => false,
+                'query_builder' => function (EntityRepository $er) use ($company) {
+                    return $er->createQueryBuilder('p')
+                        ->where('p.company is NULL')
+                        ->orWhere('p.company = :company')
+                        ->setParameter('company', $company);
+                },
             ])
             ->add('address', TextareaType::class, [
                 'label' => 'Adresse',
@@ -47,8 +58,9 @@ class CompanyType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Company'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'AppBundle\Entity\Company',
+            'company'    => null,
+        ]);
     }
 }

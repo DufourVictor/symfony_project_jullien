@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\Student;
 use Doctrine\ORM\EntityRepository;
 
@@ -40,5 +41,19 @@ class InternshipRepository extends EntityRepository
             ->setParameter('student', $student)
             ->getQuery()
             ->getScalarResult();
+    }
+
+    /**
+     * @param Company $company
+     *
+     * @return array
+     */
+    public function findInternshipForCompany(Company $company)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.company = :company')
+            ->setParameter('company', $company)
+            ->getQuery()
+            ->getResult();
     }
 }

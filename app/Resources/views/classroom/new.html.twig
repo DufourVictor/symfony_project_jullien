@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Classroom creation</h1>
+    <h1>Ajouter une classe</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('classe_index') }}">Back to the list</a>
+            <a href="{{ path('student_show', {'id': student.id}) }}">Retour</a>
         </li>
     </ul>
 {% endblock %}

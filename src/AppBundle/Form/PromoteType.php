@@ -9,15 +9,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PromoteType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name');
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -25,14 +26,4 @@ class PromoteType extends AbstractType
             'data_class' => 'AppBundle\Entity\Promote'
         ));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_promote';
-    }
-
-
 }

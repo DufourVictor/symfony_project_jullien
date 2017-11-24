@@ -6,13 +6,11 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\EducationalReferent;
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\ProfesionnalReferent;
-use AppBundle\Entity\Promote;
 use AppBundle\Entity\Technology;
-use AppBundle\Repository\InternshipRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,13 +26,15 @@ class InternshipType extends AbstractType
         /** @var Internship $internship */
         $internship = $options['data'];
         $builder
-            ->add('startDate', DateTimeType::class, [
+            ->add('startDate', DateType::class, [
                 'label'    => 'Date de début',
                 'required' => false,
+                'widget' => "single_text",
             ])
-            ->add('endDate', DateTimeType::class, [
+            ->add('endDate', DateType::class, [
                 'label'    => 'Date de début',
                 'required' => false,
+                'widget' => "single_text",
             ])
             ->add('company', EntityType::class, [
                 'class'        => Company::class,

@@ -3,55 +3,49 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Classroom;
+use AppBundle\Entity\Register;
+use AppBundle\Entity\Student;
+use AppBundle\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Classroom controller.
+ * Register controller.
  *
- * @Route("classe")
+ * @Route("inscription")
  */
-class ClassroomController extends Controller
+class RegisterController extends Controller
 {
     /**
-     * Lists all classroom entities.
+     * @param  $id
+     * @param Request $request
+     * @return RedirectResponse|Response
      *
-     * @Route("/", name="classe_index")
-     * @Method("GET")
+     * @Route("/student/{id}/new", name="register_new")
      */
-    public function indexAction()
+    public function newAction($id, Request $request)
     {
+        $register = new Register();
         $em = $this->getDoctrine()->getManager();
-
-        $classrooms = $em->getRepository('AppBundle:Classroom')->findAll();
-
-        return $this->render('classroom/index.html.twig', array(
-            'classrooms' => $classrooms,
-        ));
-    }
-
-    /**
-     * Creates a new classroom entity.
-     *
-     * @Route("/new", name="classe_new")
-     */
-    public function newAction(Request $request)
-    {
-        $classroom = new Classroom();
-        $form = $this->createForm('AppBundle\Form\ClassroomType', $classroom);
+        $student = $em->getRepository(Student::class)->find($id);
+        $form = $this->createForm(RegisterType::class, $register);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($classroom);
+            $register->setStudent($student);
+            $em->persist($register);
             $em->flush();
 
-            return $this->redirectToRoute('classe_show', array('id' => $classroom->getId()));
+            return $this->redirectToRoute('student_show', array('id' => $student->getId()));
         }
 
         return $this->render('classroom/new.html.twig', array(
-            'classroom' => $classroom,
+            'register' => $register,
+            'student' => $student,
             'form' => $form->createView(),
         ));
     }
@@ -129,7 +123,6 @@ class ClassroomController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('classe_delete', array('id' => $classroom->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

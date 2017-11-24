@@ -55,10 +55,11 @@ class BruteForceListener implements EventSubscriberInterface
 
         $client->setIp($ip);
         $client->addNumberOfTentative();
+        $client->setDateTentative(new \DateTime());
 
         if ($client->getNumberOfTentative() > self::MAX_LOG_FAIL) {
             $date = new \DateTime();
-            $client->setDate($date->add(\DateInterval::createFromDateString('3 hours')));
+            $client->setDateBan($date->add(\DateInterval::createFromDateString('3 hours')));
         }
 
         $this->entityManager->persist($client);
@@ -79,12 +80,20 @@ class BruteForceListener implements EventSubscriberInterface
             return;
         }
 
-        if (null !== $client->getDate()) {
-            if ($client->getDate() > new \DateTime()) {
+        $dateDiff = $client->getDateTentative()->diff(new \DateTime());
+        if ($dateDiff->h >= 1) {
+            $client->setDateTentative(null);
+            $client->setNumberOfTentative(0);
+            $this->entityManager->persist($client);
+            $this->entityManager->flush();
+        }
+
+        if (null !== $client->getDateBan()) {
+            if ($client->getDateBan() > new \DateTime()) {
                 throw new AccessDeniedException();
             } else {
-                $client->setDate(null);
-                $client->setNumberOfTentative(1);
+                $client->setDateBan(null);
+                $client->setNumberOfTentative(0);
                 $this->entityManager->persist($client);
                 $this->entityManager->flush();
             }

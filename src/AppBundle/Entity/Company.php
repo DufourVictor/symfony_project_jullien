@@ -58,11 +58,19 @@ class Company
     private $phoneNumber;
 
     /**
-     * @var ProfesionnalReferent
+     * @var ProfesionnalReferent[]|ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="ProfesionnalReferent", mappedBy="company")
      */
     protected $profesionnalReferent;
+
+    /**
+     * Company constructor.
+     */
+    public function __construct()
+    {
+        $this->profesionnalReferent = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -179,7 +187,7 @@ class Company
     }
 
     /**
-     * @return ProfesionnalReferent
+     * @return ProfesionnalReferent[]|ArrayCollection
      */
     public function getProfesionnalReferent()
     {
@@ -187,11 +195,41 @@ class Company
     }
 
     /**
-     * @param ProfesionnalReferent $profesionnalReferent
+     * @param ProfesionnalReferent[]|ArrayCollection $profesionnalReferent
+     *
+     * @return $this
      */
-    public function setProfesionnalReferent(ProfesionnalReferent $profesionnalReferent)
+    public function setProfesionnalReferent($profesionnalReferent)
     {
         $this->profesionnalReferent = $profesionnalReferent;
+
+        return $this;
+    }
+
+    /**
+     * @param ProfesionnalReferent $profesionnalReferent
+     *
+     * @return $this
+     */
+    public function addProfesionnalReferent(ProfesionnalReferent $profesionnalReferent)
+    {
+        $profesionnalReferent->setCompany($this);
+        $this->profesionnalReferent->add($profesionnalReferent);
+
+        return $this;
+    }
+
+    /**
+     * @param ProfesionnalReferent $profesionnalReferent
+     *
+     * @return $this
+     */
+    public function removeProfesionnalReferent(ProfesionnalReferent $profesionnalReferent)
+    {
+        $profesionnalReferent->setCompany(null);
+        $this->profesionnalReferent->removeElement($profesionnalReferent);
+
+        return $this;
     }
 }
 

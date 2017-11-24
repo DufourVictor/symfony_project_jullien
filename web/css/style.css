@@ -17,9 +17,11 @@ html body .wrapper {
 html body .wrapper header nav {
   height: 64px;
 }
+html body .wrapper header nav #logo-container {
+  height: 100%;
+}
 html body .wrapper header nav #logo-container img {
   padding: 5px 0;
-  max-height: 64px;
 }
 html body .wrapper header nav .hide-on-med-and-down {
   display: block !important;
@@ -155,8 +157,17 @@ html body .wrapper h3,
 html body .wrapper h5 {
   text-align: center;
 }
-html body .wrapper table {
+html body .wrapper .container table {
   margin-top: 10px;
+}
+html body .wrapper .container .collapsible-body .row {
+  margin-bottom: 0;
+}
+html body .wrapper .container .collapsible-body .row .btn-floating {
+  margin-top: -10px;
+}
+html body .wrapper .container .collapsible-body .row p {
+  margin-top: 0;
 }
 html body .wrapper .container-form {
   margin-top: 30px;

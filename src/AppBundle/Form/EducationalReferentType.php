@@ -9,7 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EducationalReferentType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,9 +19,9 @@ class EducationalReferentType extends AbstractType
             ->add('lastName')
             ->add('phone');
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -28,14 +29,4 @@ class EducationalReferentType extends AbstractType
             'data_class' => 'AppBundle\Entity\EducationalReferent'
         ));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_educationalreferent';
-    }
-
-
 }
