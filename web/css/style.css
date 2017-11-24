@@ -175,6 +175,9 @@ html body .wrapper .container-form {
 html body .wrapper .container-form form .row {
   margin-bottom: 0;
 }
+html body .wrapper .container-form form .row .select-wrapper.student {
+  display: none;
+}
 html body .wrapper .container-form form .row .select-wrapper input,
 html body .wrapper .container-form form .row .select-wrapper .caret {
   color: #1A237E;
