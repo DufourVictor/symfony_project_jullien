@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EducationalReferentType extends AbstractType
+class ClassroomType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,10 +14,7 @@ class EducationalReferentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phone');
+        $builder->add('name');
     }
 
     /**
@@ -26,7 +23,7 @@ class EducationalReferentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\EducationalReferent'
+            'data_class' => 'AppBundle\Entity\Classroom'
         ));
     }
 }

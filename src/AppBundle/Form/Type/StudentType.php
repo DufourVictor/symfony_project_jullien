@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Student;
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +13,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class StudentType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

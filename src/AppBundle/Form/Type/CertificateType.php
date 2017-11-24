@@ -1,12 +1,13 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PromoteType extends AbstractType
+class CertificateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,7 +15,11 @@ class PromoteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
+        $builder
+            ->add('name', TextType::class, [
+                'label' => 'Intitulé',
+                'data' => 'BAC ',
+            ]);
     }
 
     /**
@@ -23,7 +28,7 @@ class PromoteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Promote'
+            'data_class' => 'AppBundle\Entity\Certificate'
         ));
     }
 }

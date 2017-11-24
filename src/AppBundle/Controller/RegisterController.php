@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Register;
 use AppBundle\Entity\Student;
-use AppBundle\Form\RegisterType;
+use AppBundle\Form\Type\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -75,7 +75,7 @@ class RegisterController extends Controller
     public function editAction(Request $request, Classroom $classroom)
     {
         $deleteForm = $this->createDeleteForm($classroom);
-        $editForm = $this->createForm('AppBundle\Form\ClassroomType', $classroom);
+        $editForm = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

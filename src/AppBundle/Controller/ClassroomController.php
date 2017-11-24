@@ -39,7 +39,7 @@ class ClassroomController extends Controller
     public function newAction(Request $request)
     {
         $classroom = new Classroom();
-        $form = $this->createForm('AppBundle\Form\ClassroomType', $classroom);
+        $form = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,7 +81,7 @@ class ClassroomController extends Controller
     public function editAction(Request $request, Classroom $classroom)
     {
         $deleteForm = $this->createDeleteForm($classroom);
-        $editForm = $this->createForm('AppBundle\Form\ClassroomType', $classroom);
+        $editForm = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

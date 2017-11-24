@@ -4,8 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Student;
-use AppBundle\Form\InternshipType;
-use AppBundle\Form\RegisterSelectorType;
+use AppBundle\Form\Type\InternshipType;
+use AppBundle\Form\Type\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;

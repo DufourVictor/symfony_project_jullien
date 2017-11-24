@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\CompanyType;
 use AppBundle\Entity\ProfesionnalReferent;
-use AppBundle\Form\ProfesionnalReferentType;
+use AppBundle\Form\Type\ProfesionnalReferentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
