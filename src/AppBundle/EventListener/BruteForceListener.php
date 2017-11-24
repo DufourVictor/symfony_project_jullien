@@ -4,6 +4,8 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\ClientFailure;
 use AppBundle\Repository\ClientFyailureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -13,20 +15,21 @@ use Symfony\Component\Security\Core\AuthenticationEvents;
 
 class BruteForceListener implements EventSubscriberInterface
 {
-    const MAX_LOG_FAIL = 5;
-
     /**
      * BruteForce constructor.
      * @param RequestStack $requestStack
      * @param EntityManagerInterface $entityManager
+     * @param ContainerInterface $container
      */
     public function __construct(
         RequestStack $requestStack,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ContainerInterface $container
     )
     {
         $this->requestStack = $requestStack;
         $this->entityManager = $entityManager;
+        $this->container = $container;
     }
 
     /**
@@ -57,9 +60,9 @@ class BruteForceListener implements EventSubscriberInterface
         $client->addNumberOfTentative();
         $client->setDateTentative(new \DateTime());
 
-        if ($client->getNumberOfTentative() > self::MAX_LOG_FAIL) {
+        if ($client->getNumberOfTentative() > $this->container->getParameter('max_log_fail')) {
             $date = new \DateTime();
-            $client->setDateBan($date->add(\DateInterval::createFromDateString('3 hours')));
+            $client->setDateBan($date->add(\DateInterval::createFromDateString($this->container->getParameter('hours_ban'). 'hours')));
         }
 
         $this->entityManager->persist($client);

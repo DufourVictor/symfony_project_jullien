@@ -23,3 +23,6 @@ parameters:
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    max_log_fail: 5
+    hours_ban: 3
