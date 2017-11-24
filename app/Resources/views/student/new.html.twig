@@ -27,7 +27,7 @@
             <div class="col s6">
                 <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"  data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
                     {% for certificate in form.certificate %}
-                        {{ form_row(certificate) }}
+                            {{ form_row(certificate) }}
                     {% endfor %}
                 </ul>
                 <a href="#" id="add-another-certificate">Ajouter</a>

@@ -67,7 +67,6 @@ class StudentController extends Controller
                 $this->addFlash('success', 'Élève ajouté');
                 return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
             } catch (\Exception $e) {
-                dump($e->getMessage());die;
                 $this->addFlash('danger', 'Erreur durant l\'ajout d\'un élève');
             }
         }

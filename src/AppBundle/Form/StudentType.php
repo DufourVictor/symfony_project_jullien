@@ -36,6 +36,7 @@ class StudentType extends AbstractType
             ->add('certificate', CollectionType::class, [
                 'entry_type' => CertificateObtentionType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
             ]);

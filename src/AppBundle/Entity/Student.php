@@ -116,11 +116,20 @@ class Student
      */
     public function addCertificate($certificate)
     {
-        if ($this->certificate->contains($certificate) === false) {
-            $this->certificate->add($certificate);
-            $this->certificate->setStudent($this);
-        }
+        $certificate->setStudent($this);
+        $this->certificate->add($certificate);
         return $this;
+    }
+
+    /**
+     * @param $certificate
+     * @return $this
+     */
+    public function removeCertificate($certificate)
+    {
+        $this->certificate->removeElement($certificate);
+        return $this;
+
     }
 
     /**
