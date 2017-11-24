@@ -112,24 +112,27 @@ class Student
 
     /**
      * @param $certificate
+     *
      * @return $this
      */
     public function addCertificate($certificate)
     {
         $certificate->setStudent($this);
         $this->certificate->add($certificate);
+
         return $this;
     }
 
     /**
      * @param $certificate
+     *
      * @return $this
      */
     public function removeCertificate($certificate)
     {
         $this->certificate->removeElement($certificate);
-        return $this;
 
+        return $this;
     }
 
     /**
@@ -147,6 +150,5 @@ class Student
     {
         $this->register = $register;
     }
-
 
 }

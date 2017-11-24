@@ -14,18 +14,18 @@ class CertificateObtentionType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('certificate', EntityType::class, [
-                'class' => Certificate::class,
-                'choice_label' => 'name'
+                'class'        => Certificate::class,
+                'choice_label' => 'name',
             ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Date d\'obtention',
+                'label'  => 'Date d\'obtention',
             ]);
     }
 
