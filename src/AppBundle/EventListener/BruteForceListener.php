@@ -84,7 +84,7 @@ class BruteForceListener implements EventSubscriberInterface
         }
 
         $dateDiff = $client->getDateTentative()->diff(new \DateTime());
-        if ($dateDiff->h >= 1) {
+        if (null !== $dateDiff && $dateDiff->h >= 1) {
             $client->setDateTentative(null);
             $client->setNumberOfTentative(0);
             $this->entityManager->persist($client);
