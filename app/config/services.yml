@@ -17,3 +17,10 @@ services:
     AppBundle\Repository\ClientFailureRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\ClientFailure']
+
+    AppBundle\EventListener\BruteForceListener:
+        class: AppBundle\EventListener\BruteForceListener
+        arguments:
+            - '@request_stack'
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'

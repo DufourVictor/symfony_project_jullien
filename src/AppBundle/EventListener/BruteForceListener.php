@@ -39,8 +39,7 @@ class BruteForceListener implements EventSubscriberInterface
         RequestStack $requestStack,
         EntityManagerInterface $entityManager,
         ContainerInterface $container
-    )
-    {
+    ) {
         $this->requestStack = $requestStack;
         $this->entityManager = $entityManager;
         $this->container = $container;
