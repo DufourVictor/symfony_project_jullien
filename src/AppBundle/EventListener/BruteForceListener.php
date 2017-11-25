@@ -4,7 +4,6 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\ClientFailure;
 use AppBundle\Repository\ClientFyailureRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -25,24 +24,32 @@ class BruteForceListener implements EventSubscriberInterface
     protected $entityManager;
 
     /**
-     * @var ContainerInterface
+     * @var int
      */
-    protected $container;
+    protected $maxLogFail;
+
+    /**
+     * @var int
+     */
+    protected $hoursBan;
 
     /**
      * BruteForce constructor.
      * @param RequestStack $requestStack
      * @param EntityManagerInterface $entityManager
-     * @param ContainerInterface $container
+     * @param $maxLogFail
+     * @param $hoursBan
      */
     public function __construct(
         RequestStack $requestStack,
         EntityManagerInterface $entityManager,
-        ContainerInterface $container
+        $maxLogFail,
+        $hoursBan
     ) {
         $this->requestStack = $requestStack;
         $this->entityManager = $entityManager;
-        $this->container = $container;
+        $this->maxLogFail = $maxLogFail;
+        $this->hoursBan = $hoursBan;
     }
 
     /**
@@ -73,9 +80,9 @@ class BruteForceListener implements EventSubscriberInterface
         $client->addNumberOfTentative();
         $client->setDateTentative(new \DateTime());
 
-        if ($client->getNumberOfTentative() > $this->container->getParameter('max_log_fail')) {
+        if ($client->getNumberOfTentative() > $this->maxLogFail) {
             $date = new \DateTime();
-            $client->setDateBan($date->add(\DateInterval::createFromDateString($this->container->getParameter('hours_ban'). 'hours')));
+            $client->setDateBan($date->add(\DateInterval::createFromDateString($this->hoursBan. 'hours')));
         }
 
         $this->entityManager->persist($client);
