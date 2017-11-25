@@ -25,6 +25,8 @@ class InternshipController extends Controller
      * @return Response
      *
      * @Route("/", name="stage_index")
+     *
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
@@ -55,6 +57,8 @@ class InternshipController extends Controller
      * @throws \Exception
      *
      * @Route("/liste-stages/{id}", name="stage_list")
+     *
+     * @Method({"GET", "POST"})
      */
     public function listAction($id)
     {
@@ -78,12 +82,14 @@ class InternshipController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/{id}/new", name="stage_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request, $id)
     {
-        $internship  = new Internship();
-        $em          = $this->getDoctrine()->getManager();
-        $student     = $em->getRepository(Student::class)->find($id);
+        $internship = new Internship();
+        $em         = $this->getDoctrine()->getManager();
+        $student    = $em->getRepository(Student::class)->find($id);
         $internship->setStudent($student);
         $form = $this->createForm(InternshipType::class, $internship);
         $form->handleRequest($request);
@@ -108,6 +114,8 @@ class InternshipController extends Controller
      * @return Response
      *
      * @Route("/{id}", name="stage_show")
+     *
+     * @Method({"GET", "POST"})
      */
     public function showAction(Internship $internship)
     {

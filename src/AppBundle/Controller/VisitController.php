@@ -23,6 +23,8 @@ class VisitController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("{id}/visit/new", name="visite_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request, $id)
     {

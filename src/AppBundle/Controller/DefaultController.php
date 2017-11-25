@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\EducationalReferent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\RedirectResponse;
@@ -14,6 +15,8 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      *
      * @return RedirectResponse|Response
+     *
+     * @Method("GET")
      */
     public function indexAction()
     {

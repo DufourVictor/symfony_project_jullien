@@ -22,29 +22,33 @@ class ProfesionnalReferentController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/new", name="profesionnalReferent_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em                   = $this->getDoctrine()->getManager();
         $profesionnalReferent = new ProfesionnalReferent();
-        $form = $this->createForm(ProfesionnalReferentType::class, $profesionnalReferent);
+        $form                 = $this->createForm(ProfesionnalReferentType::class, $profesionnalReferent);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $em->persist($profesionnalReferent);
                 $em->flush();
                 $this->addFlash('success', 'Référent ajouté avec succès');
+
                 return $this->redirectToRoute('entreprise_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur durant l\'ajout du référent');
             }
         }
 
-        return $this->render('profesionnalReferent/new.html.twig', array(
+        return $this->render('profesionnalReferent/new.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 }

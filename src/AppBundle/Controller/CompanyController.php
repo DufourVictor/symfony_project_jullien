@@ -24,6 +24,7 @@ class CompanyController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/", name="entreprise_index")
+     * @Method("GET")
      */
     public function indexAction(Request $request)
     {
@@ -59,6 +60,7 @@ class CompanyController extends Controller
      * @return Response
      *
      * @Route("/{id}", name="entreprise_show")
+     * @Method({"GET", "POST"})
      */
     public function showAction(Request $request, $id)
     {
