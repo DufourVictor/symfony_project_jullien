@@ -15,22 +15,17 @@
                     <span>
                         <div class="row">
                             <div class="col s6">
-                                <p>Entreprise :
-                                    {% if internship.company is not null %}
-                                        <b>{{ internship.company.name }}</b>
-                                    {% endif %}
+                                <p>
+                                    Entreprise :
+                                    <b>{{ internship.company is not null ? internship.company.name : '' }}</b>
                                 </p>
                                 <p>
                                     Responsable technique :
-                                    {% if internship.profesionnalReferent is not null %}
-                                        <b>{{ internship.profesionnalReferent.fullName }}</b>
-                                    {% endif %}
+                                    <b>{{ internship.profesionnalReferent is not null ? internship.profesionnalReferent.fullName : '' }}</b>
                                 </p>
                                 <p>
                                     Responsable pédagogique :
-                                    {% if internship.educationalReferent is not null %}
-                                        <b>{{ internship.educationalReferent.fullName }}</b>
-                                    {% endif %}
+                                    <b>{{ internship.educationalReferent is not null ? internship.educationalReferent.fullName : '' }}</b>
                                 </p>
                                 <p>
                                     Année concernée : <b>{{ internship.startDate|date('Y') }}</b>
