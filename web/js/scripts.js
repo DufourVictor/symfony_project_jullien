@@ -38,39 +38,22 @@ $(document).ready(function () {
                     class: targetElement
                 },
                 success: function(students) {
-                    var ul = document.querySelector("#student ul"),
-                        select = document.querySelector("#student select"),
+                    var select = document.querySelector("#student select"),
                         option = null;
 
                     select.options.length = 0;
 
                     // Add options
                     for (var i = 0; i < students.students.length; i++) {
-                        li = document.createElement("li");
                         option = document.createElement("option");
-                        span = document.createElement("span");
-
                         option.text = students.students[i].firstName;
-                        span.appendChild(document.createTextNode(students.students[i].firstName));
-                        li.className += "";
-
-                        li.appendChild(span);
-                        ul.appendChild(li);
                         select.add(option);
                     }
 
                     // Add "Élèves" to select if he is empty
                     if (select.options.length === 0) {
-                        li = document.createElement("li");
                         option = document.createElement("option");
-                        span = document.createElement("span");
-
                         option.text = "Élèves";
-                        span.appendChild(document.createTextNode("Élèves"));
-                        li.className += "";
-
-                        li.appendChild(span);
-                        ul.appendChild(li);
                         select.add(option);
                     }
 
