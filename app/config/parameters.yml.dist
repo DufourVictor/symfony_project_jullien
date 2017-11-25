@@ -17,7 +17,7 @@ parameters:
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
     # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 706b6d7e16e6434db7a7f5c434ad99be84918b92
 
     max_log_fail: 5
     hours_ban: 3
