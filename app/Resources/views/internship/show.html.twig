@@ -16,19 +16,19 @@
                         <div class="row">
                             <div class="col s6">
                                 <p>Entreprise :
-                                    {% if internship.company is defined and internship.company is not null %}
+                                    {% if internship.company is not null %}
                                         <b>{{ internship.company.name }}</b>
                                     {% endif %}
                                 </p>
                                 <p>
                                     Responsable technique :
-                                    {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
+                                    {% if internship.profesionnalReferent is not null %}
                                         <b>{{ internship.profesionnalReferent.fullName }}</b>
                                     {% endif %}
                                 </p>
                                 <p>
                                     Responsable pédagogique :
-                                    {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
+                                    {% if internship.educationalReferent is not null %}
                                         <b>{{ internship.educationalReferent.fullName }}</b>
                                     {% endif %}
                                 </p>
@@ -59,8 +59,7 @@
                                 </a>
                                 <h4 class="center-align">Visites liées au stage</h4>
                             </div>
-
-                            {% if internship.visit is defined and internship.visit is not null %}
+                            {% if internship.visit is not null %}
                                 {% for visit in internship.visit %}
                                     <div class="col s6">
                                         <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
