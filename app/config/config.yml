@@ -33,8 +33,6 @@ framework:
 
 # Twig Configuration
 twig:
-    form_themes:
-        - 'materialise_form_theme.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
