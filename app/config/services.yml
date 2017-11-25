@@ -23,4 +23,5 @@ services:
         arguments:
             - '@request_stack'
             - '@doctrine.orm.entity_manager'
-            - '@service_container'
+            - '%max_log_fail%'
+            - '%hours_ban%'
