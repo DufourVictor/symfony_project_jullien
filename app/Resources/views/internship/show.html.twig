@@ -59,14 +59,12 @@
                                 </a>
                                 <h4 class="center-align">Visites liées au stage</h4>
                             </div>
-                            {% if internship.visit is not null %}
-                                {% for visit in internship.visit %}
-                                    <div class="col s6">
-                                        <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
-                                        <p><b>Observations :</b> {{ visit.comment }}</p>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
+                            {% for visit in internship.visit if internship.visit is not null %}
+                                <div class="col s6">
+                                    <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
+                                    <p><b>Observations :</b> {{ visit.comment }}</p>
+                                </div>
+                            {% endfor %}
                         </div>
                     </span>
                 </div>
