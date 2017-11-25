@@ -24,7 +24,7 @@ class CompanyController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/", name="entreprise_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {

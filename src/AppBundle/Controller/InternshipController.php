@@ -59,7 +59,7 @@ class InternshipController extends Controller
      *
      * @Route("/liste-stages/{id}", name="stage_list")
      *
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function listAction($id)
     {
@@ -116,7 +116,7 @@ class InternshipController extends Controller
      *
      * @Route("/{id}", name="stage_show")
      *
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function showAction(Internship $internship)
     {
