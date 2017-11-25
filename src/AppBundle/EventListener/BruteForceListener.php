@@ -4,7 +4,6 @@ namespace AppBundle\EventListener;
 use AppBundle\Entity\ClientFailure;
 use AppBundle\Repository\ClientFyailureRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -15,6 +14,21 @@ use Symfony\Component\Security\Core\AuthenticationEvents;
 
 class BruteForceListener implements EventSubscriberInterface
 {
+    /**
+     * @var RequestStack
+     */
+    protected $requestStack;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    protected $entityManager;
+
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
     /**
      * BruteForce constructor.
      * @param RequestStack $requestStack
