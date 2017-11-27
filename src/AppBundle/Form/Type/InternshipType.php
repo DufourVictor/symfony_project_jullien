@@ -28,18 +28,18 @@ class InternshipType extends AbstractType
         $internship = $options['data'];
         $builder
             ->add('startDate', DateType::class, [
-                'label'    => 'Date de début',
+                'label'    => 'form.internship.start_date',
                 'required' => false,
                 'widget'   => "single_text",
             ])
             ->add('endDate', DateType::class, [
-                'label'    => 'Date de début',
+                'label'    => 'form.internship.end_date',
                 'required' => false,
                 'widget'   => "single_text",
             ])
             ->add('company', EntityType::class, [
                 'class'        => Company::class,
-                'label'        => 'Entreprise',
+                'label'        => 'form.internship.company',
                 'choice_label' => 'name',
             ])
             ->add('profesionnalReferent', EntityType::class, [
@@ -58,11 +58,11 @@ class InternshipType extends AbstractType
                 'required'     => false,
             ])
             ->add('comment', TextareaType::class, [
-                'label'    => 'Observations',
+                'label'    => 'form.internship.observations',
                 'required' => false,
             ])
             ->add('concernYear', TextType::class, [
-                'label'       => 'Année concernée',
+                'label' => 'form.internship.year_concern',
             ]);
     }
 
@@ -72,7 +72,8 @@ class InternshipType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Internship',
+            'data_class'         => 'AppBundle\Entity\Internship',
+            'translation_domain' => 'messages',
         ]);
     }
 }

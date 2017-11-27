@@ -1,38 +1,39 @@
 {% extends 'base.html.twig' %}
-{% block title %}Détail du stage{% endblock %}
+{% block title %}{{ "app.internship.show.title"|trans }}{% endblock %}
 {% block body %}
     {% if internship.student is defined and internship is not null %}
         <h3>{{ internship.student.fullName }}</h3>
     {% endif %}
     <div class="container">
         <ul class="collapsible popout" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header">
+            <li class="active">
+                <div class="collapsible-header active">
                     <i class="material-icons">error_outline</i>
-                    Informations
+                    {{ "app.internship.show.informations"|trans }}
                 </div>
                 <div class="collapsible-body">
                     <span>
                         <div class="row">
                             <div class="col s6">
                                 <p>
-                                    Entreprise :
+                                    {{ "app.internship.show.company"|trans }}
                                     <b>{{ internship.company is not null ? internship.company.name : '' }}</b>
                                 </p>
                                 <p>
-                                    Responsable technique :
+                                    {{ "app.internship.show.professional_referent"|trans }}
                                     <b>{{ internship.profesionnalReferent is not null ? internship.profesionnalReferent.fullName : '' }}</b>
                                 </p>
                                 <p>
-                                    Responsable pédagogique :
+                                    {{ "app.internship.show.educational_referent"|trans }}
                                     <b>{{ internship.educationalReferent is not null ? internship.educationalReferent.fullName : '' }}</b>
                                 </p>
                                 <p>
-                                    Année concernée : <b>{{ internship.startDate|date('Y') }}</b>
+                                    {{ "app.internship.show.year_concern"|trans }}
+                                    <b>{{ internship.startDate|date('Y') }}</b>
                                 </p>
                             </div>
                             <div class="col s6">
-                                <p>Observation</p>
+                                <p>{{ "app.internship.show.observation"|trans }}</p>
                                 <p><b>{{ internship.comment }}</b></p>
                             </div>
                         </div>
@@ -42,7 +43,7 @@
             <li>
                 <div class="collapsible-header">
                     <i class="material-icons">content_paste</i>
-                    Visites
+                    {{ "app.internship.show.visits"|trans }}
                 </div>
                 <div class="collapsible-body">
                     <span>
@@ -52,12 +53,12 @@
                                    class="btn-floating btn-large waves-effect waves-light right indigo darken-4">
                                     <i class="material-icons">add</i>
                                 </a>
-                                <h4 class="center-align">Visites liées au stage</h4>
+                                <h4 class="center-align">{{ "app.internship.show.intenship_visits"|trans }}</h4>
                             </div>
                             {% for visit in internship.visit if internship.visit is not null %}
                                 <div class="col s6">
                                     <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
-                                    <p><b>Observations :</b> {{ visit.comment }}</p>
+                                    <p><b>{{ "app.internship.show.observations"|trans }}</b> {{ visit.comment }}</p>
                                 </div>
                             {% endfor %}
                         </div>

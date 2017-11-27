@@ -1,0 +1,48 @@
+app:
+    internship:
+        index:
+            internship_management: Gestion des stages
+            search_student: Rechercher un élève
+        list:
+            title: Liste des stages
+            internship_list: Liste des stages
+            year: Année
+            company: Entreprise
+            educational_referent: Référent pédagogique
+            profesionnal_referent: Référent proféssionnel
+        show:
+            title: Détail du stage
+            informations: Informations
+            company: "Entreprise :"
+            professional_referent: "Responsable technique :"
+            educational_referent: "Responsable pédagogique :"
+            year_concern: "Année concernée :"
+            observation: Observation
+            visits: Visites
+            intenship_visits: Visites liées au stage
+            observations: "Observations :"
+        new:
+            title: Nouveau stage
+            internship_new: Nouveau stage
+        edit:
+            title: Edition d'un stage
+            internship_edit: Edition du stage
+
+commons:
+    search: Rechercher
+    actions: Actions
+    submit: Valider
+    back_to_list: Retour à la liste
+    back: Retour
+
+flashes:
+    internship:
+        student_not_found: L'élève n'a pas été trouvé
+
+form:
+    internship:
+        start_date: Date de début
+        end_date: Date de fin
+        company: Entreprise
+        observations: Observations
+        year_concern: Année concernée
