@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -29,12 +30,12 @@ class InternshipType extends AbstractType
             ->add('startDate', DateType::class, [
                 'label'    => 'Date de début',
                 'required' => false,
-                'widget' => "single_text",
+                'widget'   => "single_text",
             ])
             ->add('endDate', DateType::class, [
                 'label'    => 'Date de début',
                 'required' => false,
-                'widget' => "single_text",
+                'widget'   => "single_text",
             ])
             ->add('company', EntityType::class, [
                 'class'        => Company::class,
@@ -60,19 +61,8 @@ class InternshipType extends AbstractType
                 'label'    => 'Observations',
                 'required' => false,
             ])
-            ->add('concernYear', EntityType::class, [
-                'class'         => Internship::class,
-                'label'         => 'Année concernée',
-                'multiple'      => false,
-                'query_builder' => function (EntityRepository $ir) use ($internship) {
-                    return $ir->createQueryBuilder('i')
-                        ->select('p.name')
-                        ->leftJoin('i.student', 's')
-                        ->leftJoin('s.register', 'r')
-                        ->leftJoin('r.promote', 'p')
-                        ->where('i.student = :student')
-                        ->setParameter('student', $internship->getStudent());
-                },
+            ->add('concernYear', TextType::class, [
+                'label'       => 'Année concernée',
             ]);
     }
 

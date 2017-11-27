@@ -5,11 +5,11 @@
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for classroom in classrooms %}
@@ -31,9 +31,6 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('classe_new') }}">Create a new classroom</a>
-        </li>
-    </ul>
+    <a href="{{ path('classe_new') }}">Create a new classroom</a>
+    <a href="{{ path('student_index') }}">Retour à la recherche</a>
 {% endblock %}

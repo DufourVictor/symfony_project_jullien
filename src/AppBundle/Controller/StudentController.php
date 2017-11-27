@@ -112,7 +112,7 @@ class StudentController extends Controller
                 $em->flush();
                 $this->addFlash('success', 'Élève modifié');
 
-                return $this->redirectToRoute('student_index');
+                return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur lors de la modification');
             }
