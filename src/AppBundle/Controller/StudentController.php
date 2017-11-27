@@ -5,8 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\CertificateObtention;
 use AppBundle\Entity\Register;
 use AppBundle\Entity\Student;
-use AppBundle\Form\RegisterSelectorType;
-use AppBundle\Form\StudentType;
+use AppBundle\Form\Type\RegisterSelectorType;
+use AppBundle\Form\Type\StudentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +27,8 @@ class StudentController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/", name="student_index")
+     *
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
@@ -57,6 +59,8 @@ class StudentController extends Controller
      * @return Response
      *
      * @Route("/new", name="student_add")
+     *
+     * @Method({"GET", "POST"})
      */
     public function addAction(Request $request)
     {
@@ -90,6 +94,8 @@ class StudentController extends Controller
      * @throws \Exception
      *
      * @Route("/{id}", name="student_show")
+     *
+     * @Method({"GET", "POST"})
      */
     public function showAction(Student $student, Request $request)
     {

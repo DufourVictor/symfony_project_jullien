@@ -24,6 +24,7 @@ class CompanyController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/", name="entreprise_index")
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
@@ -31,7 +32,7 @@ class CompanyController extends Controller
 
         $companies = $em->getRepository(Company::class)->findAll();
         $company   = new Company();
-        $form      = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $form      = $this->createForm('AppBundle\Form\Type\CompanyType', $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,13 +60,14 @@ class CompanyController extends Controller
      * @return Response
      *
      * @Route("/{id}", name="entreprise_show")
+     * @Method({"GET", "POST"})
      */
     public function showAction(Request $request, $id)
     {
         $em          = $this->getDoctrine()->getManager();
         $company     = $em->getRepository(Company::class)->find($id);
         $internships = $em->getRepository(Internship::class)->findInternshipForCompany($company);
-        $form        = $this->createForm('AppBundle\Form\CompanyType', $company, ['company' => $company]);
+        $form        = $this->createForm('AppBundle\Form\Type\CompanyType', $company, ['company' => $company]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {

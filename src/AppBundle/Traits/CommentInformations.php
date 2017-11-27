@@ -1,5 +1,8 @@
 <?php
 namespace AppBundle\Traits;
+
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class CommentInformations
  */

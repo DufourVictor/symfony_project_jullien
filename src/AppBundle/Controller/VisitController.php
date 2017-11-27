@@ -4,9 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Visit;
-use AppBundle\Form\VisitType;
+use AppBundle\Form\Type\VisitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,8 @@ class VisitController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("{id}/visit/new", name="visite_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request, $id)
     {

@@ -1,16 +1,15 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Certificate;
-use AppBundle\Entity\CertificateObtention;
+use AppBundle\Entity\Classroom;
+use AppBundle\Entity\Promote;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CertificateObtentionType extends AbstractType
+class RegisterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,13 +18,15 @@ class CertificateObtentionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('certificate', EntityType::class, [
-                'class'        => Certificate::class,
+            ->add('classroom', EntityType::class, [
+                'label' => 'Classe',
+                'class' => Classroom::class,
                 'choice_label' => 'name',
             ])
-            ->add('date', DateType::class, [
-                'widget' => 'single_text',
-                'label'  => 'Date d\'obtention',
+            ->add('promote', EntityType::class, [
+                'label' => 'Promotion',
+                'class' => Promote::class,
+                'choice_label' => 'name'
             ]);
     }
 
@@ -34,8 +35,8 @@ class CertificateObtentionType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => CertificateObtention::class,
-        ]);
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Register'
+        ));
     }
 }

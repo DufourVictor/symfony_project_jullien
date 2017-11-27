@@ -4,10 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Student;
-use AppBundle\Form\InternshipType;
-use AppBundle\Form\RegisterSelectorType;
+use AppBundle\Form\Type\InternshipType;
+use AppBundle\Form\Type\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,8 @@ class InternshipController extends Controller
      * @return Response
      *
      * @Route("/", name="stage_index")
+     *
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
@@ -55,6 +58,8 @@ class InternshipController extends Controller
      * @throws \Exception
      *
      * @Route("/liste-stages/{id}", name="stage_list")
+     *
+     * @Method("GET")
      */
     public function listAction($id)
     {
@@ -78,12 +83,14 @@ class InternshipController extends Controller
      * @return RedirectResponse|Response
      *
      * @Route("/{id}/new", name="stage_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request, $id)
     {
-        $internship  = new Internship();
-        $em          = $this->getDoctrine()->getManager();
-        $student     = $em->getRepository(Student::class)->find($id);
+        $internship = new Internship();
+        $em         = $this->getDoctrine()->getManager();
+        $student    = $em->getRepository(Student::class)->find($id);
         $internship->setStudent($student);
         $form = $this->createForm(InternshipType::class, $internship);
         $form->handleRequest($request);
@@ -108,6 +115,8 @@ class InternshipController extends Controller
      * @return Response
      *
      * @Route("/{id}", name="stage_show")
+     *
+     * @Method("GET")
      */
     public function showAction(Internship $internship)
     {

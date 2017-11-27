@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Certificate;
-use AppBundle\Form\CertificateType;
+use AppBundle\Form\Type\CertificateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,17 +20,20 @@ class CertificateController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/", name="diplome_index")
+     *
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $certificates = $em->getRepository(Certificate::class)->findAll();
-        $certificate = new Certificate();
-        $form = $this->createForm(CertificateType::class, $certificate);
+        $certificate  = new Certificate();
+        $form         = $this->createForm(CertificateType::class, $certificate);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,16 +51,19 @@ class CertificateController extends Controller
 
         return $this->render('certificate/index.html.twig', [
             'certificates' => $certificates,
-            'form' => $form->createView(),
+            'form'         => $form->createView(),
         ]);
     }
 
     /**
      * @param Certificate $certificate
+     *
      * @return RedirectResponse
      * @throws \Exception
      *
      * @Route("/{id}", name="diplome_delete")
+     *
+     * @Method("DELETE")
      */
     public function deleteAction(Certificate $certificate)
     {

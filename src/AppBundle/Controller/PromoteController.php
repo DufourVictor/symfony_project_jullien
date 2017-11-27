@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Promote;
-use AppBundle\Form\PromoteType;
+use AppBundle\Form\Type\PromoteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,43 +21,51 @@ class PromoteController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/", name="promo_index")
+     *
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em       = $this->getDoctrine()->getManager();
         $promotes = $em->getRepository(Promote::class)->findBy([], ['id' => 'DESC']);
-        $promote = new Promote();
-        $form = $this->createForm(PromoteType::class, $promote);
+        $promote  = new Promote();
+        $form     = $this->createForm(PromoteType::class, $promote);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $em->persist($promote);
                 $em->flush();
                 $this->addFlash('success', 'Année scolaire ajouté avec succès');
+
                 return $this->redirectToRoute('promo_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'erreur durant l\'ajout de d\'une année scolaire');
             }
         }
+
         return $this->render('promote/index.html.twig', [
             'promotes' => $promotes,
-            'form' => $form->createView(),
+            'form'     => $form->createView(),
         ]);
     }
 
     /**
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/new", name="promo_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $promote = new Promote();
-        $form = $this->createForm(PromoteType::class, $promote);
+        $form    = $this->createForm(PromoteType::class, $promote);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,16 +83,19 @@ class PromoteController extends Controller
 
         return $this->render('promote/new.html.twig', [
             'promote' => $promote,
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ]);
     }
 
     /**
      * @param Promote $promote
+     *
      * @return RedirectResponse
      * @throws \Exception
      *
      * @Route("/{id}", name="promo_delete")
+     *
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Promote $promote)
     {

@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Register;
 use AppBundle\Entity\Student;
-use AppBundle\Form\RegisterType;
+use AppBundle\Form\Type\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,18 +21,21 @@ use Symfony\Component\HttpFoundation\Response;
 class RegisterController extends Controller
 {
     /**
-     * @param  $id
+     * @param         $id
      * @param Request $request
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/student/{id}/new", name="register_new")
+     *
+     * @Method({"GET", "POST"})
      */
     public function newAction($id, Request $request)
     {
         $register = new Register();
-        $em = $this->getDoctrine()->getManager();
-        $student = $em->getRepository(Student::class)->find($id);
-        $form = $this->createForm(RegisterType::class, $register);
+        $em       = $this->getDoctrine()->getManager();
+        $student  = $em->getRepository(Student::class)->find($id);
+        $form     = $this->createForm(RegisterType::class, $register);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,14 +43,14 @@ class RegisterController extends Controller
             $em->persist($register);
             $em->flush();
 
-            return $this->redirectToRoute('student_show', array('id' => $student->getId()));
+            return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
         }
 
-        return $this->render('classroom/new.html.twig', array(
+        return $this->render('classroom/new.html.twig', [
             'register' => $register,
-            'student' => $student,
-            'form' => $form->createView(),
-        ));
+            'student'  => $student,
+            'form'     => $form->createView(),
+        ]);
     }
 
     /**
@@ -60,10 +63,10 @@ class RegisterController extends Controller
     {
         $deleteForm = $this->createDeleteForm($classroom);
 
-        return $this->render('classroom/show.html.twig', array(
-            'classroom' => $classroom,
+        return $this->render('classroom/show.html.twig', [
+            'classroom'   => $classroom,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -75,20 +78,20 @@ class RegisterController extends Controller
     public function editAction(Request $request, Classroom $classroom)
     {
         $deleteForm = $this->createDeleteForm($classroom);
-        $editForm = $this->createForm('AppBundle\Form\ClassroomType', $classroom);
+        $editForm   = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('classe_edit', array('id' => $classroom->getId()));
+            return $this->redirectToRoute('classe_edit', ['id' => $classroom->getId()]);
         }
 
-        return $this->render('classroom/edit.html.twig', array(
-            'classroom' => $classroom,
-            'edit_form' => $editForm->createView(),
+        return $this->render('classroom/edit.html.twig', [
+            'classroom'   => $classroom,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -121,7 +124,7 @@ class RegisterController extends Controller
     private function createDeleteForm(Classroom $classroom)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('classe_delete', array('id' => $classroom->getId())))
+            ->setAction($this->generateUrl('classe_delete', ['id' => $classroom->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }

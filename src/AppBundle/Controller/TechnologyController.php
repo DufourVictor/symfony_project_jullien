@@ -40,7 +40,7 @@ class TechnologyController extends Controller
     public function newAction(Request $request)
     {
         $technology = new Technology();
-        $form = $this->createForm('AppBundle\Form\TechnologyType', $technology);
+        $form = $this->createForm('AppBundle\Form\Type\TechnologyType', $technology);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -82,7 +82,7 @@ class TechnologyController extends Controller
     public function editAction(Request $request, Technology $technology)
     {
         $deleteForm = $this->createDeleteForm($technology);
-        $editForm = $this->createForm('AppBundle\Form\TechnologyType', $technology);
+        $editForm = $this->createForm('AppBundle\Form\Type\TechnologyType', $technology);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
