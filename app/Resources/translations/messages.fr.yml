@@ -1,4 +1,6 @@
 app:
+    default:
+        home: Accueil
     internship:
         index:
             internship_management: Gestion des stages
@@ -57,6 +59,10 @@ app:
         new:
             title: Ajouter un type d'entreprise
             add_type: Ajouter un type d'entreprise
+    profesional_referent:
+        new:
+            title: Ajouter un référent profesionnel
+            add_referent: Ajouter un référent profesionnel
 
 commons:
     search: Rechercher
@@ -90,3 +96,8 @@ form:
         profesional_referent: Référent profesionnel
     company_type:
         name: Nom
+    profesional_referent:
+        last_name: Nom
+        first_name: Prénom
+        mail: Adresse e-mail
+        phone_number: Numéro de téléphone
