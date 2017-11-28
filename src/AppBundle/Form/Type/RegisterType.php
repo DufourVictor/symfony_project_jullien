@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Promote;
+use AppBundle\Entity\Register;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,14 +20,14 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('classroom', EntityType::class, [
-                'label' => 'Classe',
-                'class' => Classroom::class,
+                'label'        => 'form.register.classroom',
+                'class'        => Classroom::class,
                 'choice_label' => 'name',
             ])
             ->add('promote', EntityType::class, [
-                'label' => 'Promotion',
-                'class' => Promote::class,
-                'choice_label' => 'name'
+                'label'        => 'form.register.promotion',
+                'class'        => Promote::class,
+                'choice_label' => 'name',
             ]);
     }
 
@@ -35,8 +36,9 @@ class RegisterType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Register'
-        ));
+        $resolver->setDefaults([
+            'data_class'         => Register::class,
+            'translation_domain' => 'messages',
+        ]);
     }
 }

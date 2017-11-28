@@ -51,7 +51,7 @@ app:
             add_referent: Ajouter un référent
             add_type: Ajouter un type d'entreprise
             year: Année
-            student: Elève
+            student: Élève
             educational_referent: Référent pédagogique
             profesional_referent: Référent professionnel
             see_details: Voir détail
@@ -69,6 +69,9 @@ app:
             school_list: Liste des années scolaires
             year: Année
             add_year: Ajouter une année
+    register:
+        title: Associer l'élève à une classe
+        add_class_to_student: Associer l'élève à une classe
 
 commons:
     search: Rechercher
@@ -109,3 +112,10 @@ form:
         phone_number: Numéro de téléphone
     promote:
         name: Nom
+    registration_selector:
+        student: Élèves
+        classroom: Classes
+    register:
+        classroom: Classe
+        promotion: Promotion
+
