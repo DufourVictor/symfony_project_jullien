@@ -27,13 +27,20 @@ app:
         edit:
             title: Edition d'un stage
             internship_edit: Edition du stage
+    certificate:
+        index:
+            certificate_list: Liste des BAC
+            name: Nom
+            add_certificate: Ajouter un nouveau BAC
 
 commons:
     search: Rechercher
     actions: Actions
     submit: Valider
+    add: Ajouter
     back_to_list: Retour à la liste
     back: Retour
+    delete: Supprimer
 
 flashes:
     internship:
@@ -46,3 +53,5 @@ form:
         company: Entreprise
         observations: Observations
         year_concern: Année concernée
+    certificate:
+        name: Intitulé
