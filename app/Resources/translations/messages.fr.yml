@@ -32,6 +32,27 @@ app:
             certificate_list: Liste des BAC
             name: Nom
             add_certificate: Ajouter un nouveau BAC
+    company:
+        title: Liste des entreprises
+        index:
+            company_list: Liste des entreprises
+            name: Nom
+            type: Type
+            turnover: Chiffre d'affaires
+            address: Adresse
+            phone_number: Numéro de téléphone
+            add_referent: Ajouter un référent
+            add_type: Ajouter un type d'entreprise
+        show:
+            title: Entreprise - détails
+            company_informations: Informations de l'entreprise
+            add_referent: Ajouter un référent
+            add_type: Ajouter un type d'entreprise
+            year: Année
+            student: Elève
+            educational_referent: Référent pédagogique
+            profesional_referent: Référent professionnel
+            see_details: Voir détail
 
 commons:
     search: Rechercher
@@ -41,6 +62,7 @@ commons:
     back_to_list: Retour à la liste
     back: Retour
     delete: Supprimer
+    read: Voir
 
 flashes:
     internship:
@@ -55,3 +77,10 @@ form:
         year_concern: Année concernée
     certificate:
         name: Intitulé
+    company:
+        name: Nom
+        type: Type
+        turnover: Chiffre d'affaires
+        phone_number: Numéro de téléphone
+        address: Adresse
+        profesional_referent: Référent profesionnel
