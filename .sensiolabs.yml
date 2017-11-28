@@ -2,7 +2,8 @@ php_version: 5
 global_exclude_dirs:
     - vendor
     - vendors
-    
+    - var
+
 rules:
     web.missing_robots_txt:
         enabled: true
