@@ -7,3 +7,5 @@ global_exclude_dirs:
 rules:
     web.missing_robots_txt:
         enabled: true
+    doctrine.database_query_contains_string_and_variable_concatenation:
+        enabled: true
