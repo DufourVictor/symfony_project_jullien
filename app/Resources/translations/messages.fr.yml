@@ -63,6 +63,12 @@ app:
         new:
             title: Ajouter un référent profesionnel
             add_referent: Ajouter un référent profesionnel
+    promote:
+        index:
+            title: Liste des années scolaires
+            school_list: Liste des années scolaires
+            year: Année
+            add_year: Ajouter une année
 
 commons:
     search: Rechercher
@@ -101,3 +107,5 @@ form:
         first_name: Prénom
         mail: Adresse e-mail
         phone_number: Numéro de téléphone
+    promote:
+        name: Nom
