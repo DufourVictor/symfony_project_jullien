@@ -22,7 +22,7 @@ class CompanyTypeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'form.company_type.name',
             ]);
     }
 
@@ -32,7 +32,8 @@ class CompanyTypeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\CompanyType',
+            'data_class'         => 'AppBundle\Entity\CompanyType',
+            'translation_domain' => 'messages',
         ]);
     }
 }

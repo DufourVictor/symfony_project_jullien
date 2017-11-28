@@ -53,6 +53,10 @@ app:
             educational_referent: Référent pédagogique
             profesional_referent: Référent professionnel
             see_details: Voir détail
+    company_type:
+        new:
+            title: Ajouter un type d'entreprise
+            add_type: Ajouter un type d'entreprise
 
 commons:
     search: Rechercher
@@ -84,3 +88,5 @@ form:
         phone_number: Numéro de téléphone
         address: Adresse
         profesional_referent: Référent profesionnel
+    company_type:
+        name: Nom
