@@ -26,7 +26,7 @@ $(document).ready(function () {
     $('.container-form .classroom .dropdown-content li').click(function (e) {
         var targetElement = e.target.innerHTML;
 
-        // On n'affiche plus les placeholder
+        // Hide placeholder
         if ('Classes' !== targetElement) {
             e.target.parentNode.parentNode.childNodes[0].style.display = "none";
 
@@ -47,6 +47,7 @@ $(document).ready(function () {
                     for (var i = 0; i < students.students.length; i++) {
                         option = document.createElement("option");
                         option.text = students.students[i].firstName;
+                        option.value = students.students[i].id
                         select.add(option);
                     }
 

@@ -138,6 +138,8 @@ class InternshipController extends Controller
      * @return JsonResponse
      *
      * @Route("/students", name="students")
+     *
+     * @Method("POST")
      */
     public function studentsAction(Request $request)
     {
@@ -149,6 +151,8 @@ class InternshipController extends Controller
 
         $students = $em->getRepository(Student::class)->getStudentsByClass($classroom->getId());
 
-        return new JsonResponse(['students' => $students]);
+        return new JsonResponse([
+            'students' => $students,
+        ]);
     }
 }
