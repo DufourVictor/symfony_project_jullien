@@ -20,19 +20,19 @@ class StudentType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'form.student.first_name',
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'form.student.last_name',
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse',
+                'label' => 'form.student.address',
             ])
             ->add('email', EmailType::class, [
-                'label' => 'E-mail',
+                'label' => 'form.student.mail',
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Numéro de téléphone',
+                'label' => 'form.student.phone_number',
             ])
             ->add('certificate', CollectionType::class, [
                 'entry_type'   => CertificateObtentionType::class,
@@ -49,7 +49,8 @@ class StudentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Student::class,
+            'data_class'         => Student::class,
+            'translation_domain' => 'messages',
         ]);
     }
 }

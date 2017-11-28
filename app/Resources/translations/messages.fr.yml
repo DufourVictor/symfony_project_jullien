@@ -72,6 +72,24 @@ app:
     register:
         title: Associer l'élève à une classe
         add_class_to_student: Associer l'élève à une classe
+    student:
+        index:
+            title: Élève - Recherche
+            follow_school: Suivi de scolarité
+            search_classroom: Rechercher une classe
+            add_classroom: Ajouter une classe
+            add_student: Ajouter un élève
+        new:
+            title: Ajouter un élève
+            add_student: Ajouter un élève
+            add_certificate: Ajouter un Bac
+        show:
+            title: Stage - détail
+            informations: Informations
+            add_classroom_to_student: Associer à une nouvelle classe
+            year: Année
+            classroom: Classe
+            read_internship: Voir les stages
 
 commons:
     search: Rechercher
@@ -118,4 +136,10 @@ form:
     register:
         classroom: Classe
         promotion: Promotion
+    student:
+        last_name: Nom
+        first_name: Prénom
+        address: Adresse
+        mail: Adresse e-mail
+        phone_number: Numéro de téléphone
 
