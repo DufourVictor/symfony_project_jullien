@@ -46,86 +46,10 @@ class RegisterController extends Controller
             return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
         }
 
-        return $this->render('classroom/new.html.twig', [
+        return $this->render('register/new.html.twig', [
             'register' => $register,
             'student'  => $student,
             'form'     => $form->createView(),
         ]);
-    }
-
-    /**
-     * Finds and displays a classroom entity.
-     *
-     * @Route("/{id}", name="classe_show")
-     * @Method("GET")
-     */
-    public function showAction(Classroom $classroom)
-    {
-        $deleteForm = $this->createDeleteForm($classroom);
-
-        return $this->render('classroom/show.html.twig', [
-            'classroom'   => $classroom,
-            'delete_form' => $deleteForm->createView(),
-        ]);
-    }
-
-    /**
-     * Displays a form to edit an existing classroom entity.
-     *
-     * @Route("/{id}/edit", name="classe_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Classroom $classroom)
-    {
-        $deleteForm = $this->createDeleteForm($classroom);
-        $editForm   = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('classe_edit', ['id' => $classroom->getId()]);
-        }
-
-        return $this->render('classroom/edit.html.twig', [
-            'classroom'   => $classroom,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ]);
-    }
-
-    /**
-     * Deletes a classroom entity.
-     *
-     * @Route("/{id}", name="classe_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Classroom $classroom)
-    {
-        $form = $this->createDeleteForm($classroom);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($classroom);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('classe_index');
-    }
-
-    /**
-     * Creates a form to delete a classroom entity.
-     *
-     * @param Classroom $classroom The classroom entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Classroom $classroom)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('classe_delete', ['id' => $classroom->getId()]))
-            ->setMethod('DELETE')
-            ->getForm();
     }
 }

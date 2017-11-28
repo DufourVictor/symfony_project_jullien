@@ -24,8 +24,6 @@ class InternshipType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /** @var Internship $internship */
-        $internship = $options['data'];
         $builder
             ->add('startDate', DateType::class, [
                 'label'    => 'form.internship.start_date',
