@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.visit.new.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Ajouter une visite</h1>
+    <h1>{{ 'app.visit.new.add_visit'|trans }}</h1>
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Ajouter" />
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ 'commons.add'|trans }}"/>
     {{ form_end(form) }}
 {% endblock %}

@@ -90,6 +90,10 @@ app:
             year: Année
             classroom: Classe
             read_internship: Voir les stages
+    visit:
+        new:
+            title: Ajouter une visite
+            add_visit: Ajouter une visite
 
 commons:
     search: Rechercher
@@ -142,4 +146,7 @@ form:
         address: Adresse
         mail: Adresse e-mail
         phone_number: Numéro de téléphone
+    visit:
+        date_visit: Date de visite
+        comment: Observation
 
