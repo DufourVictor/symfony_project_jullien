@@ -166,7 +166,25 @@ html body .wrapper .container .collapsible-body .row {
 html body .wrapper .container .collapsible-body .row .btn-floating {
   margin-top: -10px;
 }
-html body .wrapper .container .collapsible-body .row p {
+html body .wrapper .container .collapsible-body .row.visit {
+  margin-top: 30px;
+}
+html body .wrapper .container .collapsible-body .row.visit .details .col {
+  padding-right: 20px;
+}
+html body .wrapper .container .collapsible-body .row.visit .actions {
+  float: right;
+}
+html body .wrapper .container .collapsible-body .row.visit .actions .btn-floating {
+  width: 30px;
+  height: 30px;
+  line-height: 37px;
+}
+html body .wrapper .container .collapsible-body .row.visit .actions .btn-floating i {
+  font-size: 15px;
+  line-height: 31px;
+}
+html body .wrapper .container .collapsible-body .row.visit p {
   margin-top: 0;
 }
 html body .wrapper .container-form {
@@ -189,6 +207,41 @@ html body .wrapper .container-form form .row .btn {
 html body .wrapper .container-form form .row .btn .material-icons {
   position: absolute;
   margin-left: 10px;
+}
+html body .wrapper .container-form form .row .btn.back {
+  margin-top: 10px;
+}
+html body .wrapper .container-form form .row .btn.back a {
+  color: #FFFFFF;
+}
+html body .wrapper .container-form form .row input[type=text] + label,
+html body .wrapper .container-form form .row input[type=password] + label,
+html body .wrapper .container-form form .row input[type=date] + label,
+html body .wrapper .container-form form .row textarea + label {
+  color: #9E9E9E;
+}
+html body .wrapper .container-form form .row input[type=text]:focus,
+html body .wrapper .container-form form .row input[type=password]:focus,
+html body .wrapper .container-form form .row input[type=date]:focus,
+html body .wrapper .container-form form .row textarea:focus {
+  border-bottom: 1px solid #1A237E;
+  box-shadow: 0 1px 0 0 #1A237E;
+}
+html body .wrapper .container-form form .row input[type=text]:focus + label,
+html body .wrapper .container-form form .row input[type=password]:focus + label,
+html body .wrapper .container-form form .row input[type=date]:focus + label,
+html body .wrapper .container-form form .row textarea:focus + label {
+  color: #1A237E;
+}
+html body .wrapper .container-form form .row .picker__date-display,
+html body .wrapper .container-form form .row .picker__day--selected {
+  background-color: #1A237E;
+}
+html body .wrapper .container-form form .row .picker__footer button {
+  color: #1A237E;
+}
+html body .wrapper .container-form form .row .picker__footer button.picker__clear {
+  color: #F44336;
 }
 html body footer.page-footer {
   padding-top: 0;
