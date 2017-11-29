@@ -13,7 +13,7 @@ app:
             educational_referent: Référent pédagogique
             profesionnal_referent: Référent proféssionnel
         show:
-            title: Détail du stage
+            title: Détails du stage
             informations: Informations
             company: "Entreprise :"
             professional_referent: "Responsable technique :"
@@ -54,15 +54,15 @@ app:
             student: Élève
             educational_referent: Référent pédagogique
             profesional_referent: Référent professionnel
-            see_details: Voir détail
+            see_details: Voir détails
     company_type:
         new:
             title: Ajouter un type d'entreprise
             add_type: Ajouter un type d'entreprise
     profesional_referent:
         new:
-            title: Ajouter un référent profesionnel
-            add_referent: Ajouter un référent profesionnel
+            title: Ajouter un référent professionnel
+            add_referent: Ajouter un référent professionnel
     promote:
         index:
             title: Liste des années scolaires
@@ -84,7 +84,7 @@ app:
             add_student: Ajouter un élève
             add_certificate: Ajouter un Bac
         show:
-            title: Stage - détail
+            title: Stage - détails
             informations: Informations
             add_classroom_to_student: Associer à une nouvelle classe
             year: Année
@@ -124,7 +124,7 @@ form:
         turnover: Chiffre d'affaires
         phone_number: Numéro de téléphone
         address: Adresse
-        profesional_referent: Référent profesionnel
+        profesional_referent: Référent professionnel
     company_type:
         name: Nom
     profesional_referent:

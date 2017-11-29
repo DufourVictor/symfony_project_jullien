@@ -18,23 +18,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ClassroomController extends Controller
 {
     /**
-     * @return Response
-     *
-     * @Route("/", name="classe_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $classrooms = $em->getRepository('AppBundle:Classroom')->findAll();
-
-        return $this->render('classroom/index.html.twig', [
-            'classrooms' => $classrooms,
-        ]);
-    }
-
-    /**
      * @param Request $request
      *
      * @return RedirectResponse|Response
