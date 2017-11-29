@@ -21,6 +21,7 @@ class VisitType extends AbstractType
             ->add('dateVisit', DateType::class, [
                 'label'  => 'form.visit.date_visit',
                 'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
             ])
             ->add('comment', TextareaType::class, [
                 'label' => 'form.visit.comment',

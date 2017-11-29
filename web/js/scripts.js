@@ -22,6 +22,18 @@ $(document).ready(function () {
         $('.dropdown-logout > .arrow').toggleClass("down");
     });
 
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15,
+        today: 'Aujourd\'hui',
+        clear: 'Effacer',
+        close: 'Ok',
+        closeOnSelect: false,
+        format: 'dd/mm/yyyy',
+        monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    });
+
     // Load student list
     $('.container-form .classroom .dropdown-content li').click(function (e) {
         var targetElement = e.target.innerHTML;
