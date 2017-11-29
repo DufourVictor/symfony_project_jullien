@@ -53,7 +53,7 @@ class TechnologyController extends Controller
 
     /**
      * @Route("/{id}", name="technologie_delete")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      *
      * @param Technology $technology
      *
