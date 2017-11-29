@@ -11,7 +11,7 @@ app:
             year: Année
             company: Entreprise
             educational_referent: Référent pédagogique
-            profesionnal_referent: Référent proféssionnel
+            profesionnal_referent: Référent professionnel
         show:
             title: Détails du stage
             informations: Informations
