@@ -124,4 +124,30 @@ class StudentController extends Controller
             'form'    => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/suppression", name="student_delete")
+     * @Method({"GET","POST"})
+     *
+     * @param Student $student
+     *
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteAction(Student $student)
+    {
+        if (null === $student) {
+            throw new \Exception('Utilisateur non trouvé');
+        }
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($student);
+            $em->flush();
+            $this->addFlash('success', 'Elève supprimé');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'Erreur lors de la suppression');
+        }
+
+        return $this->redirectToRoute('student_index');
+    }
 }

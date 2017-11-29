@@ -59,6 +59,14 @@
                                 <div class="col s6">
                                     <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
                                     <p><b>{{ "app.internship.show.observations"|trans }}</b> {{ visit.comment }}</p>
+                                     <a href="{{ path('visite_edit', {'internship': internship.id, 'visit': visit.id}) }}"
+                                        class="waves-effect waves-light btn indigo darken-4">
+                                    {{ 'commons.edit'|trans }}
+                                </a>
+                                <a href="{{ path('visite_delete', {'internship': internship.id, 'visit': visit.id}) }}"
+                                   class="waves-effect waves-light btn red darken-4">
+                                    {{ 'commons.delete'|trans }}
+                                </a>
                                 </div>
                             {% endfor %}
                         </div>
