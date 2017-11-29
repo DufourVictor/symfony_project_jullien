@@ -94,6 +94,11 @@ app:
         new:
             title: Ajouter une visite
             add_visit: Ajouter une visite
+    technology:
+        index:
+            title: Liste des technologies
+            technology_list: Liste des technologies
+            name: Nom
 
 commons:
     search: Rechercher
@@ -149,4 +154,6 @@ form:
     visit:
         date_visit: Date de visite
         comment: Observation
+    technology:
+        name: Technologie
 

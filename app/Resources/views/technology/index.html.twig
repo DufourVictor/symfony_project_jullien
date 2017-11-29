@@ -1,39 +1,32 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.technology.index.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Technologies list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for technology in technologies %}
-            <tr>
-                <td><a href="{{ path('technologie_show', { 'id': technology.id }) }}">{{ technology.id }}</a></td>
-                <td>{{ technology.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('technologie_show', { 'id': technology.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('technologie_edit', { 'id': technology.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('technologie_new') }}">Create a new technology</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col s6">
+            <h1>{{ 'app.technology.index.technology_list'|trans }}</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>{{ 'app.technology.index.name'|trans }}</th>
+                    <th>{{ 'commons.actions'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for technology in technologies %}
+                    <tr>
+                        <td>{{ technology.name }}</td>
+                        <td>
+                            <a href="{{ path('technologie_delete', { 'id': technology.id }) }}"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col s6">
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
