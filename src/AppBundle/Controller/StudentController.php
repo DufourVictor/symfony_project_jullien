@@ -127,7 +127,7 @@ class StudentController extends Controller
 
     /**
      * @Route("/{id}/suppression", name="student_delete")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      *
      * @param Student $student
      *

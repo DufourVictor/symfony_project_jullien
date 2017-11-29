@@ -82,7 +82,7 @@ class VisitController extends Controller
 
     /**
      * @Route("{internship}/visit/supprimer/{visit}", name="visite_delete")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      *
      * @param Visit      $visit
      * @param Internship $internship
