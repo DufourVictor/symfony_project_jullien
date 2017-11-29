@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ "app.visit.edit.title"|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ "app.visit.edit.edit_visit"|trans }}</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ "commons.submit"|trans }}"/>
+    {{ form_end(form) }}
+    <a href="{{ path('stage_show', {'id': internship.id }) }}">{{ "commons.back"|trans }}</a>
+{% endblock %}

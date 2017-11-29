@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ "app.company_type.edit.title"|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ "app.company_type.edit.edit_company"|trans }}</h1>
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="{{ "commons.submit"|trans }}"/>
+    {{ form_end(edit_form) }}
+    <a href="{{ path('company_type_new') }}">{{ "commons.back_to_list"|trans }}</a>
+{% endblock %}

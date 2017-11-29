@@ -59,6 +59,9 @@ app:
         new:
             title: Ajouter un type d'entreprise
             add_type: Ajouter un type d'entreprise
+        edit:
+            title: Edition du type d'entreprise
+            edit_company: Edition du type d'entreprise
     profesional_referent:
         new:
             title: Ajouter un référent professionnel
@@ -90,10 +93,14 @@ app:
             year: Année
             classroom: Classe
             read_internship: Voir les stages
+            delete_student: Supprimer l'élève
     visit:
         new:
             title: Ajouter une visite
             add_visit: Ajouter une visite
+        edit:
+            title: Edition de la visite
+            edit_visit: Edition de la visite
     technology:
         index:
             title: Liste des technologies
@@ -109,6 +116,7 @@ commons:
     back: Retour
     delete: Supprimer
     read: Voir
+    edit: Editer
 
 flashes:
     internship:

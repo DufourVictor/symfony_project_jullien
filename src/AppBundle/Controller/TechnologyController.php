@@ -20,7 +20,7 @@ class TechnologyController extends Controller
 {
     /**
      * @Route("/", name="technologie_index")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      *
      * @param Request $request
      *
@@ -53,7 +53,7 @@ class TechnologyController extends Controller
 
     /**
      * @Route("/{id}", name="technologie_delete")
-     * @Method("DELETE")
+     * @Method("GET")
      *
      * @param Technology $technology
      *

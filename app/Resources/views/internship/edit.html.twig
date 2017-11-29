@@ -6,5 +6,5 @@
     {{ form_widget(edit_form) }}
     <input type="submit" value="{{ "commons.submit"|trans }}"/>
     {{ form_end(edit_form) }}
-    <a href="{{ path('stage_index') }}">{{ "commons.back_to_list"|trans }}</a>
+    <a href="{{ path('stage_show', {'id': internship.id }) }}">{{ "commons.back_to_list"|trans }}</a>
 {% endblock %}

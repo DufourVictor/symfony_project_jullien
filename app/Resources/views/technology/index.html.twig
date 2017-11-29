@@ -16,7 +16,7 @@
                     <tr>
                         <td>{{ technology.name }}</td>
                         <td>
-                            <a href="{{ path('technologie_delete', { 'id': technology.id }) }}"></a>
+                            <a href="{{ path('technologie_delete', { 'id': technology.id }) }}">{{ "commons.delete"|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -26,6 +26,7 @@
         <div class="col s6">
             {{ form_start(form) }}
             {{ form_rest(form) }}
+            <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}" />
             {{ form_end(form) }}
         </div>
     </div>
