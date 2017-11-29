@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Certificate;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +18,8 @@ class CertificateType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Intitulé',
-                'data' => 'BAC ',
+                'label' => 'form.certificate.name',
+                'data'  => 'BAC ',
             ]);
     }
 
@@ -27,8 +28,9 @@ class CertificateType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Certificate'
-        ));
+        $resolver->setDefaults([
+            'data_class'         => Certificate::class,
+            'translation_domain' => 'messages',
+        ]);
     }
 }

@@ -1,0 +1,11 @@
+php_version: 5
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - var
+
+rules:
+    web.missing_robots_txt:
+        enabled: true
+    doctrine.database_query_contains_string_and_variable_concatenation:
+        enabled: true

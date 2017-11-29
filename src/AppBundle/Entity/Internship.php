@@ -238,10 +238,14 @@ class Internship
 
     /**
      * @param string $concernYear
+     *
+     * @return $this
      */
     public function setConcernYear($concernYear)
     {
         $this->concernYear = $concernYear;
+
+        return $this;
     }
 
     /**

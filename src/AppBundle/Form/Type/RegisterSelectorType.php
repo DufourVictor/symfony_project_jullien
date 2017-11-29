@@ -19,12 +19,12 @@ class RegisterSelectorType extends AbstractType
     {
         $builder
             ->add('student', EntityType::class, [
-                'label'        => 'Élèves',
+                'label'        => 'form.registration_selector.student',
                 'class'        => Student::class,
                 'choice_label' => 'firstName',
             ])
             ->add('classroom', EntityType::class, [
-                'label'        => 'Classes',
+                'label'        => 'form.registration_selector.classroom',
                 'class'        => Classroom::class,
                 'choice_label' => 'name',
             ]);
@@ -36,7 +36,8 @@ class RegisterSelectorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Register::class,
+            'data_class'         => Register::class,
+            'translation_domain' => 'messages',
         ]);
     }
 }

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'app.company_type.new.title'|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ 'app.company_type.new.add_type'|trans }}</h1>
+    <div class="row">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col s6">
+                {{ form_row(form.name) }}
+            </div>
+        </div>
+        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

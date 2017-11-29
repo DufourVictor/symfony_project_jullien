@@ -2,15 +2,17 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Classroom;
-use AppBundle\Entity\Promote;
-use AppBundle\Entity\Register;
+use AppBundle\Entity\ProfesionnalReferent;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegisterType extends AbstractType
+class CompanyTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,15 +21,8 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('classroom', EntityType::class, [
-                'label'        => 'form.register.classroom',
-                'class'        => Classroom::class,
-                'choice_label' => 'name',
-            ])
-            ->add('promote', EntityType::class, [
-                'label'        => 'form.register.promotion',
-                'class'        => Promote::class,
-                'choice_label' => 'name',
+            ->add('name', TextType::class, [
+                'label' => 'form.company_type.name',
             ]);
     }
 
@@ -37,7 +32,7 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'         => Register::class,
+            'data_class'         => 'AppBundle\Entity\CompanyType',
             'translation_domain' => 'messages',
         ]);
     }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ "app.internship.new.title"|trans }}{% endblock %}
 {% block body %}
-    <h1>Nouveau stage</h1>
+    <h1>{{ "app.internship.new.internship_new"|trans }}</h1>
     <div class="row">
         {{ form_start(form) }}
         <div class="row">
@@ -68,7 +68,7 @@
                 {{ form_widget(form.comment, {'attr': {'class': 'browser-default'} }) }}
             </div>
         </div>
-        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Valider"/>
+        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ "commons.submit"|trans }}"/>
         {{ form_end(form) }}
     </div>
 {% endblock %}

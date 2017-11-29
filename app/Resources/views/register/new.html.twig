@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'app.register.title'|trans }}{% endblock %}
+{% block body %}
+    <h1>{{ 'app.register.add_class_to_student'|trans }}</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ 'commons.submit'|trans }}"/>
+    {{ form_end(form) }}
+
+    <a href="{{ path('classe_index') }}">{{ 'commons.back'|trans }}</a>
+{% endblock %}

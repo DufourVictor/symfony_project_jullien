@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des stages{% endblock %}
+{% block title %}{{ 'app.internship.list.title'|trans }}{% endblock %}
 {% block body %}
-    <h3>Liste des stages</h3>
+    <h3>{{ 'app.internship.list.internship_list'|trans }}</h3>
     <h5>{{ student.fullName }}</h5>
 
     <div class="container">
         <div class="center-align">
-            <a href="{{ path('stage_new', {'id': student.id}) }}" class="btn-floating btn-large waves-effect waves-light indigo darken-4">
+            <a href="{{ path('stage_new', {'id': student.id}) }}"
+               class="btn-floating btn-large waves-effect waves-light indigo darken-4">
                 <i class="material-icons">add</i>
             </a>
         </div>
@@ -14,11 +15,11 @@
         <table class="responsive-table highlight striped">
             <thead>
             <tr>
-                <th>Année</th>
-                <th>Entreprise</th>
-                <th>Référent pédagogique</th>
-                <th>Référent proféssionnel</th>
-                <th>Actions</th>
+                <th>{{ "app.internship.list.year"|trans }}</th>
+                <th>{{ "app.internship.list.company"|trans }}</th>
+                <th>{{ "app.internship.list.educational_referent"|trans }}</th>
+                <th>{{ "app.internship.list.profesionnal_referent"|trans }}</th>
+                <th>{{ "commons.actions"|trans }}</th>
             </tr>
             </thead>
             <tbody>

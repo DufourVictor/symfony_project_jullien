@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.student.new.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Ajouter un élève</h1>
+    <h1>{{ 'app.student.new.add_student'|trans }}</h1>
     <div class="row">
         {{ form_start(form) }}
         <div class="row">
@@ -31,10 +31,10 @@
                         {{ form_row(certificate) }}
                     {% endfor %}
                 </ul>
-                <a href="#" id="add-another-certificate">Ajouter</a>
+                <a href="#" id="add-another-certificate">{{ 'app.student.new.add_certificate'|trans }}</a>
             </div>
         </div>
-        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Valider"/>
+        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
     </div>
     {{ form_end(form) }}
 {% endblock %}

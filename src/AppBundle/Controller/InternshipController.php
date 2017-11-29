@@ -42,7 +42,7 @@ class InternshipController extends Controller
 
                 return $this->redirectToRoute('stage_list', ['id' => $student->getId()]);
             } catch (\Exception $e) {
-                $this->addFlash('danger', 'L\'élève n\'a pas été trouvé');
+                $this->addFlash('danger', 'flashes.internship.student_not_found');
             }
         }
 
@@ -96,9 +96,14 @@ class InternshipController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $internship->setStudent($student);
-            $em->persist($internship);
-            $em->flush();
+            try{
+                $internship->setStudent($student);
+                $em->persist($internship);
+                $em->flush();
+                $this->addFlash('success', 'stage ajouté avec succès');
+            }catch (\Exception $e){
+                $this->addFlash('danger', 'Erreur durant l\'ajout du stage');
+            }
 
             return $this->redirectToRoute('stage_show', ['id' => $internship->getId()]);
         }

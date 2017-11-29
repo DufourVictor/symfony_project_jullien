@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Entity\ProfesionnalReferent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,22 +13,22 @@ class ProfesionnalReferentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Adresse e-mail',
+                'label' => 'form.profesional_referent.mail',
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'form.profesional_referent.first_name',
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'form.profesional_referent.last_name',
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Numéro de téléphone'
+                'label' => 'form.profesional_referent.phone_number',
             ]);
     }
 
@@ -37,8 +37,9 @@ class ProfesionnalReferentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ProfesionnalReferent'
-        ));
+        $resolver->setDefaults([
+            'data_class'         => ProfesionnalReferent::class,
+            'translation_domain' => 'messages',
+        ]);
     }
 }

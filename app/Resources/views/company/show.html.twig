@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %}Entreprise - détails{% endblock %}
+{% block title %}{{ 'app.company.show.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Informations de l'entreprise</h1>
+    <h1>{{ 'app.company.show.company_informations'|trans }}</h1>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.type) }}
@@ -11,17 +11,18 @@
     {{ form_row(form.address) }}
     <input type="submit">
     {{ form_end(form) }}
-    <a href="{{ path('profesionnalReferent_new') }}">Ajouter un référent</a>
-    <a href="{{ path('entreprise_index') }}">Retour à la liste</a>
+    <a href="{{ path('profesionnalReferent_new') }}">{{ 'app.company.show.add_referent'|trans }}</a><br>
+    <a href="{{ path('company_type_new') }}">{{ 'app.company.show.add_type'|trans }}</a><br>
+    <a href="{{ path('entreprise_index') }}">{{ 'commons.back_to_list'|trans }}</a><br>
 
     <table>
         <thead>
         <tr>
-            <th>Année</th>
-            <th>Elève</th>
-            <th>Référent pédagogique</th>
-            <th>Référent professionnel</th>
-            <th>Action</th>
+            <th>{{ 'app.company.show.year'|trans }}</th>
+            <th>{{ 'app.company.show.student'|trans }}</th>
+            <th>{{ 'app.company.show.educational_referent'|trans }}</th>
+            <th>{{ 'app.company.show.profesional_referent'|trans }}</th>
+            <th>{{ 'commons.actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -43,7 +44,9 @@
                         {{ internship.profesionnalReferent.fullName }}
                     {% endif %}
                 </td>
-                <td><a href="{{ path('stage_show', {'id': internship.id}) }}">Voir détail</a></td>
+                <td>
+                    <a href="{{ path('stage_show', {'id': internship.id}) }}">{{ 'app.company.show.see_details'|trans }}</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
