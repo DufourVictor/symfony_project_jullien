@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,22 +24,20 @@ class InternshipType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /** @var Internship $internship */
-        $internship = $options['data'];
         $builder
             ->add('startDate', DateType::class, [
-                'label'    => 'Date de début',
+                'label'    => 'form.internship.start_date',
                 'required' => false,
-                'widget' => "single_text",
+                'widget'   => "single_text",
             ])
             ->add('endDate', DateType::class, [
-                'label'    => 'Date de début',
+                'label'    => 'form.internship.end_date',
                 'required' => false,
-                'widget' => "single_text",
+                'widget'   => "single_text",
             ])
             ->add('company', EntityType::class, [
                 'class'        => Company::class,
-                'label'        => 'Entreprise',
+                'label'        => 'form.internship.company',
                 'choice_label' => 'name',
             ])
             ->add('profesionnalReferent', EntityType::class, [
@@ -57,22 +56,11 @@ class InternshipType extends AbstractType
                 'required'     => false,
             ])
             ->add('comment', TextareaType::class, [
-                'label'    => 'Observations',
+                'label'    => 'form.internship.observations',
                 'required' => false,
             ])
-            ->add('concernYear', EntityType::class, [
-                'class'         => Internship::class,
-                'label'         => 'Année concernée',
-                'multiple'      => false,
-                'query_builder' => function (EntityRepository $ir) use ($internship) {
-                    return $ir->createQueryBuilder('i')
-                        ->select('p.name')
-                        ->leftJoin('i.student', 's')
-                        ->leftJoin('s.register', 'r')
-                        ->leftJoin('r.promote', 'p')
-                        ->where('i.student = :student')
-                        ->setParameter('student', $internship->getStudent());
-                },
+            ->add('concernYear', TextType::class, [
+                'label' => 'form.internship.year_concern',
             ]);
     }
 
@@ -82,7 +70,8 @@ class InternshipType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Internship',
+            'data_class'         => 'AppBundle\Entity\Internship',
+            'translation_domain' => 'messages',
         ]);
     }
 }

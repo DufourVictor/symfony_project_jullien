@@ -1,0 +1,152 @@
+app:
+    default:
+        home: Accueil
+    internship:
+        index:
+            internship_management: Gestion des stages
+            search_student: Rechercher un élève
+        list:
+            title: Liste des stages
+            internship_list: Liste des stages
+            year: Année
+            company: Entreprise
+            educational_referent: Référent pédagogique
+            profesionnal_referent: Référent professionnel
+        show:
+            title: Détails du stage
+            informations: Informations
+            company: "Entreprise :"
+            professional_referent: "Responsable technique :"
+            educational_referent: "Responsable pédagogique :"
+            year_concern: "Année concernée :"
+            observation: Observation
+            visits: Visites
+            intenship_visits: Visites liées au stage
+            observations: "Observations :"
+        new:
+            title: Nouveau stage
+            internship_new: Nouveau stage
+        edit:
+            title: Edition d'un stage
+            internship_edit: Edition du stage
+    certificate:
+        index:
+            certificate_list: Liste des BAC
+            name: Nom
+            add_certificate: Ajouter un nouveau BAC
+    company:
+        title: Liste des entreprises
+        index:
+            company_list: Liste des entreprises
+            name: Nom
+            type: Type
+            turnover: Chiffre d'affaires
+            address: Adresse
+            phone_number: Numéro de téléphone
+            add_referent: Ajouter un référent
+            add_type: Ajouter un type d'entreprise
+        show:
+            title: Entreprise - détails
+            company_informations: Informations de l'entreprise
+            add_referent: Ajouter un référent
+            add_type: Ajouter un type d'entreprise
+            year: Année
+            student: Élève
+            educational_referent: Référent pédagogique
+            profesional_referent: Référent professionnel
+            see_details: Voir détails
+    company_type:
+        new:
+            title: Ajouter un type d'entreprise
+            add_type: Ajouter un type d'entreprise
+    profesional_referent:
+        new:
+            title: Ajouter un référent professionnel
+            add_referent: Ajouter un référent professionnel
+    promote:
+        index:
+            title: Liste des années scolaires
+            school_list: Liste des années scolaires
+            year: Année
+            add_year: Ajouter une année
+    register:
+        title: Associer l'élève à une classe
+        add_class_to_student: Associer l'élève à une classe
+    student:
+        index:
+            title: Élève - Recherche
+            follow_school: Suivi de scolarité
+            search_classroom: Rechercher une classe
+            add_classroom: Ajouter une classe
+            add_student: Ajouter un élève
+        new:
+            title: Ajouter un élève
+            add_student: Ajouter un élève
+            add_certificate: Ajouter un Bac
+        show:
+            title: Stage - détails
+            informations: Informations
+            add_classroom_to_student: Associer à une nouvelle classe
+            year: Année
+            classroom: Classe
+            read_internship: Voir les stages
+    visit:
+        new:
+            title: Ajouter une visite
+            add_visit: Ajouter une visite
+
+commons:
+    search: Rechercher
+    actions: Actions
+    submit: Valider
+    add: Ajouter
+    back_to_list: Retour à la liste
+    back: Retour
+    delete: Supprimer
+    read: Voir
+
+flashes:
+    internship:
+        student_not_found: L'élève n'a pas été trouvé
+
+form:
+    internship:
+        start_date: Date de début
+        end_date: Date de fin
+        company: Entreprise
+        observations: Observations
+        year_concern: Année concernée
+    certificate:
+        name: Intitulé
+    company:
+        name: Nom
+        type: Type
+        turnover: Chiffre d'affaires
+        phone_number: Numéro de téléphone
+        address: Adresse
+        profesional_referent: Référent professionnel
+    company_type:
+        name: Nom
+    profesional_referent:
+        last_name: Nom
+        first_name: Prénom
+        mail: Adresse e-mail
+        phone_number: Numéro de téléphone
+    promote:
+        name: Nom
+    registration_selector:
+        student: Élèves
+        classroom: Classes
+    register:
+        classroom: Classe
+        promotion: Promotion
+    student:
+        last_name: Nom
+        first_name: Prénom
+        address: Adresse
+        mail: Adresse e-mail
+        phone_number: Numéro de téléphone
+    visit:
+        date_visit: Date de visite
+        comment: Observation
+

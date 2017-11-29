@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
-{% block title %}Élève - Recherche{% endblock %}
+{% block title %}{{ 'app.student.index.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Suivi de scolarité</h1>
-    <h3>Rechercher une classe</h3>
+    <h1>{{ 'app.student.index.follow_school'|trans }}</h1>
+    <h3>{{ 'app.student.index.search_classroom'|trans }}</h3>
     <div class="container">
         <div class="row">
             {{ form_start(form) }}
@@ -11,8 +11,9 @@
                     {{ form_widget(form.classroom) }}
                 </div>
                 <div class="col s6">
-                    <a href="{{ path('classe_new') }}" class="waves-effect waves-light btn indigo darken-4">Ajouter une
-                        classe</a>
+                    <a href="{{ path('classe_new') }}" class="waves-effect waves-light btn indigo darken-4">
+                        {{ 'app.student.index.add_classroom'|trans }}
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -20,10 +21,12 @@
                     {{ form_widget(form.student) }}
                 </div>
                 <div class="col s6">
-                    <a href="{{ path('student_add') }}" class="waves-effect waves-light btn indigo darken-4">Ajouter un élève</a>
+                    <a href="{{ path('student_add') }}" class="waves-effect waves-light btn indigo darken-4">
+                        {{ 'app.student.index.add_student'|trans }}
+                    </a>
                 </div>
             </div>
-                <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Rechercher"/>
+                <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.search'|trans }}"/>
             {{ form_end(form) }}
         </div>
     </div>

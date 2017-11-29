@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.promote.index.title'|trans }}{% endblock %}
 {% block body %}
     <div class="row">
         <div class="col s6">
-            <h1>Liste des années scolaires</h1>
+            <h1>{{ 'app.promote.index.school_list'|trans }}</h1>
             <table>
                 <thead>
                 <tr>
-                    <th>Année</th>
-                    <th>Actions</th>
+                    <th>{{ 'app.promote.index.year'|trans }}</th>
+                    <th>{{ 'commons.actions'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -16,7 +16,7 @@
                     <tr>
                         <td>{{ promote.name }}</td>
                         <td>
-                            <a href="{{ path('promo_delete', { 'id': promote.id }) }}">Supprimer</a>
+                            <a href="{{ path('promo_delete', { 'id': promote.id }) }}">{{ 'commons.delete'|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -24,11 +24,11 @@
             </table>
         </div>
         <div class="col s6">
-            <h1>Ajouter une année</h1>
+            <h1>{{ 'app.promote.index.add_year'|trans }}</h1>
 
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" value="Ajouter" class="waves-effect waves-light btn indigo darken-4"/>
+            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
             {{ form_end(form) }}
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\ProfesionnalReferent;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,28 +16,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CompanyType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $company = $options['company'];
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'form.company.name',
             ])
             ->add('type', EntityType::class, [
                 'class'        => \AppBundle\Entity\CompanyType::class,
                 'choice_label' => 'name',
             ])
             ->add('turnover', MoneyType::class, [
-                'label' => 'Chiffre d\'affaire',
+                'label' => 'form.company.turnover',
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => 'numéro de téléphone',
+                'label' => 'form.company.phone_number',
             ])
             ->add('profesionnalReferent', EntityType::class, [
                 'class'         => ProfesionnalReferent::class,
-                'label'         => 'Référent professionnel',
+                'label'         => 'form.company.profesional_referent',
                 'choice_label'  => 'fullName',
                 'multiple'      => true,
                 'by_reference'  => false,
@@ -48,7 +50,7 @@ class CompanyType extends AbstractType
                 },
             ])
             ->add('address', TextareaType::class, [
-                'label' => 'Adresse',
+                'label' => 'form.company.address',
             ]);
     }
 
@@ -58,8 +60,9 @@ class CompanyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Company',
-            'company'    => null,
+            'data_class'         => Company::class,
+            'company'            => null,
+            'translation_domain' => 'messages',
         ]);
     }
 }

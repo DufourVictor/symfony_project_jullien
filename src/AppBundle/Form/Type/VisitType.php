@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Visit;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,11 +19,11 @@ class VisitType extends AbstractType
     {
         $builder
             ->add('dateVisit', DateType::class, [
-                'label' => 'Date de visite',
-                'widget' => 'single_text'
+                'label'  => 'form.visit.date_visit',
+                'widget' => 'single_text',
             ])
             ->add('comment', TextareaType::class, [
-                'label' => 'Observation',
+                'label' => 'form.visit.comment',
             ]);
     }
 
@@ -32,8 +32,9 @@ class VisitType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Visit'
-        ));
+        $resolver->setDefaults([
+            'data_class'         => Visit::class,
+            'translation_domain' => 'messages',
+        ]);
     }
 }

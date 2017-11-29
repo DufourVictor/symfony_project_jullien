@@ -1,0 +1,1 @@
+{"nfs":{"/var/www":{"type":"nfs","linux__nfs_options":["rw","no_root_squash","no_subtree_check","anonuid=1000","anongid=1000","fsid=970302561"],"nfs_version":"4","nfs_udp":false,"guestpath":"/var/www","hostpath":"/var/www/symfony_project_jullien","disabled":false,"__vagrantfile":true,"map_uid":1000,"map_gid":1000,"uuid":"970302561"}}}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    Stage - détail
+    {{ 'app.student.show.title'|trans }}
 {% endblock %}
 {% block body %}
     <h1>{{ student.fullName }}</h1>
-    <h3>Informations</h3>
-    <a href="{{ path('register_new', {'id': student.id}) }}">Associer à une nouvelle classe</a>
+    <h3>{{ 'app.student.show.informations'|trans }}</h3>
+    <a href="{{ path('register_new', {'id': student.id}) }}">{{ 'app.student.show.add_classroom_to_student'|trans }}</a>
     {{ form_start(form) }}
     <div class="row">
         <div class="col s6">
@@ -28,23 +28,25 @@
             {{ form_row(form.address) }}
         </div>
         <div class="col s6">
-            <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"  data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
+            <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"
+                data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
                 {% for certificate in form.certificate %}
                     {{ form_row(certificate) }}
                     {{ form_errors(certificate) }}
                 {% endfor %}
             </ul>
-            <a href="#" id="add-another-certificate">Ajouter</a>
+            <a href="#" id="add-another-certificate">{{ 'commons.add'|trans }}</a>
         </div>
     </div>
-    <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="Modifier"/>
+    <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
     {{ form_end(form) }}
+    <a href="{{ path('student_index') }}">{{ 'commons.back'|trans }}</a>
     <table>
         <thead>
         <tr>
-            <th>Année</th>
-            <th>Classe</th>
-            <th>Action</th>
+            <th>{{ 'app.student.show.year'|trans }}</th>
+            <th>{{ 'app.student.show.classroom'|trans }}</th>
+            <th>{{ 'commons.actions'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +54,11 @@
             <tr>
                 <td>{{ classroom.promote.name }}</td>
                 <td>{{ classroom.classroom.name }}</td>
-                <td><a href="{{ path('stage_list', {'id': classroom.student.id }) }}">Voir les stages</a></td>
+                <td>
+                    <a href="{{ path('stage_list', {'id': classroom.student.id }) }}">
+                        {{ 'app.student.show.read_internship'|trans }}
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
