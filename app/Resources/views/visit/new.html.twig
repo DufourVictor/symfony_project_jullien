@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.visit.new.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ 'app.visit.new.add_visit'|trans }}</h1>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{{ 'commons.add'|trans }}"/>
-    {{ form_end(form) }}
+    <h3>{{ 'app.visit.new.add_visit'|trans }}</h3>
+
+    <div class="container-form">
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    {{ form_row(form.dateVisit, {"attr": {"class": "datepicker"}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    <div class="input-field">
+                        {{ form_widget(form.comment, {"attr": {"class": "materialize-textarea"}}) }}
+                        {{ form_label(form.comment) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m4 offset-m4">
+                    <button type="submit" class="btn waves-effect waves-light indigo darken-4">
+                        {{ 'commons.add'|trans }}
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

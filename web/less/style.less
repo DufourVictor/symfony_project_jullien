@@ -217,8 +217,33 @@ html {
                             margin-top: -10px;
                         }
 
-                        p {
-                            margin-top: 0;
+                        &.visit {
+                            margin-top: 30px;
+
+                            .details {
+                                .col {
+                                    padding-right: 20px;
+                                }
+                            }
+
+                            .actions {
+                                float: right;
+
+                                .btn-floating {
+                                    width: 30px;
+                                    height: 30px;
+                                    line-height: 37px;
+
+                                    i {
+                                        font-size: 15px;
+                                        line-height: 31px;
+                                    }
+                                }
+                            }
+
+                            p {
+                                margin-top: 0;
+                            }
                         }
                     }
                 }
@@ -253,6 +278,13 @@ html {
                                 .material-icons {
                                     position: absolute;
                                     margin-left: 10px;
+                                }
+
+                                &.back {
+                                    margin-top: 10px;
+                                    a {
+                                        color: #FFFFFF;
+                                    }
                                 }
                             }
                         }
