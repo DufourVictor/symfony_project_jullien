@@ -42,6 +42,7 @@ class CompanyType extends AbstractType
                 'choice_label'  => 'fullName',
                 'multiple'      => true,
                 'by_reference'  => false,
+                'required'      => false,
                 'query_builder' => function (EntityRepository $er) use ($company) {
                     return $er->createQueryBuilder('p')
                         ->where('p.company is NULL')

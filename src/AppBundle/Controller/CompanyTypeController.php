@@ -19,33 +19,36 @@ use Symfony\Component\HttpFoundation\Response;
 class CompanyTypeController extends Controller
 {
     /**
-     * @Route("/new", name="company_type_new")
+     * @Route("/liste", name="company_type_index")
      * @Method({"GET", "POST"})
      *
      * @param Request $request
      *
-     * @return RedirectResponse|Response
+     * @return Response
      */
-    public function newAction(Request $request)
+    public function indexAction(Request $request)
     {
-        $em          = $this->getDoctrine()->getManager();
+        $types = $this->getDoctrine()->getRepository(CompanyType::class)->findAll();
+
         $companyType = new CompanyType();
         $form        = $this->createForm(CompanyTypeType::class, $companyType);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($companyType);
                 $em->flush();
                 $this->addFlash('success', 'Type d\'entreprise ajouté avec succès');
 
-                return $this->redirectToRoute('entreprise_index');
+                return $this->redirectToRoute('company_type_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur durant l\'ajout du type d\'entreprise');
             }
         }
 
-        return $this->render('company_type/new.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('company_type/index.html.twig', [
+            'types' => $types,
+            'form'  => $form->createView(),
         ]);
     }
 
@@ -61,11 +64,11 @@ class CompanyTypeController extends Controller
      */
     public function editAction(Request $request, CompanyType $companyType)
     {
-        if (null === $companyType){
+        if (null === $companyType) {
             throw new \Exception('Type de company non trouvé');
         }
-        $em          = $this->getDoctrine()->getManager();
-        $form        = $this->createForm(CompanyTypeType::class, $companyType);
+        $em   = $this->getDoctrine()->getManager();
+        $form = $this->createForm(CompanyTypeType::class, $companyType);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
@@ -82,5 +85,31 @@ class CompanyTypeController extends Controller
         return $this->render('company_type/new.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/suppression/{id}", name="company_type_delete")
+     * @Method({"GET", "POST"})
+     *
+     * @param CompanyType $companyType
+     *
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteAction(CompanyType $companyType)
+    {
+        if (null === $companyType) {
+            throw new \Exception('Type non trouvé');
+        }
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($companyType);
+            $em->flush();
+            $this->addFlash('success', 'Type d\'entreprise supprimé');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'Erreur lors de la suppression du type d\'entreprise');
+        }
+
+        return $this->redirectToRoute('company_type_index');
     }
 }

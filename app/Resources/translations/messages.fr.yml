@@ -56,6 +56,8 @@ app:
             phone_number: Numéro de téléphone
             add_referent: Ajouter un référent
             add_type: Ajouter un type d'entreprise
+            modal:
+                title: Ajouter une entreprise
         show:
             title: Entreprise - détails
             company_informations: Informations de l'entreprise
@@ -67,6 +69,9 @@ app:
             profesional_referent: Référent professionnel
             see_details: Voir détails
     company_type:
+        index:
+            list_company_type: Liste des types d'entreprises
+            add_company_type: Ajouter un type d'entreprise
         new:
             title: Ajouter un type d'entreprise
             add_type: Ajouter un type d'entreprise

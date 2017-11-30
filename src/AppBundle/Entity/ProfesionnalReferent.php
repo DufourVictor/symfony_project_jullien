@@ -72,5 +72,10 @@ class ProfesionnalReferent
     {
         $this->email = $email;
     }
+
+    public function __toString()
+    {
+        $this->getFullName();
+    }
 }
 
