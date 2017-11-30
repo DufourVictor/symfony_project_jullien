@@ -1,4 +1,15 @@
 app:
+    base:
+        internship: Stages
+        company: Entreprise
+        follow_school: Suivi scolarité
+        welcome: Bienvenue
+        companies_list: Liste des entreprises
+        add_company: Ajouter un type d'entreprise
+        school_year: Années scolaires
+        certificate_list: Liste des BAC
+        search_student: Recherche des élèves
+        footer: Lycée privé Saint-Vincent
     default:
         home: Accueil
     internship:

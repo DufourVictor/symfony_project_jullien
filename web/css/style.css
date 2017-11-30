@@ -53,16 +53,19 @@ html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-button .
   transform: rotate(180deg);
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout.dropdown-logout,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi.dropdown-logout {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi.dropdown-logout,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany.dropdown-logout {
   margin-left: 70px;
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout a,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a {
   color: #FFFFFF;
   font-size: 12px;
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout a i,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a i {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a i,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a i {
   margin-right: 5px;
 }
 html body .wrapper header nav .hide-on-med-and-down i.left {
@@ -269,4 +272,20 @@ html body .waves-effect.waves-indigo .waves-ripple {
 }
 html body #sidenav-overlay {
   z-index: 996;
+}
+html body .flash-message-success {
+  width: 100%;
+  background-color: #4caf50;
+  border-radius: 0%;
+  color: white;
+  padding-bottom: 20px;
+  margin-right: 0;
+}
+html body .flash-message-danger {
+  width: 100%;
+  background-color: #f44336;
+  border-radius: 0%;
+  color: white;
+  padding-bottom: 20px;
+  margin-right: 0;
 }

@@ -1,9 +1,9 @@
 {% for type, flashes in app.session.flashbag.all %}
     {% for message in flashes %}
         {% if type is defined %}
-            <div class="alert alert-{{ type }}">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <div class="chip flash-message-{{ type }}">
                 {{ message }}
+                <i class="close material-icons">close</i>
             </div>
         {% endif %}
     {% endfor %}
