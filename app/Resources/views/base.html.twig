@@ -43,6 +43,13 @@
                                 </a>
                             </li>
                             <li class="dropdown">
+                                <a class="dropdown-button dropdown-referent" data-activates="dropdownReferent"
+                                   data-beloworigin="true">
+                                    <i class="material-icons left">pageview</i> {{ 'app.base.referent'|trans }}
+                                    <i class="material-icons right arrow">arrow_drop_down</i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
                                 <a class="dropdown-button dropdown-logout" data-activates="dropdownLogout" data-beloworigin="true">
                                     <i class="material-icons left">person</i> {{ 'app.base.welcome'|trans }} {{ app.user.firstName }}
                                     <i class="material-icons right arrow">arrow_drop_down</i>
@@ -109,9 +116,7 @@
                                     </div>
                                 </li>
                             </ul>
-
                             <hr>
-
                             <li>
                                 <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-indigo">
                                     <i class="material-icons">power_settings_new</i>
@@ -163,6 +168,20 @@
                         <a href="{{ path('student_index') }}">
                             <i class="material-icons">search</i>
                             {{ 'app.base.search_student'|trans }}
+                        </a>
+                    </li>
+                </ul>
+                <ul id="dropdownReferent" class="dropdown-content dropdown-referent">
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('referent_pedagogique_index') }}">
+                            <i class="material-icons">date_range</i>
+                            {{ 'app.base.educational_referent'|trans }}
+                        </a>
+                    </li>
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('referent_professional_index') }}">
+                            <i class="material-icons">school</i>
+                            {{ 'app.base.professional_referent'|trans }}
                         </a>
                     </li>
                 </ul>

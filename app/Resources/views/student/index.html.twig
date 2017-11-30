@@ -1,33 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.student.index.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ 'app.student.index.follow_school'|trans }}</h1>
-    <h3>{{ 'app.student.index.search_classroom'|trans }}</h3>
     <div class="container">
-        <div class="row">
-            {{ form_start(form) }}
+        <div class="center-align">
+            <h1>{{ 'app.student.index.follow_school'|trans }}</h1>
+            <h3>{{ 'app.student.index.search_classroom'|trans }}</h3>
+        </div>
+        <div class="container-form">
             <div class="row">
-                <div class="col s6">
-                    {{ form_widget(form.classroom, {"attr": {"class": "select"}}) }}
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col m4 offset-m4">
+                        {{ form_widget(form.classroom, {"attr": {"class": "select"}}) }}
+                    </div>
+                    <div class="col s4">
+                        <a href="{{ path('classe_new') }}" class="waves-effect waves-light btn indigo darken-4">
+                            {{ 'app.student.index.add_classroom'|trans }}
+                        </a>
+                    </div>
                 </div>
-                <div class="col s6">
-                    <a href="{{ path('classe_new') }}" class="waves-effect waves-light btn indigo darken-4">
-                        {{ 'app.student.index.add_classroom'|trans }}
-                    </a>
+                <div class="row">
+                    <div class="col m4 offset-m4">
+                        {{ form_widget(form.student, {"attr": {"class": "select"}}) }}
+                    </div>
+                    <div class="col s4">
+                        <a href="{{ path('student_add') }}" class="waves-effect waves-light btn indigo darken-4">
+                            {{ 'app.student.index.add_student'|trans }}
+                        </a>
+                    </div>
                 </div>
+                <div class="center-align">
+                    <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.search'|trans }}"/>
+                </div>
+                {{ form_end(form) }}
             </div>
-            <div class="row">
-                <div class="col s6">
-                    {{ form_widget(form.student, {"attr": {"class": "select"}}) }}
-                </div>
-                <div class="col s6">
-                    <a href="{{ path('student_add') }}" class="waves-effect waves-light btn indigo darken-4">
-                        {{ 'app.student.index.add_student'|trans }}
-                    </a>
-                </div>
-            </div>
-                <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.search'|trans }}"/>
-            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

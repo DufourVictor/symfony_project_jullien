@@ -21,6 +21,21 @@ use Symfony\Component\HttpFoundation\Response;
 class ProfesionnalReferentController extends Controller
 {
     /**
+     * @Route("/", name="referent_professional_index")
+     * @Method("GET")
+     *
+     * @return Response
+     */
+    public function indexAction()
+    {
+        $professionalReferents = $this->getDoctrine()->getRepository(ProfesionnalReferent::class)->findAll();
+
+        return $this->render(':profesionnalReferent:index.html.twig', [
+            'professionalReferent' => $professionalReferents,
+        ]);
+    }
+
+    /**
      * @param Request $request
      *
      * @return RedirectResponse|Response
@@ -41,7 +56,7 @@ class ProfesionnalReferentController extends Controller
                 $em->flush();
                 $this->addFlash('success', 'Référent ajouté avec succès');
 
-                return $this->redirectToRoute('entreprise_index');
+                return $this->redirectToRoute('referent_professional_index');
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur durant l\'ajout du référent');
             }
@@ -50,5 +65,33 @@ class ProfesionnalReferentController extends Controller
         return $this->render('profesionnalReferent/new.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}", name="referent_professional_delete")
+     * @Method({"GET", "POST"})
+     *
+     * @param ProfesionnalReferent $profesionnalReferent
+     *
+     * @return RedirectResponse
+     * @throws \Exception
+     *
+     */
+    public function deleteAction(ProfesionnalReferent $profesionnalReferent)
+    {
+
+        if (null === $profesionnalReferent) {
+            throw new \Exception('Référent non trouvé');
+        }
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($profesionnalReferent);
+            $em->flush();
+            $this->addFlash('success', 'Référent professionnel supprimé');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'Erreur lors de la suppression du référent professionnel');
+        }
+
+        return $this->redirectToRoute('referent_professional_index');
     }
 }

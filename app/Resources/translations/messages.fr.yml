@@ -3,6 +3,7 @@ app:
         internship: Stages
         company: Entreprise
         follow_school: Suivi scolarité
+        referent: Référent
         welcome: Bienvenue
         companies_list: Liste des entreprises
         list_company: Liste des types d'entreprise
@@ -10,6 +11,8 @@ app:
         certificate_list: Liste des BAC
         search_student: Recherche des élèves
         footer: Lycée privé Saint-Vincent
+        educational_referent: liste des référents pédagogiques
+        professional_referent: liste des référents professionnel
     default:
         home: Accueil
     internship:
@@ -87,6 +90,10 @@ app:
         new:
             title: Ajouter un référent professionnel
             add_referent: Ajouter un référent professionnel
+        index:
+            title: Liste des référents profesionnels
+            referent_list: Liste des référents profesionnels
+            delete_referent: Êtes-vous sûr de vouloir supprimer ce référent profesionnel ?
     promote:
         index:
             title: Liste des années scolaires
@@ -135,11 +142,21 @@ app:
             first_name: Prénom
             last_name: Nom
             phone_number: Numéro de téléphone
-            delete_educational_referent: Êtes-vous sûr de vouloir ajouter ce référent pédagogique ?
+            delete_educational_referent: Êtes-vous sûr de vouloir supprimer ce référent pédagogique ?
             add_educational_referent: Ajouter un référent pédagogique
         edit:
             title: Edition du réferent pédagogique
             edit_educational_referent: Edition du réferent pédagogique
+    classroom:
+        new:
+            title: Ajouter une classe
+            add_classroom: Ajouter une classe
+        index:
+            title: Liste des classes
+            classroom_list: Liste des classes
+            name: Intitulé de la classe
+            add_classroom: Ajouter une classe
+            delete_classroom: Êtes-vous sûr de vouloir supprimer cette classe ?
 
 commons:
     search: Rechercher
@@ -152,6 +169,7 @@ commons:
     read: Voir
     edit: Editer
     logout: Déconnexion
+    back_to_search: Retour à la recherche
 
 flashes:
     internship:
