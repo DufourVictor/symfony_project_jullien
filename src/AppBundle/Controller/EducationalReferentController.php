@@ -40,7 +40,6 @@ class EducationalReferentController extends Controller
                 $em->flush();
                 $this->addFlash('success', 'Référent pédagogique ajouté');
             } catch (\Exception $e) {
-                dump($e->getMessage());die;
                 $this->addFlash('danger', 'Erreur lors de l\'ajout du référent pédagogique');
             }
 
