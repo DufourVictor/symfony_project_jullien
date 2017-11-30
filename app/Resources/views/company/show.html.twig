@@ -1,54 +1,79 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.company.show.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ 'app.company.show.company_informations'|trans }}</h1>
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.type) }}
-    {{ form_row(form.turnover) }}
-    {{ form_row(form.phoneNumber) }}
-    {{ form_row(form.profesionnalReferent) }}
-    {{ form_row(form.address) }}
-    <input type="submit">
-    {{ form_end(form) }}
-    <a href="{{ path('profesionnalReferent_new') }}">{{ 'app.company.show.add_referent'|trans }}</a><br>
-    <a href="{{ path('company_type_new') }}">{{ 'app.company.show.add_type'|trans }}</a><br>
-    <a href="{{ path('entreprise_index') }}">{{ 'commons.back_to_list'|trans }}</a><br>
-
-    <table>
-        <thead>
-        <tr>
-            <th>{{ 'app.company.show.year'|trans }}</th>
-            <th>{{ 'app.company.show.student'|trans }}</th>
-            <th>{{ 'app.company.show.educational_referent'|trans }}</th>
-            <th>{{ 'app.company.show.profesional_referent'|trans }}</th>
-            <th>{{ 'commons.actions'|trans }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for internship in interships %}
+    <div class="container-form">
+        <div class="center-align">
+            <h1>{{ 'app.company.show.company_informations'|trans }}</h1>
+        </div>
+        <div class="row">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col s4">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="col s4">
+                    {{ form_row(form.type) }}
+                </div>
+                <div class="col s4">
+                    {{ form_row(form.turnover) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    {{ form_row(form.phoneNumber) }}
+                </div>
+                <div class="col s6">
+                    {{ form_row(form.profesionnalReferent) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col offset-l4 s4">
+                    {{ form_row(form.address) }}
+                </div>
+            </div>
+            <div class="center-align">
+                <input type="submit" class="waves-effect waves-light btn indigo darken-4">
+                <a href="{{ path('entreprise_index') }}" class="waves-effect waves-light btn indigo darken-4">{{ 'commons.back_to_list'|trans }}</a><br>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="container">
+        <table class="responsive-table highlight striped">
+            <thead>
             <tr>
-                <td>{{ internship.startDate|date('Y') }}/ {{ internship.endDate|date('Y') }}</td>
-                <td>
-                    {% if internship.student is defined and internship.student is not null %}
-                        {{ internship.student.fullName }}
-                    {% endif %}
-                </td>
-                <td>
-                    {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
-                        {{ internship.educationalReferent.fullName }}
-                    {% endif %}
-                </td>
-                <td>
-                    {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
-                        {{ internship.profesionnalReferent.fullName }}
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('stage_show', {'id': internship.id}) }}">{{ 'app.company.show.see_details'|trans }}</a>
-                </td>
+                <th>{{ 'app.company.show.year'|trans }}</th>
+                <th>{{ 'app.company.show.student'|trans }}</th>
+                <th>{{ 'app.company.show.educational_referent'|trans }}</th>
+                <th>{{ 'app.company.show.profesional_referent'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for internship in interships %}
+                <tr>
+                    <td>{{ internship.startDate|date('Y') }}/ {{ internship.endDate|date('Y') }}</td>
+                    <td>
+                        {% if internship.student is defined and internship.student is not null %}
+                            {{ internship.student.fullName }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if internship.educationalReferent is defined and internship.educationalReferent is not null %}
+                            {{ internship.educationalReferent.fullName }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if internship.profesionnalReferent is defined and internship.profesionnalReferent is not null %}
+                            {{ internship.profesionnalReferent.fullName }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('stage_show', {'id': internship.id}) }}">{{ 'app.company.show.see_details'|trans }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
