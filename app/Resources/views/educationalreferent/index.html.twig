@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'app.educational_referent.index.title'|trans }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="center-align">
+            <h1>{{ 'app.educational_referent.index.educational_referent_list'|trans }}</h1>
+            <a class="btn-floating btn-large waves-effect waves-light indigo darken-4 modal-trigger"
+               href="#modal-add-referent">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>{{ 'app.educational_referent.index.first_name'|trans }}</th>
+                <th>{{ 'app.educational_referent.index.last_name'|trans }}</th>
+                <th>{{ 'app.educational_referent.index.phone_number'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for educationalReferent in educationalReferents %}
+                <tr>
+                    <td>{{ educationalReferent.firstName }}</td>
+                    <td>{{ educationalReferent.lastName }}</td>
+                    <td>{{ educationalReferent.phone }}</td>
+                    <td>
+                        <a href="{{ path('referent_pedagogique_edit', { 'id': educationalReferent.id }) }}"
+                           class="btn-floating waves-effect waves-light btn indigo darken-4">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-referent-{{ educationalReferent.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-referent-{{ educationalReferent.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.educational_referent.index.delete_educational_referent'|trans }}</h4>
+                                    <a href="{{ path('referent-pedagogique_delete', {'id': educationalReferent.id }) }}" class="waves-effect
+                                 waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="modal-add-referent" class="modal modal-fixed">
+        {{ form_start(form) }}
+        <div class="modal-content">
+            <div class="center-align">
+                {{ 'app.educational_referent.index.add_educational_referent'|trans }}
+            </div>
+            <div class="row">
+                <div class="col s4">
+                    {{ form_row(form.lastName) }}
+                </div>
+                <div class="col s4">
+                    {{ form_row(form.firstName) }}
+                </div>
+                <div class="col s4">
+                    {{ form_row(form.phone) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    {{ form_row(form.username) }}
+                </div>
+                <div class="col s6">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    {{ form_row(form.plainPassword.first) }}
+                </div>
+                <div class="col s6">
+                    {{ form_row(form.plainPassword.second) }}
+                </div>
+            </div>
+            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
+            {{ form_end(form) }}
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
+                {{ 'commons.back'|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal.js') }}"></script>
+{% endblock %}

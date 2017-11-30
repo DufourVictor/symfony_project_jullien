@@ -1,12 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.register.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ 'app.register.add_class_to_student'|trans }}</h1>
+    <div class="container">
+        <div class="center-align">
+            <h1>{{ 'app.register.add_class_to_student'|trans }}</h1>
+        </div>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col s6">
+                {{ form_row(form.classroom,  {"attr": {"class": "select"}}) }}
+            </div>
+            <div class="col s6">
+                {{ form_row(form.promote,  {"attr": {"class": "select"}}) }}
+            </div>
+        </div>
+        <div class="center-align">
+            <input type="submit" class="waves-effect waves-green btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
+            <a href="{{ path('classe_index') }}" class="waves-effect waves-green btn indigo darken-4">
+                {{ 'commons.back'|trans }}
+            </a>
+        </div>
+        {{ form_end(form) }}
+    </div>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="{{ 'commons.submit'|trans }}"/>
-    {{ form_end(form) }}
-
-    <a href="{{ path('classe_index') }}">{{ 'commons.back'|trans }}</a>
 {% endblock %}

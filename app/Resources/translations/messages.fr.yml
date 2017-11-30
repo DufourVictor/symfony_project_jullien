@@ -128,6 +128,18 @@ app:
             title: Liste des technologies
             technology_list: Liste des technologies
             name: Nom
+    educational_referent:
+        index:
+            title: Liste des référents pédagogiques
+            educational_referent_list: Liste des référents pédagogiques
+            first_name: Prénom
+            last_name: Nom
+            phone_number: Numéro de téléphone
+            delete_educational_referent: Êtes-vous sûr de vouloir ajouter ce référent pédagogique ?
+            add_educational_referent: Ajouter un référent pédagogique
+        edit:
+            title: Edition du réferent pédagogique
+            edit_educational_referent: Edition du réferent pédagogique
 
 commons:
     search: Rechercher
@@ -190,4 +202,9 @@ form:
         comment: Observation
     technology:
         name: Technologie
-
+    educational_referent:
+        last_name: Nom
+        first_name: Prénom
+        phone_number: Numéro de téléphone
+        email: Adresse e-mail
+        username: Nom d'utilisateur
