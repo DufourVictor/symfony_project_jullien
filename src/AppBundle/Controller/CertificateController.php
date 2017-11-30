@@ -41,11 +41,11 @@ class CertificateController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($certificate);
                 $em->flush();
-                $this->addFlash('success', 'Diplome ajouté');
+                $this->addFlash('success', 'Diplôme ajouté');
 
                 return $this->redirectToRoute('diplome_index');
             } catch (\Exception $e) {
-                $this->addFlash('danger', 'Erreur durant l\'ajout du diplome');
+                $this->addFlash('danger', 'Erreur durant l\'ajout du diplôme');
             }
         }
 
@@ -74,9 +74,9 @@ class CertificateController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($certificate);
             $em->flush();
-            $this->addFlash('success', 'Diplome supprimé');
+            $this->addFlash('success', 'Diplôme supprimé');
         } catch (\Exception $e) {
-            $this->addFlash('danger', 'Erreur durant la suppression du diplome');
+            $this->addFlash('danger', 'Erreur durant la suppression du diplôme');
         }
 
         return $this->redirectToRoute('diplome_index');
