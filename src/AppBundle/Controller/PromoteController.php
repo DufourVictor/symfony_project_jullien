@@ -73,9 +73,9 @@ class PromoteController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($promote);
                 $em->flush();
-                $this->addFlash('success', 'Promotion ajouté');
+                $this->addFlash('success', 'Année ajoutée');
             } catch (\Exception $e) {
-                $this->addFlash('danger', 'Erreur durant l\'ajout d\une promotion');
+                $this->addFlash('danger', 'Erreur durant l\'ajout d\'une année');
             }
 
             return $this->redirectToRoute('promo_show', ['id' => $promote->getId()]);
@@ -106,9 +106,9 @@ class PromoteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($promote);
             $em->flush();
-            $this->addFlash('success', 'Année supprimé avec succes');
+            $this->addFlash('success', 'Année supprimée avec succès');
         } catch (\Exception $e) {
-            $this->addFlash('danger', 'Une erreur est survenu lors de la suppresion de l\année scolaire');
+            $this->addFlash('danger', 'Une erreur est survenu lors de la suppresion de l\'année scolaire');
         }
 
         return $this->redirectToRoute('promo_index');
