@@ -1,34 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col s6">
+    <div class="container">
+        <div class="center-align">
             <h1>{{ 'app.certificate.index.certificate_list'|trans }}</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th>{{ 'app.certificate.index.name'|trans }}</th>
-                    <th>{{ 'commons.actions'|trans }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for certificate in certificates %}
-                    <tr>
-                        <td>{{ certificate.name }}</td>
-                        <td>
-                            <a href="{{ path('diplome_delete', { 'id': certificate.id }) }}">{{ 'commons.delete'|trans }}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            <a class="btn-floating btn-large waves-effect waves-light indigo darken-4 modal-trigger"
+               href="#modal-add-certificate">
+                <i class="material-icons">add</i>
+            </a>
         </div>
-        <div class="col s6">
-            <h1>{{ 'app.certificate.index.add_certificate'|trans }}</h1>
-            {{ form_start(form) }}
+        <table class="responsive-table highlight striped">
+            <thead>
+            <tr>
+                <th>{{ 'app.certificate.index.name'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for certificate in certificates %}
+                <tr>
+                    <td>{{ certificate.name }}</td>
+                    <td>
+                        <a href="{{ path('diplome_delete', { 'id': certificate.id }) }}">{{ 'commons.delete'|trans }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="modal-add-certificate" class="modal modal-fixed">
+        {{ form_start(form) }}
+        <div class="modal-content">
+            <div class="center-align">
+                {{ 'app.certificate.index.add_certificate'|trans }}
+            </div>
             {{ form_widget(form) }}
             <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
             {{ form_end(form) }}
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
+                {{ 'commons.back'|trans }}
+            </a>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal.js') }}"></script>
 {% endblock %}

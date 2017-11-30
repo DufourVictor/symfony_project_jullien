@@ -37,21 +37,13 @@
             {{ form_widget(form) }}
             <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
             {{ form_end(form) }}
-            <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">{{ 'commons.back'|trans }}</a>
+            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
+                {{ 'commons.back'|trans }}
+            </a>
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $('.modal').modal({
-                dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                opacity: .5, // Opacity of modal background
-                inDuration: 300, // Transition in duration
-                outDuration: 200, // Transition out duration
-                startingTop: '4%', // Starting top style attribute
-                endingTop: '10%', // Ending top style attribute
-            }
-        );
-    </script>
+    <script src="{{ asset('js/modal.js') }}"></script>
 {% endblock %}
