@@ -42,14 +42,15 @@ $(document).ready(function () {
 
     // Load student list
     $('.container-form .classroom .dropdown-content li').click(function (e) {
-        var targetElement = e.target.innerHTML;
+        var targetElement = e.target.innerHTML,
+            url = document.querySelector('#register_selector_classroom').dataset.url;
 
         // Hide placeholder
         if ('Classes' !== targetElement) {
             e.target.parentNode.parentNode.childNodes[0].style.display = "none";
 
             $.ajax({
-                url: 'students',
+                url: url,
                 type: 'POST',
                 dataType: 'json',
                 data: {
