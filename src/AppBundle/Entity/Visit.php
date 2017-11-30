@@ -30,7 +30,7 @@ class Visit
     private $dateVisit;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="comment", type="text")
      */

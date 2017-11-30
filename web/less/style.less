@@ -287,6 +287,37 @@ html {
                                     }
                                 }
                             }
+
+                            input[type=text], input[type=password], input[type=date], textarea {
+                                & + label {
+                                    color: #9E9E9E;
+                                }
+
+                                &:focus {
+                                    border-bottom: 1px solid #1A237E;
+                                    box-shadow: 0 1px 0 0 #1A237E;
+
+                                    & + label {
+                                        color: #1A237E;
+                                    }
+                                }
+                            }
+
+                            .picker__ {
+                                &date-display, &day--selected {
+                                    background-color: #1A237E;
+                                }
+
+                                &footer {
+                                    button {
+                                        color: #1A237E;
+
+                                        &.picker__clear {
+                                            color: #F44336;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
