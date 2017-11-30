@@ -21,7 +21,24 @@
                 <tr>
                     <td>{{ certificate.name }}</td>
                     <td>
-                        <a href="{{ path('diplome_delete', { 'id': certificate.id }) }}">{{ 'commons.delete'|trans }}</a>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-certificate-{{ certificate.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-certificate-{{ certificate.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.certificate.index.delete_certificate'|trans }}</h4>
+                                    <a href="{{ path('diplome_delete', {'id': certificate.id }) }}" class="waves-effect waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

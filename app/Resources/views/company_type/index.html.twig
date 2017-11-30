@@ -21,7 +21,24 @@
                 <tr>
                     <td>{{ type.name }}</td>
                     <td>
-                        <a href="{{ path('company_type_delete', { 'id': type.id }) }}">{{ 'commons.delete'|trans }}</a>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-type-{{ type.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-type-{{ type.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.company_type.index.delete_type'|trans }}</h4>
+                                    <a href="{{ path('company_type_delete', {'id': type.id }) }}" class="waves-effect waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

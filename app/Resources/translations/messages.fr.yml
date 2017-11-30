@@ -35,6 +35,7 @@ app:
             visits: Visites
             intenship_visits: Visites liées au stage
             observations: "Observations :"
+            delete_visit: Êtes-vous sûr de vouloir supprimer cette visite ?
         new:
             title: Nouveau stage
             internship_new: Nouveau stage
@@ -47,6 +48,7 @@ app:
             certificate_list: Liste des BAC
             name: Nom
             add_certificate: Ajouter un nouveau BAC
+            delete_certificate: Êtes-vous sûr de vouloir supprimer ce diplôme ?
     company:
         title: Liste des entreprises
         index:
@@ -74,6 +76,7 @@ app:
         index:
             list_company_type: Liste des types d'entreprise
             add_company_type: Ajouter un type d'entreprise
+            delete_type: Êtes-vous sûr de vouloir supprimer ce type d'entreprise ?
         new:
             title: Ajouter un type d'entreprise
             add_type: Ajouter un type d'entreprise
@@ -90,6 +93,7 @@ app:
             school_list: Liste des années scolaires
             year: Année
             add_year: Ajouter une année
+            delete_promote: Êtes-vous sûr de vouloir supprimer cette année scolaire ?
     register:
         title: Associer l'élève à une classe
         add_class_to_student: Associer l'élève à une classe

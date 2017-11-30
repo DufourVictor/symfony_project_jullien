@@ -21,13 +21,31 @@
                 <tr>
                     <td>{{ promote.name }}</td>
                     <td>
-                        <a href="{{ path('promo_delete', { 'id': promote.id }) }}">{{ 'commons.delete'|trans }}</a>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-promo-{{ promote.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-promo-{{ promote.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.promote.index.delete_promote'|trans }}</h4>
+                                    <a href="{{ path('promo_delete', {'id': promote.id }) }}" class="waves-effect waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    {# Modal ajout #}
     <div id="modal-add-promo" class="modal modal-fixed">
         {{ form_start(form) }}
         <div class="modal-content">

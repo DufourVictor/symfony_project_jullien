@@ -68,21 +68,34 @@
 
                             <div class="row visit">
                                 {% for visit in internship.visit if internship.visit is not null %}
-                                    <div class="col s12">
+                                <div class="col s12">
                                         <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
                                         <div class="actions">
                                             <a href="{{ path('visite_edit', {'internship': internship.id, 'visit': visit.id}) }}"
                                                class="btn-floating waves-effect waves-light btn indigo darken-4">
                                                 <i class="material-icons">mode_edit</i>
                                             </a>
-                                            <a href="{{ path('visite_delete', {'internship': internship.id, 'visit': visit.id}) }}"
-                                               class="btn-floating waves-effect waves-light btn red darken-4">
-                                                <i class="material-icons">delete</i>
-                                            </a>
+                                            <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                                               href="#modal-delete-visit-{{ visit.id }}">
+                                                     <i class="material-icons">delete</i>
+                                             </a>
+                                            <div id="modal-delete-visit-{{ visit.id }}" class="modal modal-fixed">
+                                                <div class="modal-content">
+                                                    <div class="center-align">
+                                                        <h4>{{ 'app.internship.show.delete_visit'|trans }}</h4>
+                                                        <a href="{{ path('visite_delete', {'internship': internship.id, 'visit': visit.id}) }}" class="waves-effect waves-light btn red darken-4">
+                                                            {{ 'commons.delete'|trans }}
+                                                        </a>
+                                                        <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                                            {{ 'commons.back'|trans }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <p><b>{{ "app.internship.show.observations"|trans }}</b> {{ visit.comment }}</p>
                                     </div>
-                                {% endfor %}
+                                    {% endfor %}
                             </div>
                         </div>
                     </span>
@@ -90,4 +103,8 @@
             </li>
         </ul>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal.js') }}"></script>
 {% endblock %}
