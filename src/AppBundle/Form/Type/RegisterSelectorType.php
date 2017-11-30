@@ -18,15 +18,18 @@ class RegisterSelectorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('student', EntityType::class, [
-                'label'        => 'form.registration_selector.student',
-                'class'        => Student::class,
-                'choice_label' => 'firstName',
-            ])
             ->add('classroom', EntityType::class, [
                 'label'        => 'form.registration_selector.classroom',
                 'class'        => Classroom::class,
                 'choice_label' => 'name',
+                'placeholder'  => 'form.registration_selector.classroom',
+            ])
+            ->add('student', EntityType::class, [
+                'label'        => 'form.registration_selector.student',
+                'class'        => Student::class,
+                'choice_label' => 'firstName',
+                'placeholder'  => 'form.registration_selector.student',
+                'required' => false,
             ]);
     }
 

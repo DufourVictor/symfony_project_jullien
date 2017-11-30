@@ -7,14 +7,20 @@
     <div class="container-form">
         <div class="row">
             {{ form_start(form) }}
-            <div class="row">
+            <div class="row classroom">
                 <div class="col m4 offset-m4">
                     {{ form_row(form.classroom) }}
                 </div>
             </div>
             <div class="row">
                 <div class="col m4 offset-m4">
-                    {{ form_row(form.student) }}
+                    {{ form_widget(form.student, {'attr': {'class': 'student'}}) }}
+                    <div class="input-field" id="student">
+                        <select name="register_selector[student]">
+                            <option disabled selected>Élèves</option>
+                        </select>
+                        <label>Élèves</label>
+                    </div>
                 </div>
             </div>
             <div class="row">

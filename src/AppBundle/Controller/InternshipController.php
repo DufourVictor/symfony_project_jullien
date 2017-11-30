@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Student;
 use AppBundle\Form\Type\InternshipType;
 use AppBundle\Form\Type\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -119,7 +121,7 @@ class InternshipController extends Controller
      *
      * @return Response
      *
-     * @Route("/{id}", name="stage_show")
+     * @Route("/{id}", name="stage_show", requirements={"id": "\d+"})
      *
      * @Method("GET")
      */
@@ -127,6 +129,30 @@ class InternshipController extends Controller
     {
         return $this->render('internship/show.html.twig', [
             'internship' => $internship,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @Route("/students", name="students")
+     *
+     * @Method("POST")
+     */
+    public function studentsAction(Request $request)
+    {
+        $em = $this->getDoctrine();
+        $class = $request->request->get('class');
+        $classroom = $em->getRepository(Classroom::class)->findOneBy([
+            'name' => $class,
+        ]);
+
+        $students = $em->getRepository(Student::class)->getStudentsByClass($classroom->getId());
+
+        return new JsonResponse([
+            'students' => $students,
         ]);
     }
 }

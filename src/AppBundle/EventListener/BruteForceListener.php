@@ -103,7 +103,8 @@ class BruteForceListener implements EventSubscriberInterface
             return;
         }
 
-        $dateDiff = $client->getDateTentative()->diff(new \DateTime());
+        $dateTentative = $client->getDateTentative();
+        $dateDiff = null !== $dateTentative ? $dateTentative->diff(new \DateTime()) : null;
         if (null !== $dateDiff && $dateDiff->h >= 1) {
             $client->setDateTentative(null);
             $client->setNumberOfTentative(0);
