@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.classroom.new.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Ajouter une classe</h1>
-
-    {{ form_start(form) }}
+    <div class="container">
+        <div class="center-align">
+            <h1>{{ 'app.classroom.new.add_classroom'|trans }}</h1>
+        </div>
+        {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('classe_index') }}">Retour</a>
-        </li>
-    </ul>
+        <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
+        <a href="{{ path('classe_index') }}" class="waves-effect waves-light btn indigo darken-4">{{ 'commons.back'|trans
+            }}</a>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

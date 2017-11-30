@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Classroom;
+use AppBundle\Form\Type\ClassroomType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,7 +26,7 @@ class ClassroomController extends Controller
      */
     public function indexAction()
     {
-        $classrooms = $this->getDoctrine()->getRepository('AppBundle:Classroom')->findAll();
+        $classrooms = $this->getDoctrine()->getRepository(Classroom::class)->findAll();
 
         return $this->render('classroom/index.html.twig', [
             'classrooms' => $classrooms,
@@ -43,15 +44,20 @@ class ClassroomController extends Controller
     public function newAction(Request $request)
     {
         $classroom = new Classroom();
-        $form      = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
+        $form      = $this->createForm(ClassroomType::class, $classroom);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($classroom);
-            $em->flush();
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($classroom);
+                $em->flush();
+                $this->addFlash('success', 'Classe ajoutée');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur lors de l\ajout de la classe');
+            }
 
-            return $this->redirectToRoute('classe_show', ['id' => $classroom->getId()]);
+            return $this->redirectToRoute('classe_index', ['id' => $classroom->getId()]);
         }
 
         return $this->render('classroom/new.html.twig', [
@@ -63,66 +69,25 @@ class ClassroomController extends Controller
     /**
      * @param Classroom $classroom
      *
-     * @return Response
-     *
-     * @Route("/{id}", name="classe_show")
-     * @Method("GET")
-     */
-    public function showAction(Classroom $classroom)
-    {
-        $deleteForm = $this->createDeleteForm($classroom);
-
-        return $this->render('classroom/show.html.twig', [
-            'classroom'   => $classroom,
-            'delete_form' => $deleteForm->createView(),
-        ]);
-    }
-
-    /**
-     * @param Request   $request
-     * @param Classroom $classroom
-     *
-     * @return RedirectResponse|Response
-     *
-     * @Route("/{id}/edit", name="classe_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Classroom $classroom)
-    {
-        $deleteForm = $this->createDeleteForm($classroom);
-        $editForm   = $this->createForm('AppBundle\Form\Type\ClassroomType', $classroom);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('classe_edit', ['id' => $classroom->getId()]);
-        }
-
-        return $this->render('classroom/edit.html.twig', [
-            'classroom'   => $classroom,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ]);
-    }
-
-    /**
-     * @param Classroom $classroom
-     *
      * @return RedirectResponse
      * @throws \Exception
      *
      * @Route("/{id}", name="classe_delete")
-     * @Method("DELETE")
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Classroom $classroom)
     {
         if (null === $classroom) {
             throw new \Exception("Classe non trouvé");
         }
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($classroom);
-        $em->flush();
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($classroom);
+            $em->flush();
+            $this->addFlash('success', 'Classe supprimée');
+        } catch (\Exception $e) {
+            $this->addFlash('danger', 'Erreur lors de la suppression de la classe');
+        }
 
         return $this->redirectToRoute('classe_index');
     }

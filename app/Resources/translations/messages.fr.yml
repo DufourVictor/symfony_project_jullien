@@ -131,11 +131,21 @@ app:
             first_name: Prénom
             last_name: Nom
             phone_number: Numéro de téléphone
-            delete_educational_referent: Êtes-vous sûr de vouloir ajouter ce référent pédagogique ?
+            delete_educational_referent: Êtes-vous sûr de vouloir supprimer ce référent pédagogique ?
             add_educational_referent: Ajouter un référent pédagogique
         edit:
             title: Edition du réferent pédagogique
             edit_educational_referent: Edition du réferent pédagogique
+    classroom:
+        new:
+            title: Ajouter une classe
+            add_classroom: Ajouter une classe
+        index:
+            title: Liste des classes
+            classroom_list: Liste des classes
+            name: Intitulé de la classe
+            add_classroom: Ajouter une classe
+            delete_classroom: Êtes-vous sûr de vouloir supprimer cette classe ?
 
 commons:
     search: Rechercher
@@ -148,6 +158,7 @@ commons:
     read: Voir
     edit: Editer
     logout: Déconnexion
+    back_to_search: Retour à la recherche
 
 flashes:
     internship:

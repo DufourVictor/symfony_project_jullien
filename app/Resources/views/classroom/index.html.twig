@@ -1,34 +1,55 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.classroom.index.title'|trans }}{% endblock %}
 {% block body %}
-    <h1>Classrooms list</h1>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for classroom in classrooms %}
+    <div class="container">
+        <div class="center-align">
+            <h1>{{ 'app.classroom.index.classroom_list'|trans }}</h1>
+            <a class="btn-floating btn-large waves-effect waves-light indigo darken-4 modal-trigger"
+               href="{{ path('classe_new') }}">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+        <table>
+            <thead>
             <tr>
-                <td><a href="{{ path('classe_show', { 'id': classroom.id }) }}">{{ classroom.id }}</a></td>
-                <td>{{ classroom.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('classe_show', { 'id': classroom.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('classe_edit', { 'id': classroom.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <th>{{ 'app.classroom.index.name'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('student_index') }}">Retour à la recherche</a>
+            </thead>
+            <tbody>
+            {% for classroom in classrooms %}
+                <tr>
+                    <td>{{ classroom.name }}</td>
+                    <td>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-classroom-{{ classroom.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-classroom-{{ classroom.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.classroom.index.delete_classroom'|trans }}</h4>
+                                    <a href="{{ path('classe_delete', {'id': classroom.id }) }}" class="waves-effect waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                            +
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('student_index') }}" class="waves-effect waves-green btn indigo darken-4">{{ 'commons.back_to_search'|trans }}</a>
+    </div>
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal.js') }}"></script>
+{% endblock %}
+
