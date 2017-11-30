@@ -10,9 +10,6 @@ $(document).ready(function () {
         }
     );
     $('.select').material_select();
-    $('.select2').select2({
-        tags: true,
-    });
 
     // Add class when hover item in header
     $('.collapsible-header').click(function () {
@@ -76,6 +73,27 @@ $(document).ready(function () {
                     $("#student select").material_select();
                 }
             });
+        }
+    });
+
+    $('.select2').select2({
+        tags: true,
+    });
+
+    $('.select2').on('select2:selecting', function (e) {
+        if (e.params.args.data._resultId === undefined) {
+            if (confirm(e.currentTarget.dataset.confirm)) {
+                $.ajax({
+                    url: e.currentTarget.dataset.url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        data: e.params.args.data.text,
+                    },
+                })
+            } else {
+                e.preventDefault();
+            }
         }
     });
 });

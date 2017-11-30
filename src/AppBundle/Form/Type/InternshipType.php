@@ -83,22 +83,6 @@ class InternshipType extends AbstractType
             ->add('concernYear', TextType::class, [
                 'label' => 'form.internship.year_concern',
             ]);
-
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-            $data = $event->getData();
-
-            foreach ($data['technologies'] as $key => $technology) {
-                if (null === $this->em->getRepository(Technology::class)->find((int)$technology)) {
-                    $newTechnology = new Technology();
-                    $newTechnology->setName($technology);
-                    $this->em->persist($newTechnology);
-                    $this->em->flush();
-                    $data['technologies'][$key] = (string)$newTechnology->getId();
-                }
-            }
-
-            $event->setData($data);
-        });
     }
 
     /**

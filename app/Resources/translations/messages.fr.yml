@@ -38,6 +38,7 @@ app:
         new:
             title: Nouveau stage
             internship_new: Nouveau stage
+            confirm_technology: Êtes-vous sûr de vouloir ajouter cette nouvelle technologie ?
         edit:
             title: Edition d'un stage
             internship_edit: Edition du stage

@@ -19,7 +19,11 @@
                     {{ form_row(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
                 </div>
                 <div class="col m4 s12">
-                    {{ form_row(form.technologies, {"attr": {"class": "select2"}}) }}
+                    {{ form_row(form.technologies, {"attr": {
+                        "class": "select2",
+                        "data-confirm": 'app.internship.new.confirm_technology'|trans,
+                        "data-url": path("add_technology"),
+                    }}) }}
                 </div>
             </div>
             <div class="row">

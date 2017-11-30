@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Classroom;
 use AppBundle\Entity\Internship;
 use AppBundle\Entity\Student;
+use AppBundle\Entity\Technology;
 use AppBundle\Form\Type\InternshipType;
 use AppBundle\Form\Type\RegisterSelectorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -97,13 +98,25 @@ class InternshipController extends Controller
         $form = $this->createForm(InternshipType::class, $internship);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try{
+        if ($form->isSubmitted()) {
+            $technologies = [];
+            foreach ($request->request->get('internship')['technologies'] as $key => $technology) {
+                if (!is_numeric($technology)) {
+                    $technologies[] = $em->getRepository(Technology::class)->findOneBy([
+                        'name' => $technology,
+                    ]);
+                } else {
+                    $technologies[] = $em->getRepository(Technology::class)->find((int)$technology);
+                }
+            }
+
+            try {
+                $internship->setTechnologies($technologies);
                 $internship->setStudent($student);
                 $em->persist($internship);
                 $em->flush();
-                $this->addFlash('success', 'stage ajouté avec succès');
-            }catch (\Exception $e){
+                $this->addFlash('success', 'Stage ajouté avec succès');
+            } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur durant l\'ajout du stage');
             }
 
@@ -143,8 +156,8 @@ class InternshipController extends Controller
      */
     public function studentsAction(Request $request)
     {
-        $em = $this->getDoctrine();
-        $class = $request->request->get('class');
+        $em        = $this->getDoctrine();
+        $class     = $request->request->get('class');
         $classroom = $em->getRepository(Classroom::class)->findOneBy([
             'name' => $class,
         ]);
@@ -154,5 +167,26 @@ class InternshipController extends Controller
         return new JsonResponse([
             'students' => $students,
         ]);
+    }
+
+    /**
+     * @Route("/add_technology", name="add_technology")
+     * @Method("POST")
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function addAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $technology = new Technology();
+        $technology->setName($request->request->get('data'));
+
+        $em->persist($technology);
+        $em->flush();
+
+        return new JsonResponse();
     }
 }
