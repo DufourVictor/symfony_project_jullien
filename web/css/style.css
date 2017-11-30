@@ -172,9 +172,6 @@ html body .wrapper .container .collapsible-body .row .btn-floating {
 html body .wrapper .container .collapsible-body .row.visit {
   margin-top: 30px;
 }
-html body .wrapper .container .collapsible-body .row.visit .details .col {
-  padding-right: 20px;
-}
 html body .wrapper .container .collapsible-body .row.visit .actions {
   float: right;
 }
@@ -238,6 +235,10 @@ html body .wrapper .container-form form .row input[type=password]:focus + label,
 html body .wrapper .container-form form .row input[type=date]:focus + label,
 html body .wrapper .container-form form .row textarea:focus + label {
   color: #1A237E;
+}
+html body .wrapper .container-form form .row .select2 {
+  margin-left: 0;
+  width: 100% !important;
 }
 html body .wrapper .container-form form .row .picker__date-display,
 html body .wrapper .container-form form .row .picker__day--selected {

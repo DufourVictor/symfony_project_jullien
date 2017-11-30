@@ -7,12 +7,12 @@
         <div class="row">
             {{ form_start(form) }}
             <div class="row">
-                <div class="col m4 offset-m4">
+                <div class="col m4 offset-m4 s12">
                     {{ form_row(form.dateVisit, {"attr": {"class": "datepicker"}}) }}
                 </div>
             </div>
             <div class="row">
-                <div class="col m4 offset-m4">
+                <div class="col m4 offset-m4 s12">
                     <div class="input-field">
                         {{ form_widget(form.comment, {"attr": {"class": "materialize-textarea"}}) }}
                         {{ form_label(form.comment) }}
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col m4 offset-m4">
+                <div class="col m4 offset-m4 s12">
                     <button type="submit" class="btn waves-effect waves-light indigo darken-4">
                         {{ 'commons.add'|trans }}
                         <i class="material-icons">add</i>

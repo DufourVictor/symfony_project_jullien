@@ -21,6 +21,15 @@
                                     <b>{{ internship.company is not null ? internship.company.name : '' }}</b>
                                 </p>
                                 <p>
+                                    {{ "app.internship.show.technologies"|trans }}
+                                    <b>
+                                    {% for technology in internship.technologies %}
+                                        {{ technology.name }}
+                                        {{ loop.last != true ? "," : "" }}
+                                    {% endfor %}
+                                    </b>
+                                </p>
+                                <p>
                                     {{ "app.internship.show.professional_referent"|trans }}
                                     <b>{{ internship.profesionnalReferent is not null ? internship.profesionnalReferent.fullName : '' }}</b>
                                 </p>
@@ -59,26 +68,20 @@
 
                             <div class="row visit">
                                 {% for visit in internship.visit if internship.visit is not null %}
-                                    {% if loop.index is divisible by(2) %}
-                                        <div class="row details">
-                                    {% endif %}
-                                        <div class="col s6">
-                                            <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
-                                            <div class="actions">
-                                                <a href="{{ path('visite_edit', {'internship': internship.id, 'visit': visit.id}) }}"
-                                                   class="btn-floating waves-effect waves-light btn indigo darken-4">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </a>
-                                                <a href="{{ path('visite_delete', {'internship': internship.id, 'visit': visit.id}) }}"
-                                                   class="btn-floating waves-effect waves-light btn red darken-4">
-                                                    <i class="material-icons">delete</i>
-                                                </a>
-                                            </div>
-                                            <p><b>{{ "app.internship.show.observations"|trans }}</b> {{ visit.comment }}</p>
+                                    <div class="col s12">
+                                        <b>{{ visit.dateVisit|date('d/m/Y') }}</b>
+                                        <div class="actions">
+                                            <a href="{{ path('visite_edit', {'internship': internship.id, 'visit': visit.id}) }}"
+                                               class="btn-floating waves-effect waves-light btn indigo darken-4">
+                                                <i class="material-icons">mode_edit</i>
+                                            </a>
+                                            <a href="{{ path('visite_delete', {'internship': internship.id, 'visit': visit.id}) }}"
+                                               class="btn-floating waves-effect waves-light btn red darken-4">
+                                                <i class="material-icons">delete</i>
+                                            </a>
                                         </div>
-                                    {% if loop.index is divisible by(2) %}
-                                        </div>
-                                    {% endif %}
+                                        <p><b>{{ "app.internship.show.observations"|trans }}</b> {{ visit.comment }}</p>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>

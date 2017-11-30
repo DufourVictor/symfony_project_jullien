@@ -9,7 +9,10 @@ $(document).ready(function () {
             alignment: 'right'
         }
     );
-    $('select').material_select();
+    $('.select').material_select();
+    $('.select2').select2({
+        tags: true,
+    });
 
     // Add class when hover item in header
     $('.collapsible-header').click(function () {

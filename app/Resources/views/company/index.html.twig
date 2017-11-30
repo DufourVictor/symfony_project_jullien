@@ -46,7 +46,13 @@
             <div class="center-align">
                 {{ 'app.company.index.modal.title'|trans }}
             </div>
-            {{ form_widget(form) }}
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.type, {"attr": {"class": "select2"}}) }}
+            {{ form_row(form.turnover) }}
+            {{ form_row(form.phoneNumber) }}
+            {{ form_row(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
+            {{ form_row(form.address) }}
             <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
             {{ form_end(form) }}
             <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">

@@ -27,6 +27,7 @@ app:
             title: Détails du stage
             informations: Informations
             company: "Entreprise :"
+            technologies: "Technologies :"
             professional_referent: "Responsable technique :"
             educational_referent: "Responsable pédagogique :"
             year_concern: "Année concernée :"
@@ -145,6 +146,9 @@ form:
         company: Entreprise
         observations: Observations
         year_concern: Année concernée
+        educational_referent: Référent pédagogique
+        profesionnal_referent: Référent professionnel
+        technologies: Technologies
     certificate:
         name: Intitulé
     company:
