@@ -1,74 +1,59 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ "app.internship.new.title"|trans }}{% endblock %}
 {% block body %}
-    <h1>{{ "app.internship.new.internship_new"|trans }}</h1>
-    <div class="row">
-        {{ form_start(form) }}
+    <h3>{{ "app.internship.new.internship_new"|trans }}</h3>
+
+    <div class="container-form">
         <div class="row">
-            <div class="col s2">
-                {{ form_label(form.company) }}
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col m4 offset-m2 s12">
+                    {{ form_row(form.company, {"attr": {"class": "select"}}) }}
+                </div>
+                <div class="col m4 s12">
+                    {{ form_row(form.educationalReferent, {"attr": {"class": "select"}}) }}
+                </div>
             </div>
-            <div class="col s4">
-                {{ form_widget(form.company, {'attr': {'class': 'browser-default'} }) }}
+            <div class="row">
+                <div class="col m4 offset-m2 s12">
+                    {{ form_row(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
+                </div>
+                <div class="col m4 s12">
+                    {{ form_row(form.technologies, {"attr": {
+                        "class": "select2",
+                        "data-confirm": 'app.internship.new.confirm_technology'|trans,
+                        "data-url": path("add_technology"),
+                    }}) }}
+                </div>
             </div>
+            <div class="row">
+                <div class="col m2 offset-m2 s12">
+                    {{ form_row(form.concernYear) }}
+                </div>
+                <div class="col m3 s12">
+                    {{ form_row(form.startDate, {"attr": {"class": "datepicker"}}) }}
+                </div>
+                <div class="col m3 s12">
+                    {{ form_row(form.endDate, {"attr": {"class": "datepicker"}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m8 offset-m2 s12">
+                    <div class="input-field">
+                        {{ form_widget(form.comment, {"attr": {"class": "materialize-textarea"}}) }}
+                        {{ form_label(form.comment) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m8 offset-m2 s12">
+                    <button type="submit" class="btn waves-effect waves-light indigo darken-4">
+                        {{ 'commons.add'|trans }}
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+            {{ form_end(form) }}
         </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.educationalReferent) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.educationalReferent, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.profesionnalReferent) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.profesionnalReferent, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.technologies) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.technologies, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.concernYear) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.concernYear, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.startDate) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.startDate, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.endDate) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.endDate, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s2">
-                {{ form_label(form.comment) }}
-            </div>
-            <div class="col s4">
-                {{ form_widget(form.comment, {'attr': {'class': 'browser-default'} }) }}
-            </div>
-        </div>
-        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ "commons.submit"|trans }}"/>
-        {{ form_end(form) }}
     </div>
 {% endblock %}

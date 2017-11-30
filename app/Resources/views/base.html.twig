@@ -9,6 +9,8 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/select2-materialize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
 </head>
@@ -160,6 +162,7 @@
 {% block javascripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %}
 </body>
