@@ -25,23 +25,25 @@
                         <ul class="right hide-on-med-and-down">
                             <li>
                                 <a href="{{ path('stage_index') }}">
-                                    <i class="material-icons left">business_center</i>Stages
+                                    <i class="material-icons left">business_center</i>{{ 'app.base.internship'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('entreprise_index') }}">
-                                    <i class="material-icons left">business</i>Entreprises
+                            <li class="dropdown">
+                                <a class="dropdown-button dropdown-company" data-activates="dropdownCompany"
+                                   data-beloworigin="true">
+                                    <i class="material-icons left">business</i> {{ 'app.base.company'|trans }}
+                                    <i class="material-icons right arrow">arrow_drop_down</i>
                                 </a>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-button dropdown-suivi" data-activates="dropdownSuivi" data-beloworigin="true">
-                                    <i class="material-icons left">pageview</i> Suivi scolarité
+                                    <i class="material-icons left">pageview</i> {{ 'app.base.follow_school'|trans }}
                                     <i class="material-icons right arrow">arrow_drop_down</i>
                                 </a>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-button dropdown-logout" data-activates="dropdownLogout" data-beloworigin="true">
-                                    <i class="material-icons left">person</i> Bienvenue {{ app.user.firstName }}
+                                    <i class="material-icons left">person</i> {{ 'app.base.welcome'|trans }} {{ app.user.firstName }}
                                     <i class="material-icons right arrow">arrow_drop_down</i>
                                 </a>
                             </li>
@@ -98,23 +100,37 @@
                         </a>
                     </li>
                 </ul>
+                <ul id="dropdownCompany" class="dropdown-content dropdown-company">
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('entreprise_index') }}">
+                            <i class="material-icons">assignment</i>
+                            {{ 'app.base.companies_list'|trans }}
+                        </a>
+                    </li>
+                    <li class="collection-item avatar indigo darken-4">
+                        <a href="{{ path('company_type_new') }}">
+                            <i class="material-icons">add_circle</i>
+                            {{ 'app.base.add_company'|trans }}
+                        </a>
+                    </li>
+                </ul>
                 <ul id="dropdownSuivi" class="dropdown-content dropdown-suivi">
                     <li class="collection-item avatar indigo darken-4">
                         <a href="{{ path('promo_index') }}">
                             <i class="material-icons">date_range</i>
-                            Années scolaires
+                            {{ 'app.base.school_year'|trans }}
                         </a>
                     </li>
                     <li class="collection-item avatar indigo darken-4">
                         <a href="{{ path('diplome_index') }}">
                             <i class="material-icons">school</i>
-                            Liste des BAC
+                            {{ 'app.base.certificate_list'|trans }}
                         </a>
                     </li>
                     <li class="collection-item avatar indigo darken-4">
                         <a href="{{ path('student_index') }}">
                             <i class="material-icons">search</i>
-                            Recherche des élèves
+                            {{ 'app.base.search_student'|trans }}
                         </a>
                     </li>
                 </ul>
@@ -134,7 +150,7 @@
                 <span class="left separator">|</span>
                 <a class="left" href="#">Politique de cookies</a>
                 <a class="right" target="_blank" href="http://www.lycee-stvincent.fr/">
-                    Lycée privé Saint-Vincent
+                    {{ 'app.base.footer'|trans }}
                 </a>
             </div>
         </div>
