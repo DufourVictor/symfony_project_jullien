@@ -37,9 +37,9 @@ class Company
     private $type;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="turnover", type="string", length=255)
+     * @ORM\Column(name="turnover", type="float")
      */
     private $turnover;
 
@@ -123,27 +123,23 @@ class Company
     }
 
     /**
-     * Set turnover
+     * @return float
+     */
+    public function getTurnover()
+    {
+        return $this->turnover;
+    }
+
+    /**
+     * @param float $turnover
      *
-     * @param string $turnover
-     *
-     * @return Company
+     * @return $this
      */
     public function setTurnover($turnover)
     {
         $this->turnover = $turnover;
 
         return $this;
-    }
-
-    /**
-     * Get turnover
-     *
-     * @return string
-     */
-    public function getTurnover()
-    {
-        return $this->turnover;
     }
 
     /**
