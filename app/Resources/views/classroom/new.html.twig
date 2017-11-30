@@ -8,8 +8,9 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
-        <a href="{{ path('classe_index') }}" class="waves-effect waves-light btn indigo darken-4">{{ 'commons.back'|trans
-            }}</a>
+        <a href="{{ path('classe_index') }}" class="waves-effect waves-light btn red darken-4">
+            {{ 'commons.back'|trans }}
+        </a>
         {{ form_end(form) }}
     </div>
 {% endblock %}

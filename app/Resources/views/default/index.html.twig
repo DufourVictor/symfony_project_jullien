@@ -1,7 +1,40 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}{{ 'app.default.home'|trans }}{% endblock %}
-
 {% block body %}
-
+    <div class="container dashboard">
+        <div class="row">
+            <div class="col m4 s12">
+                <div class="col-content">
+                    <p>{{ 'app.default.nb_visits'|trans }} {{ nbVisits }}</p>
+                    <i class="material-icons right">visibility</i>
+                </div>
+            </div>
+            <div class="col m4 s12">
+                <div class="col-content">
+                    <p>{{ 'app.default.nb_students'|trans }} {{ nbStudents }}</p>
+                    <i class="material-icons right">perm_identity</i>
+                </div>
+            </div>
+            <div class="col m4 s12">
+                <div class="col-content">
+                    <p>{{ 'app.default.nb_company'|trans }} {{ nbCompany }}</p>
+                    <i class="material-icons right">business</i>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m4 s12">
+                <div class="col-content">
+                    <p>{{ 'app.default.nb_technologies'|trans }} {{ nbTechnologies }}</p>
+                    <i class="material-icons right">code</i>
+                </div>
+            </div>
+            <div class="col m4 s12">
+                <div class="col-content">
+                    <p>{{ 'app.default.nb_internships'|trans }} {{ nbInternships }}</p>
+                    <i class="material-icons right">business_center</i>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

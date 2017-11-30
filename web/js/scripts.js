@@ -27,6 +27,9 @@ $(document).ready(function () {
     $('.dropdown-logout').hover(function () {
         $('.dropdown-logout > .arrow').toggleClass("down");
     });
+    $('.dropdown-referent').hover(function () {
+        $('.dropdown-referent > .arrow').toggleClass("down");
+    });
 
     $('.datepicker').pickadate({
         selectMonths: true,
