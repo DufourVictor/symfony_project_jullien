@@ -3,6 +3,7 @@ app:
         internship: Stages
         company: Entreprise
         follow_school: Suivi scolarité
+        referent: Référent
         welcome: Bienvenue
         companies_list: Liste des entreprises
         list_company: Liste des types d'entreprise
@@ -10,6 +11,8 @@ app:
         certificate_list: Liste des BAC
         search_student: Recherche des élèves
         footer: Lycée privé Saint-Vincent
+        educational_referent: liste des référents pédagogiques
+        professional_referent: liste des référents professionnel
     default:
         home: Accueil
     internship:
@@ -84,6 +87,10 @@ app:
         new:
             title: Ajouter un référent professionnel
             add_referent: Ajouter un référent professionnel
+        index:
+            title: Liste des référents profesionnels
+            referent_list: Liste des référents profesionnels
+            delete_referent: Êtes-vous sûr de vouloir supprimer ce référent profesionnel ?
     promote:
         index:
             title: Liste des années scolaires

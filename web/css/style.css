@@ -54,18 +54,21 @@ html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-button .
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout.dropdown-logout,
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi.dropdown-logout,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany.dropdown-logout {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany.dropdown-logout,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownReferent.dropdown-logout {
   margin-left: 70px;
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout a,
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownReferent a {
   color: #FFFFFF;
   font-size: 12px;
 }
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownLogout a i,
 html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownSuivi a i,
-html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a i {
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownCompany a i,
+html body .wrapper header nav .hide-on-med-and-down .dropdown .dropdown-content#dropdownReferent a i {
   margin-right: 5px;
 }
 html body .wrapper header nav .hide-on-med-and-down i.left {

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'app.profesional_referent.index.title'|trans }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="center-align">
+            <h1>{{ 'app.profesional_referent.index.referent_list'|trans }}</h1>
+            <a class="btn-floating btn-large waves-effect waves-light indigo darken-4"
+               href="{{ path('profesionnalReferent_new') }}">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>{{ 'app.educational_referent.index.first_name'|trans }}</th>
+                <th>{{ 'app.educational_referent.index.last_name'|trans }}</th>
+                <th>{{ 'app.educational_referent.index.phone_number'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for referent in professionalReferent %}
+                <tr>
+                    <td>{{ referent.firstName }}</td>
+                    <td>{{ referent.lastName }}</td>
+                    <td>{{ referent.phone }}</td>
+                    <td>
+                        <a class="btn-floating waves-effect waves-light btn red darken-4 modal-trigger"
+                           href="#modal-delete-referent-{{ referent.id }}">
+                            <i class="material-icons">delete</i>
+                        </a>
+                        {#Modal supprimer#}
+                        <div id="modal-delete-referent-{{ referent.id }}" class="modal modal-fixed">
+                            <div class="modal-content">
+                                <div class="center-align">
+                                    <h4>{{ 'app.profesional_referent.index.delete_referent'|trans }}</h4>
+                                    <a href="{{ path('referent_professional_delete', {'id': referent.id }) }}" class="waves-effect
+                                 waves-light btn red darken-4">
+                                        {{ 'commons.delete'|trans }}
+                                    </a>
+                                    <a href="#" class="modal-action modal-close waves-effect waves-green btn indigo darken-4">
+                                        {{ 'commons.back'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal.js') }}"></script>
+{% endblock %}
