@@ -7,7 +7,7 @@ use AppBundle\Entity\ProfesionnalReferent;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,7 +30,7 @@ class CompanyType extends AbstractType
                 'class'        => \AppBundle\Entity\CompanyType::class,
                 'choice_label' => 'name',
             ])
-            ->add('turnover', MoneyType::class, [
+            ->add('turnover', NumberType::class, [
                 'label' => 'form.company.turnover',
             ])
             ->add('phoneNumber', TextType::class, [
