@@ -63,7 +63,7 @@ class CertificateController extends Controller
      *
      * @Route("/{id}", name="diplome_delete")
      *
-     * @Method("DELETE")
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Certificate $certificate)
     {
