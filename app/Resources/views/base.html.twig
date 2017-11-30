@@ -31,8 +31,7 @@
                                 </a>
                             </li>
                             <li class="dropdown">
-                                <a class="dropdown-button dropdown-company" data-activates="dropdownCompany"
-                                   data-beloworigin="true">
+                                <a class="dropdown-button dropdown-company" data-activates="dropdownCompany" data-beloworigin="true">
                                     <i class="material-icons left">business</i> {{ 'app.base.company'|trans }}
                                     <i class="material-icons right arrow">arrow_drop_down</i>
                                 </a>
@@ -54,25 +53,56 @@
                         <ul id="nav-mobile" class="side-nav">
                             <li>
                                 <a href="{{ path('stage_index') }}" class="waves-effect waves-indigo">
-                                    <i class="material-icons left">business_center</i>Stages
+                                    <i class="material-icons left">business_center</i>{{ 'app.base.internship'|trans }}
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('entreprise_index') }}" class="waves-effect waves-indigo">
-                                    <i class="material-icons left">business</i>Entreprises
-                                </a>
-                            </li>
+
                             <ul class="collapsible" data-collapsible="expandable">
                                 <li>
-                                    <a class="waves-effect waves-indigo collapsible-header">
-                                        <i class="material-icons left">pageview</i>Suivi scolarité
+                                    <a class="waves-effect waves-indigo collapsible-header company">
+                                        <i class="material-icons left">business</i>{{ 'app.base.company'|trans }}
+                                        <i class="material-icons right arrow">arrow_drop_down</i>
+                                    </a>
+                                    <div class="collapsible-body">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('entreprise_index') }}" class="waves-effect waves-indigo">
+                                                    <i class="material-icons">assignment</i>
+                                                    {{ 'app.base.companies_list'|trans }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('company_type_index') }}" class="waves-effect waves-indigo">
+                                                    <i class="material-icons">assignment</i>
+                                                    {{ 'app.base.list_company'|trans }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <ul class="collapsible" data-collapsible="expandable">
+                                <li>
+                                    <a class="waves-effect waves-indigo collapsible-header follow-school">
+                                        <i class="material-icons left">pageview</i>{{ 'app.base.follow_school'|trans }}
                                         <i class="material-icons right arrow">arrow_drop_down</i>
                                     </a>
                                     <div class="collapsible-body">
                                         <ul>
                                             <li>
                                                 <a href="{{ path('promo_index') }}" class="waves-effect waves-indigo">
-                                                    <i class="material-icons">date_range</i>Années scolaires
+                                                    <i class="material-icons">date_range</i>{{ 'app.base.school_year'|trans }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('diplome_index') }}" class="waves-effect waves-indigo">
+                                                    <i class="material-icons">school</i>{{ 'app.base.certificate_list'|trans }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('student_index') }}" class="waves-effect waves-indigo">
+                                                    <i class="material-icons">search</i>{{ 'app.base.search_student'|trans }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -85,7 +115,7 @@
                             <li>
                                 <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-indigo">
                                     <i class="material-icons">power_settings_new</i>
-                                    Déconnexion
+                                    {{ 'commons.logout'|trans }}
                                 </a>
                             </li>
                         </ul>
@@ -98,7 +128,7 @@
                     <li class="collection-item avatar indigo darken-4">
                         <a href="{{ path('fos_user_security_logout') }}">
                             <i class="material-icons">power_settings_new</i>
-                            Déconnexion
+                            {{ 'commons.logout'|trans }}
                         </a>
                     </li>
                 </ul>
@@ -111,8 +141,8 @@
                     </li>
                     <li class="collection-item avatar indigo darken-4">
                         <a href="{{ path('company_type_index') }}">
-                            <i class="material-icons">add_circle</i>
-                            {{ 'app.base.add_company'|trans }}
+                            <i class="material-icons">assignment</i>
+                            {{ 'app.base.list_company'|trans }}
                         </a>
                     </li>
                 </ul>

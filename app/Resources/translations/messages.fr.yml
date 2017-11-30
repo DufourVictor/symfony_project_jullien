@@ -5,7 +5,7 @@ app:
         follow_school: Suivi scolarité
         welcome: Bienvenue
         companies_list: Liste des entreprises
-        add_company: Ajouter un type d'entreprise
+        list_company: Liste des types d'entreprise
         school_year: Années scolaires
         certificate_list: Liste des BAC
         search_student: Recherche des élèves
@@ -72,7 +72,7 @@ app:
             see_details: Voir détails
     company_type:
         index:
-            list_company_type: Liste des types d'entreprises
+            list_company_type: Liste des types d'entreprise
             add_company_type: Ajouter un type d'entreprise
         new:
             title: Ajouter un type d'entreprise
@@ -135,6 +135,7 @@ commons:
     delete: Supprimer
     read: Voir
     edit: Editer
+    logout: Déconnexion
 
 flashes:
     internship:

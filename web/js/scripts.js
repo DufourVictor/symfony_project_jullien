@@ -12,8 +12,14 @@ $(document).ready(function () {
     $('.select').material_select();
 
     // Add class when hover item in header
-    $('.collapsible-header').click(function () {
-        $('.arrow').toggleClass("down");
+    $('.company').click(function () {
+        $('.company > .arrow').toggleClass("down");
+    });
+    $('.follow-school').click(function () {
+        $('.follow-school > .arrow').toggleClass("down");
+    });
+    $('.dropdown-company').hover(function () {
+        $('.dropdown-company > .arrow').toggleClass("down");
     });
     $('.dropdown-suivi').hover(function () {
         $('.dropdown-suivi > .arrow').toggleClass("down");
@@ -76,10 +82,12 @@ $(document).ready(function () {
         }
     });
 
+    // Bind select2
     $('.select2').select2({
         tags: true,
     });
 
+    // Event select2 when add option
     $('.select2').on('select2:selecting', function (e) {
         if (e.params.args.data._resultId === undefined) {
             if (confirm(e.currentTarget.dataset.confirm)) {
