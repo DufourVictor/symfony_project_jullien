@@ -11,10 +11,15 @@ app:
         certificate_list: Liste des BAC
         search_student: Recherche des élèves
         footer: Lycée privé Saint-Vincent
-        educational_referent: liste des référents pédagogiques
-        professional_referent: liste des référents professionnel
+        educational_referent: Liste des référents pédagogiques
+        professional_referent: Liste des référents professionnel
     default:
         home: Accueil
+        nb_visits: "Nombre de visites :"
+        nb_students: "Nombre d'élèves :"
+        nb_company: "Nombre d'entreprises :"
+        nb_technologies: "Nombre de technologies :"
+        nb_internships: "Nombre de stages :"
     internship:
         index:
             internship_management: Gestion des stages
