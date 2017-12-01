@@ -9,7 +9,10 @@
             {{ form_start(form) }}
             <div class="row classroom">
                 <div class="col m4 offset-m4">
-                    {{ form_row(form.classroom, {"attr": {"class": "select"}}) }}
+                    {{ form_row(form.classroom, {"attr": {
+                        "class": "select",
+                        "data-url": path("students")
+                    }}) }}
                 </div>
             </div>
             <div class="row">
@@ -17,9 +20,9 @@
                     {{ form_widget(form.student, {'attr': {'class': 'student'}}) }}
                     <div class="input-field" id="student">
                         <select name="register_selector[student]" class="select">
-                            <option disabled selected>Élèves</option>
+                            <option disabled selected>{{ 'app.internship.index.students'|trans }}</option>
                         </select>
-                        <label>Élèves</label>
+                        <label>{{ 'app.internship.index.students'|trans }}</label>
                     </div>
                 </div>
             </div>

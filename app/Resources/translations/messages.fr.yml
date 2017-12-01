@@ -19,6 +19,7 @@ app:
         index:
             internship_management: Gestion des stages
             search_student: Rechercher un élève
+            students: Élèves
         list:
             title: Liste des stages
             internship_list: Liste des stages
@@ -109,8 +110,7 @@ app:
             title: Élève - Recherche
             follow_school: Suivi de scolarité
             search_classroom: Rechercher une classe
-            add_classroom: Ajouter une classe
-            add_student: Ajouter un élève
+            students: Élèves
         new:
             title: Ajouter un élève
             add_student: Ajouter un élève

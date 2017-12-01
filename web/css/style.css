@@ -220,6 +220,19 @@ html body .wrapper .container-form form .row .btn.back {
 html body .wrapper .container-form form .row .btn.back a {
   color: #FFFFFF;
 }
+html body .wrapper .container-form form .row .btn-floating {
+  width: 40px;
+  height: 40px;
+}
+html body .wrapper .container-form form .row .btn-floating.first {
+  margin-top: 6px;
+}
+html body .wrapper .container-form form .row .btn-floating.second {
+  margin-top: 21px;
+}
+html body .wrapper .container-form form .row .btn-floating i {
+  line-height: 0;
+}
 html body .wrapper .container-form form .row input[type=text] + label,
 html body .wrapper .container-form form .row input[type=password] + label,
 html body .wrapper .container-form form .row input[type=date] + label,
