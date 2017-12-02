@@ -77,7 +77,7 @@ app:
                 confirm_type: Êtes-vous sûr de vouloir ajouter ce nouveau type d'entreprise ?
         show:
             title: Entreprise - détails
-            company_informations: Informations de l'entreprise
+            company_informations: Informations sur l'entreprise
             add_referent: Ajouter un référent
             add_type: Ajouter un type d'entreprise
             year: Année
@@ -85,6 +85,7 @@ app:
             educational_referent: Référent pédagogique
             profesional_referent: Référent professionnel
             see_details: Voir détails
+            internships_list: Liste des stages
     company_type:
         index:
             title: Liste des types d'entreprise

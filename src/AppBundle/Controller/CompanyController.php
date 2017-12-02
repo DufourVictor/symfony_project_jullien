@@ -102,8 +102,19 @@ class CompanyController extends Controller
         $internships = $em->getRepository(Internship::class)->findInternshipForCompany($company);
         $form        = $this->createForm('AppBundle\Form\Type\CompanyType', $company, ['company' => $company]);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted()) {
+            $companyType = $request->request->get('company')['type'];
+            if (!is_numeric($companyType)) {
+                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->findOneBy([
+                    'name' => $companyType,
+                ]);
+            } else {
+                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->find((int)$companyType);
+            }
+
             try {
+                $company->setType($companyType);
                 $em->persist($company);
                 $em->flush();
                 $this->addFlash('success', 'Entreprise modifié avec succès');

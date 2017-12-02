@@ -169,6 +169,9 @@ html body .wrapper .modal {
 html body .wrapper .container table {
   margin-top: 10px;
 }
+html body .wrapper .container table td i {
+  color: #1A237E;
+}
 html body .wrapper .container .collapsible-body .row {
   margin-bottom: 0;
 }
@@ -211,6 +214,9 @@ html body .wrapper .container-form form .row .select-wrapper .caret {
 }
 html body .wrapper .container-form form .row .select-wrapper .dropdown-content span {
   color: #1A237E;
+}
+html body .wrapper .container-form form .row .select-wrapper.profesionnal-referent li span label {
+  top: -11px;
 }
 html body .wrapper .container-form form .row .btn {
   width: 100%;
