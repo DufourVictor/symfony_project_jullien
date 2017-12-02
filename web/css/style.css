@@ -163,6 +163,9 @@ html body .wrapper h3,
 html body .wrapper h5 {
   text-align: center;
 }
+html body .wrapper .modal {
+  background-color: #FFFFFF;
+}
 html body .wrapper .container table {
   margin-top: 10px;
 }
@@ -258,6 +261,7 @@ html body .wrapper .container-form form .row textarea:focus + label {
 html body .wrapper .container-form form .row .select2 {
   margin-left: 0;
   width: 100% !important;
+  margin-top: 6px;
 }
 html body .wrapper .container-form form .row .picker__date-display,
 html body .wrapper .container-form form .row .picker__day--selected {

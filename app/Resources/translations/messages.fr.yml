@@ -74,6 +74,7 @@ app:
             add_type: Ajouter un type d'entreprise
             modal:
                 title: Ajouter une entreprise
+                confirm_type: Êtes-vous sûr de vouloir ajouter ce nouveau type d'entreprise ?
         show:
             title: Entreprise - détails
             company_informations: Informations de l'entreprise
