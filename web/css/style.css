@@ -163,6 +163,10 @@ html body .wrapper h3,
 html body .wrapper h5 {
   text-align: center;
 }
+html body .wrapper h3.internships,
+html body .wrapper h5.internships {
+  margin: 40px 0 30px 0;
+}
 html body .wrapper .modal {
   background-color: #FFFFFF;
 }
@@ -198,6 +202,9 @@ html body .wrapper .container .collapsible-body .row.visit p {
 }
 html body .wrapper .container-form {
   margin-top: 30px;
+}
+html body .wrapper .container-form .new-class a {
+  width: 100%;
 }
 html body .wrapper .container-form form .modal-content {
   margin-top: -30px;
