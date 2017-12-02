@@ -40,11 +40,11 @@ class CompanyController extends Controller
         if ($form->isSubmitted()) {
             $companyType = $request->request->get('company')['type'];
             if (!is_numeric($companyType)) {
-                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->findOneBy([
+                $companyType = $em->getRepository(CompanyType::class)->findOneBy([
                     'name' => $companyType,
                 ]);
             } else {
-                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->find((int)$companyType);
+                $companyType = $em->getRepository(CompanyType::class)->find((int)$companyType);
             }
 
             try {
@@ -106,11 +106,11 @@ class CompanyController extends Controller
         if ($form->isSubmitted()) {
             $companyType = $request->request->get('company')['type'];
             if (!is_numeric($companyType)) {
-                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->findOneBy([
+                $companyType = $em->getRepository(CompanyType::class)->findOneBy([
                     'name' => $companyType,
                 ]);
             } else {
-                $companyType = $this->getDoctrine()->getRepository(CompanyType::class)->find((int)$companyType);
+                $companyType = $em->getRepository(CompanyType::class)->find((int)$companyType);
             }
 
             try {

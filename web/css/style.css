@@ -279,6 +279,11 @@ html body .wrapper .container-form form .row .picker__footer button {
 html body .wrapper .container-form form .row .picker__footer button.picker__clear {
   color: #F44336;
 }
+html body .wrapper .container-form form .row .company-type label {
+  position: absolute;
+  top: -26px;
+  font-size: .8rem;
+}
 html body .wrapper .container.dashboard .row:first-child {
   margin-top: 50px;
 }

@@ -14,10 +14,13 @@
                 </div>
                 <div class="col m4 s12">
                     <div class="input-field">
-                        {{ form_row(form.type, {"attr": {"class": "select2",
+                        {{ form_widget(form.type, {"attr": {"class": "select2",
                             "data-confirm": 'app.internship.new.confirm_technology'|trans,
                             "data-url": path("add_company_type"),
                         }}) }}
+                        <div class="company-type">
+                            {{ form_label(form.type) }}
+                        </div>
                     </div>
                 </div>
                 <div class="col m3 s12">
