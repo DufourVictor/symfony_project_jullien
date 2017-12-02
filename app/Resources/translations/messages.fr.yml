@@ -12,7 +12,7 @@ app:
         search_student: Recherche des élèves
         footer: Lycée privé Saint-Vincent
         educational_referent: Liste des référents pédagogiques
-        professional_referent: Liste des référents professionnel
+        professional_referent: Liste des référents professionnels
     default:
         home: Accueil
         nb_visits: "Nombre de visites :"
