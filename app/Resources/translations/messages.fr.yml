@@ -86,6 +86,7 @@ app:
             see_details: Voir détails
     company_type:
         index:
+            title: Liste des types d'entreprise
             list_company_type: Liste des types d'entreprise
             add_company_type: Ajouter un type d'entreprise
             delete_type: Êtes-vous sûr de vouloir supprimer ce type d'entreprise ?
