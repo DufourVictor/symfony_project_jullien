@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.register.title'|trans }}{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="center-align">
-            <h1>{{ 'app.register.add_class_to_student'|trans }}</h1>
-        </div>
-        {{ form_start(form) }}
+    <h3>{{ 'app.register.add_class_to_student'|trans }}</h3>
+
+    <div class="container-form">
         <div class="row">
-            <div class="col s6">
-                {{ form_row(form.classroom,  {"attr": {"class": "select"}}) }}
-            </div>
-            <div class="col s6">
-                {{ form_row(form.promote,  {"attr": {"class": "select"}}) }}
-            </div>
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col m4 offset-m4">
+                        {{ form_row(form.classroom,  {"attr": {"class": "select"}}) }}
+                    </div>
+                    <div class="col m4 offset-m4">
+                        {{ form_row(form.promote,  {"attr": {"class": "select"}}) }}
+                    </div>
+                </div>
+                <div class="center-align">
+                    <input type="submit" class="waves-effect waves-green btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
+                    <a href="{{ path('student_show', {'id': student.id}) }}" class="waves-effect waves-green btn red darken-4">
+                        {{ 'commons.back'|trans }}
+                    </a>
+                </div>
+            {{ form_end(form) }}
         </div>
-        <div class="center-align">
-            <input type="submit" class="waves-effect waves-green btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
-            <a href="{{ path('classe_index') }}" class="waves-effect waves-green btn indigo darken-4">
-                {{ 'commons.back'|trans }}
-            </a>
-        </div>
-        {{ form_end(form) }}
     </div>
 
 {% endblock %}

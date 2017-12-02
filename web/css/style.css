@@ -248,12 +248,14 @@ html body .wrapper .container-form form .row .btn-floating i {
 html body .wrapper .container-form form .row input[type=text] + label,
 html body .wrapper .container-form form .row input[type=password] + label,
 html body .wrapper .container-form form .row input[type=date] + label,
+html body .wrapper .container-form form .row input[type=email] + label,
 html body .wrapper .container-form form .row textarea + label {
   color: #9E9E9E;
 }
 html body .wrapper .container-form form .row input[type=text]:focus,
 html body .wrapper .container-form form .row input[type=password]:focus,
 html body .wrapper .container-form form .row input[type=date]:focus,
+html body .wrapper .container-form form .row input[type=email]:focus,
 html body .wrapper .container-form form .row textarea:focus {
   border-bottom: 1px solid #1A237E;
   box-shadow: 0 1px 0 0 #1A237E;
@@ -261,6 +263,7 @@ html body .wrapper .container-form form .row textarea:focus {
 html body .wrapper .container-form form .row input[type=text]:focus + label,
 html body .wrapper .container-form form .row input[type=password]:focus + label,
 html body .wrapper .container-form form .row input[type=date]:focus + label,
+html body .wrapper .container-form form .row input[type=email]:focus + label,
 html body .wrapper .container-form form .row textarea:focus + label {
   color: #1A237E;
 }
@@ -283,6 +286,12 @@ html body .wrapper .container-form form .row .company-type label {
   position: absolute;
   top: -26px;
   font-size: .8rem;
+}
+html body .wrapper .container-form form .row .certificate #certificate-fields-list select {
+  display: block;
+}
+html body .wrapper .container-form form .row .certificate a {
+  margin-bottom: 20px;
 }
 html body .wrapper .container.dashboard .row:first-child {
   margin-top: 50px;

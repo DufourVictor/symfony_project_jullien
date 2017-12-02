@@ -22,10 +22,14 @@ class CertificateObtentionType extends AbstractType
             ->add('certificate', EntityType::class, [
                 'class'        => Certificate::class,
                 'choice_label' => 'name',
+                'label'        => 'form.certificate_obtention.certificate'
             ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
-                'label'  => 'Date d\'obtention',
+                'label'  => 'form.certificate_obtention.obtention_date',
+                'attr'   => [
+                    'class' => 'datepicker',
+                ]
             ]);
     }
 
