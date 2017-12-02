@@ -204,9 +204,19 @@ html {
                 text-align: center;
             }
 
+            .modal {
+                background-color: #FFFFFF;
+            }
+
             .container {
                 table {
                     margin-top: 10px;
+
+                    td {
+                        i {
+                            color: #1A237E;
+                        }
+                    }
                 }
 
                 .collapsible-body {
@@ -246,6 +256,10 @@ html {
                     margin-top: 30px;
 
                     form {
+                        .modal-content {
+                            margin-top: -30px;
+                        }
+
                         .row {
                             margin-bottom: 0;
 
@@ -261,6 +275,16 @@ html {
                                 .dropdown-content {
                                     span {
                                         color: #1A237E;
+                                    }
+                                }
+
+                                &.profesionnal-referent {
+                                    li {
+                                        span {
+                                            label {
+                                                top: -11px;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -317,6 +341,7 @@ html {
                             .select2 {
                                 margin-left: 0;
                                 width: 100% !important;
+                                margin-top: 6px;
                             }
 
                             .picker__ {
@@ -332,6 +357,14 @@ html {
                                             color: #F44336;
                                         }
                                     }
+                                }
+                            }
+
+                            .company-type {
+                                label {
+                                    position: absolute;
+                                    top: -26px;
+                                    font-size: .8rem;
                                 }
                             }
                         }

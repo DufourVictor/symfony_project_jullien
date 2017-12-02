@@ -163,8 +163,14 @@ html body .wrapper h3,
 html body .wrapper h5 {
   text-align: center;
 }
+html body .wrapper .modal {
+  background-color: #FFFFFF;
+}
 html body .wrapper .container table {
   margin-top: 10px;
+}
+html body .wrapper .container table td i {
+  color: #1A237E;
 }
 html body .wrapper .container .collapsible-body .row {
   margin-bottom: 0;
@@ -193,6 +199,9 @@ html body .wrapper .container .collapsible-body .row.visit p {
 html body .wrapper .container-form {
   margin-top: 30px;
 }
+html body .wrapper .container-form form .modal-content {
+  margin-top: -30px;
+}
 html body .wrapper .container-form form .row {
   margin-bottom: 0;
 }
@@ -205,6 +214,9 @@ html body .wrapper .container-form form .row .select-wrapper .caret {
 }
 html body .wrapper .container-form form .row .select-wrapper .dropdown-content span {
   color: #1A237E;
+}
+html body .wrapper .container-form form .row .select-wrapper.profesionnal-referent li span label {
+  top: -11px;
 }
 html body .wrapper .container-form form .row .btn {
   width: 100%;
@@ -255,6 +267,7 @@ html body .wrapper .container-form form .row textarea:focus + label {
 html body .wrapper .container-form form .row .select2 {
   margin-left: 0;
   width: 100% !important;
+  margin-top: 6px;
 }
 html body .wrapper .container-form form .row .picker__date-display,
 html body .wrapper .container-form form .row .picker__day--selected {
@@ -265,6 +278,11 @@ html body .wrapper .container-form form .row .picker__footer button {
 }
 html body .wrapper .container-form form .row .picker__footer button.picker__clear {
   color: #F44336;
+}
+html body .wrapper .container-form form .row .company-type label {
+  position: absolute;
+  top: -26px;
+  font-size: .8rem;
 }
 html body .wrapper .container.dashboard .row:first-child {
   margin-top: 50px;

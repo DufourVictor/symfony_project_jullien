@@ -1,43 +1,63 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ 'app.company.show.title'|trans }}{% endblock %}
 {% block body %}
+    <h3>{{ 'app.company.show.company_informations'|trans }}</h3>
+
     <div class="container-form">
-        <div class="center-align">
-            <h1>{{ 'app.company.show.company_informations'|trans }}</h1>
-        </div>
         <div class="row">
             {{ form_start(form) }}
             <div class="row">
-                <div class="col s4">
-                    {{ form_row(form.name) }}
+                <div class="col offset-m1 m3 s12">
+                    <div class="input-field">
+                        {{ form_row(form.name) }}
+                    </div>
                 </div>
-                <div class="col s4">
-                    {{ form_row(form.type, {"attr": {"class": "select2"}}) }}
+                <div class="col m4 s12">
+                    <div class="input-field">
+                        {{ form_widget(form.type, {"attr": {"class": "select2",
+                            "data-confirm": 'app.internship.new.confirm_technology'|trans,
+                            "data-url": path("add_company_type"),
+                        }}) }}
+                        <div class="company-type">
+                            {{ form_label(form.type) }}
+                        </div>
+                    </div>
                 </div>
-                <div class="col s4">
-                    {{ form_row(form.turnover) }}
+                <div class="col m3 s12">
+                    <div class="input-field">
+                        {{ form_row(form.turnover) }}
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col s6">
-                    {{ form_row(form.phoneNumber) }}
+                <div class="col offset-m2 m4 s12">
+                    <div class="input-field">
+                        {{ form_row(form.phoneNumber) }}
+                    </div>
                 </div>
-                <div class="col s6">
-                    {{ form_row(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
+                <div class="col m4 s12">
+                    <div class="input-field">
+                        {{ form_widget(form.profesionnalReferent, {"attr": {"class": "select profesionnal-referent"}}) }}
+                        {{ form_label(form.profesionnalReferent) }}
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col offset-l4 s4">
-                    {{ form_row(form.address, {"attr": {"class": "materialize-textarea"}}) }}
+                <div class="col offset-m4 m4 s12">
+                    <div class="input-field">
+                        {{ form_row(form.address, {"attr": {"class": "materialize-textarea"}}) }}
+                    </div>
                 </div>
             </div>
             <div class="center-align">
                 <input type="submit" class="waves-effect waves-light btn indigo darken-4">
-                <a href="{{ path('entreprise_index') }}" class="waves-effect waves-light btn indigo darken-4">{{ 'commons.back_to_list'|trans }}</a><br>
+                <a href="{{ path('entreprise_index') }}" class="waves-effect waves-light btn red darken-4">{{ 'commons.back_to_list'|trans }}</a><br>
             </div>
             {{ form_end(form) }}
         </div>
     </div>
+
+    <h3>{{ 'app.company.show.internships_list'|trans }}</h3>
     <div class="container">
         <table class="responsive-table highlight striped">
             <thead>
@@ -69,7 +89,9 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('stage_show', {'id': internship.id}) }}">{{ 'app.company.show.see_details'|trans }}</a>
+                        <a href="{{ path('stage_show', {'id': internship.id}) }}">
+                            <i class="material-icons">remove_red_eye</i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

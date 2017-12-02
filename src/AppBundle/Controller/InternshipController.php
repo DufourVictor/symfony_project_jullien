@@ -177,7 +177,7 @@ class InternshipController extends Controller
      *
      * @return JsonResponse
      */
-    public function addAction(Request $request)
+    public function addTechnologyAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 

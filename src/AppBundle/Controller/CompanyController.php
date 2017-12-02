@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\CompanyType;
 use AppBundle\Entity\Internship;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,8 +37,18 @@ class CompanyController extends Controller
         $form      = $this->createForm('AppBundle\Form\Type\CompanyType', $company);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+            $companyType = $request->request->get('company')['type'];
+            if (!is_numeric($companyType)) {
+                $companyType = $em->getRepository(CompanyType::class)->findOneBy([
+                    'name' => $companyType,
+                ]);
+            } else {
+                $companyType = $em->getRepository(CompanyType::class)->find((int)$companyType);
+            }
+
             try {
+                $company->setType($companyType);
                 $em->persist($company);
                 $em->flush();
                 $this->addFlash('success', 'Entreprise ajouté avec succès');
@@ -51,6 +63,27 @@ class CompanyController extends Controller
             'companies' => $companies,
             'form'      => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/add_company_type", name="add_company_type")
+     * @Method("POST")
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function addCompanyTypeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $companyType = new CompanyType();
+        $companyType->setName($request->request->get('data'));
+
+        $em->persist($companyType);
+        $em->flush();
+
+        return new JsonResponse();
     }
 
     /**
@@ -69,8 +102,19 @@ class CompanyController extends Controller
         $internships = $em->getRepository(Internship::class)->findInternshipForCompany($company);
         $form        = $this->createForm('AppBundle\Form\Type\CompanyType', $company, ['company' => $company]);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted()) {
+            $companyType = $request->request->get('company')['type'];
+            if (!is_numeric($companyType)) {
+                $companyType = $em->getRepository(CompanyType::class)->findOneBy([
+                    'name' => $companyType,
+                ]);
+            } else {
+                $companyType = $em->getRepository(CompanyType::class)->find((int)$companyType);
+            }
+
             try {
+                $company->setType($companyType);
                 $em->persist($company);
                 $em->flush();
                 $this->addFlash('success', 'Entreprise modifié avec succès');

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ 'app.company_type.index.title'|trans }}{% endblock %}
 {% block body %}
     <div class="container">
         <div class="center-align">
-            <h1>{{ 'app.company_type.index.list_company_type'|trans }}</h1>
+            <h3>{{ 'app.company_type.index.list_company_type'|trans }}</h3>
             <a class="btn-floating btn-large waves-effect waves-light indigo darken-4 modal-trigger"
                href="#modal-add-type">
                 <i class="material-icons">add</i>
@@ -46,17 +46,29 @@
         </table>
     </div>
     <div id="modal-add-type" class="modal modal-fixed">
-        {{ form_start(form) }}
-        <div class="modal-content">
-            <div class="center-align">
-                {{ 'app.company_type.index.add_company_type'|trans }}
+        <div class="container-form">
+            {{ form_start(form) }}
+            <div class="modal-content">
+                <div class="row">
+                    <div class="center-align">
+                        <h5>{{ 'app.company_type.index.add_company_type'|trans }}</h5>
+                    </div>
+                    <div class="input-field">
+                        {{ form_widget(form) }}
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
+                        </div>
+                        <div class="col m6 s12">
+                            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
+                                {{ 'commons.back'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
             </div>
-            {{ form_widget(form) }}
-            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
-            {{ form_end(form) }}
-            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
-                {{ 'commons.back'|trans }}
-            </a>
         </div>
     </div>
 {% endblock %}

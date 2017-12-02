@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="center-align">
-            <h1>{{ 'app.company.index.company_list'|trans }}</h1>
+            <h3>{{ 'app.company.index.company_list'|trans }}</h3>
             <a class="btn-floating btn-large waves-effect waves-light indigo darken-4 modal-trigger"
                href="#modal-add-company">
                 <i class="material-icons">add</i>
@@ -43,39 +43,72 @@
         </table>
     </div>
     <div id="modal-add-company" class="modal modal-fixed">
-        {{ form_start(form) }}
-        <div class="modal-content">
-            <div class="center-align">
-                {{ 'app.company.index.modal.title'|trans }}
-            </div>
-            {{ form_start(form) }}
+        <div class="container-form">
             <div class="row">
-                <div class="col s4">
-                    {{ form_row(form.name) }}
-                </div>
-                <div class="col s4">
-                    {{ form_row(form.phoneNumber) }}
-                </div>
-                <div class="col s4">
-                    {{ form_row(form.turnover) }}
+                {{ form_start(form) }}
+                <div class="modal-content">
+                    <div class="center-align">
+                        <h5>{{ 'app.company.index.modal.title'|trans }}</h5>
+                    </div>
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col m4 s12">
+                            <div class="input-field">
+                                {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                        <div class="col m4 s12">
+                            <div class="input-field">
+                                {{ form_row(form.phoneNumber) }}
+                            </div>
+                        </div>
+                        <div class="col m4 s12">
+                            <div class="input-field">
+                                {{ form_row(form.turnover) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <div class="input-field">
+                                {{ form_widget(form.type, {"attr": {
+                                    "class": "select2",
+                                    "data-confirm": 'app.internship.new.confirm_technology'|trans,
+                                    "data-url": path("add_company_type"),
+                                }}) }}
+                                <div class="company-type">
+                                    {{ form_label(form.type) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col m6 s12">
+                            <div class="input-field">
+                                {{ form_widget(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
+                                {{ form_label(form.profesionnalReferent) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="input-field">
+                                {{ form_widget(form.address, {"attr": {"class": "materialize-textarea"}}) }}
+                                {{ form_label(form.address) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m6 s12">
+                            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
+                        </div>
+                        <div class="col m6 s12">
+                            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
+                                {{ 'commons.back'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col s6">
-                    {{ form_row(form.type, {"attr": {"class": "select2"}}) }}
-                </div>
-                <div class="col s6">
-                    {{ form_row(form.profesionnalReferent, {"attr": {"class": "select"}}) }}
-                </div>
-            </div>
-            <div class="row">
-                {{ form_row(form.address, {"attr": {"class": "materialize-textarea"}}) }}
-            </div>
-            <input type="submit" value="{{ 'commons.add'|trans }}" class="waves-effect waves-light btn indigo darken-4"/>
-            {{ form_end(form) }}
-            <a href="#" class="modal-action modal-close waves-effect waves-green btn red darken-4">
-                {{ 'commons.back'|trans }}
-            </a>
         </div>
     </div>
 {% endblock %}
