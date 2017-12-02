@@ -20,6 +20,7 @@ app:
         nb_company: "Nombre d'entreprises :"
         nb_technologies: "Nombre de technologies :"
         nb_internships: "Nombre de stages :"
+        nb_certificates: "Nombre d'élèves ayant un diplôme :"
     internship:
         index:
             internship_management: Gestion des stages
