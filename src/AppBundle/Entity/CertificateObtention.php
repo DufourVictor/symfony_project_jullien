@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CertificateObtention
  *
  * @ORM\Table(name="certificate_obtention")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CertificateObtentionRepository")
  */
 class CertificateObtention
 {

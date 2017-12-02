@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Certificate;
+use AppBundle\Entity\CertificateObtention;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\EducationalReferent;
 use AppBundle\Entity\Internship;
@@ -27,20 +28,26 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $user = $this->getUser();
-
-        $nbVisits = count($this->getDoctrine()->getRepository(Visit::class)->findAll());
-        $nbStudents = count($this->getDoctrine()->getRepository(Student::class)->findAll());
-        $nbCompany = count($this->getDoctrine()->getRepository(Company::class)->findAll());
-        $nbTechnologies = count($this->getDoctrine()->getRepository(Technology::class)->findAll());
-        $nbInternships = count($this->getDoctrine()->getRepository(Internship::class)->findAll());
-
         if ($user instanceof EducationalReferent) {
+            $em               = $this->getDoctrine();
+            $nbVisits         = count($em->getRepository(Visit::class)->findAll());
+            $nbStudents       = count($em->getRepository(Student::class)->findAll());
+            $nbCompany        = count($em->getRepository(Company::class)->findAll());
+            $nbTechnologies   = count($em->getRepository(Technology::class)->findAll());
+            $nbInternships    = count($em->getRepository(Internship::class)->findAll());
+            $nbSCertificates  = (int)$em->getRepository(CertificateObtention::class)->countNbCertificates('BAC S');
+            $nbESCertificates = (int)$em->getRepository(CertificateObtention::class)->countNbCertificates('BAC ES');
+            $nbLCertificates  = (int)$em->getRepository(CertificateObtention::class)->countNbCertificates('BAC L');
+
             return $this->render('default/index.html.twig', [
-                'nbVisits' => $nbVisits,
-                'nbStudents' => $nbStudents,
-                'nbCompany' => $nbCompany,
-                'nbTechnologies' => $nbTechnologies,
-                'nbInternships' => $nbInternships,
+                'nbVisits'         => $nbVisits,
+                'nbStudents'       => $nbStudents,
+                'nbCompany'        => $nbCompany,
+                'nbTechnologies'   => $nbTechnologies,
+                'nbInternships'    => $nbInternships,
+                'nbSCertificates'  => $nbSCertificates,
+                'nbESCertificates' => $nbESCertificates,
+                'nbLCertificates'  => $nbLCertificates,
             ]);
         } else {
             return $this->redirectToRoute('fos_user_security_login');
