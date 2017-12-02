@@ -237,3 +237,6 @@ form:
         phone_number: Numéro de téléphone
         email: Adresse e-mail
         username: Nom d'utilisateur
+    certificate_obtention:
+        certificate: Diplôme
+        obtention_date: Date d'obtention

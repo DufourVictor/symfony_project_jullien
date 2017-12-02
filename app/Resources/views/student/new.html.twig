@@ -31,19 +31,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col offset-m2 m4 s12">
+                <div class="col offset-m4 m4 s12">
                     <div class="input-field">
                         {{ form_row(form.phone) }}
                     </div>
                 </div>
-                <div class="col m4 s12">
+            </div>
+            <div class="row">
+                <div class="col offset-m4 m4 s12 certificate">
                     <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"
                         data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
                         {% for certificate in form.certificate %}
                             {{ form_row(certificate) }}
                         {% endfor %}
                     </ul>
-                    <a href="#" id="add-another-certificate">{{ 'app.student.new.add_certificate'|trans }}</a>
+                    <a class="waves-effect waves-light btn green darken-1" href="#" id="add-another-certificate">
+                        {{ 'app.student.new.add_certificate'|trans }}
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -53,7 +57,7 @@
                     </button>
                 </div>
             </div>
-            {{ form_end(form) }}
+            {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
 {% endblock %}

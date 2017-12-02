@@ -117,6 +117,7 @@ jQuery(document).ready(function () {
     document.querySelector('#add-another-certificate').addEventListener('click', function (e) {
         e.preventDefault();
         var newWidget = certificateWrapper.dataset.prototype;
+        console.log(newWidget);
         newWidget = newWidget.replace(/__name__/g, certificateCount);
         certificateCount++;
         var newLi = document.createElement('li');

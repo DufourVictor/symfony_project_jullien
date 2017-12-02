@@ -287,6 +287,12 @@ html body .wrapper .container-form form .row .company-type label {
   top: -26px;
   font-size: .8rem;
 }
+html body .wrapper .container-form form .row .certificate #certificate-fields-list select {
+  display: block;
+}
+html body .wrapper .container-form form .row .certificate a {
+  margin-bottom: 20px;
+}
 html body .wrapper .container.dashboard .row:first-child {
   margin-top: 50px;
 }
