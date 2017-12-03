@@ -134,6 +134,7 @@ app:
             classroom: Classe
             read_internship: Voir les stages
             delete_student: Supprimer l'élève
+            internships_list: Liste des stages
     visit:
         new:
             title: Ajouter une visite
