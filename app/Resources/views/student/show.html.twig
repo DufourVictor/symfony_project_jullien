@@ -3,64 +3,88 @@
     {{ 'app.student.show.title'|trans }}
 {% endblock %}
 {% block body %}
-    <h1>{{ student.fullName }}</h1>
-    <h3>{{ 'app.student.show.informations'|trans }}</h3>
-    <a href="{{ path('register_new', {'id': student.id}) }}">{{ 'app.student.show.add_classroom_to_student'|trans }}</a>
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col s6">
-            {{ form_row(form.lastName) }}
-        </div>
-        <div class="col s6">
-            {{ form_row(form.firstName) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            {{ form_row(form.phone) }}
-        </div>
-        <div class="col s6">
-            {{ form_row(form.email) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            {{ form_row(form.address) }}
-        </div>
-        <div class="col s6">
-            <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"
-                data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
-                {% for certificate in form.certificate %}
-                    {{ form_row(certificate) }}
-                    {{ form_errors(certificate) }}
-                {% endfor %}
-            </ul>
-            <a href="#" id="add-another-certificate">{{ 'commons.add'|trans }}</a>
-        </div>
-    </div>
-        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
-    {{ form_end(form) }}
-    <a href="{{ path('student_index') }}">{{ 'commons.back'|trans }}</a>
-    <table>
-        <thead>
-        <tr>
-            <th>{{ 'app.student.show.year'|trans }}</th>
-            <th>{{ 'app.student.show.classroom'|trans }}</th>
-            <th>{{ 'commons.actions'|trans }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for classroom in class %}
-            <tr>
-                <td>{{ classroom.promote.name }}</td>
-                <td>{{ classroom.classroom.name }}</td>
-                <td>
-                    <a href="{{ path('stage_list', {'id': classroom.student.id }) }}">
-                        {{ 'app.student.show.read_internship'|trans }}
+    <h3>{{ student.fullName }}</h3>
+    <h5>{{ 'app.student.show.informations'|trans }}</h5>
+
+    <div class="container-form">
+        <div class="row">
+            <div class="row">
+                <div class="col offset-m4 m4 s12 new-class">
+                    <a class="waves-effect waves-light btn green darken-1" href="{{ path('register_new', {'id': student.id}) }}">
+                        {{ 'app.student.show.add_classroom_to_student'|trans }}
                     </a>
-                </td>
+                </div>
+            </div>
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col offset-m2 m4 s12">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                    <div class="col m4 s12">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col offset-m2 m4 s12">
+                        {{ form_row(form.address) }}
+                    </div>
+                    <div class="col m4 s12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col offset-m4 m4 s12">
+                        {{ form_row(form.phone) }}
+                    </div>
+                    <div class="col offset-m4 m4 s12 certificate">
+                        <ul id="certificate-fields-list" data-length="{{ form.certificate|length }}"
+                            data-prototype="{{ form_widget(form.certificate.vars.prototype)|e }}">
+                            {% for certificate in form.certificate %}
+                                {{ form_row(certificate) }}
+                                {{ form_errors(certificate) }}
+                            {% endfor %}
+                        </ul>
+                        <a class="waves-effect waves-light btn green darken-1" href="#" id="add-another-certificate">
+                            {{ 'app.student.new.add_certificate'|trans }}
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col offset-m2 m4 s12">
+                        <input type="submit" class="waves-effect waves-light btn indigo darken-4" value="{{ 'commons.submit'|trans }}"/>
+                    </div>
+                    <div class="col m4 s12">
+                        <a class="waves-effect waves-light btn red darken-4" href="{{ path('student_index') }}">{{ 'commons.back'|trans }}</a>
+                    </div>
+                </div>
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+
+    <h5 class="internships">{{ 'app.company.show.internships_list'|trans }}</h5>
+
+    <div class="container">
+        <table class="responsive-table highlight striped">
+            <thead>
+            <tr>
+                <th>{{ 'app.student.show.year'|trans }}</th>
+                <th>{{ 'app.student.show.classroom'|trans }}</th>
+                <th>{{ 'commons.actions'|trans }}</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for classroom in class %}
+                <tr>
+                    <td>{{ classroom.promote.name }}</td>
+                    <td>{{ classroom.classroom.name }}</td>
+                    <td>
+                        <a href="{{ path('stage_list', { 'id': classroom.student.id }) }}" class="waves-effect waves-light btn indigo darken-4">
+                            {{ 'commons.read'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

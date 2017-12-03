@@ -89,8 +89,8 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('stage_show', {'id': internship.id}) }}">
-                            <i class="material-icons">remove_red_eye</i>
+                        <a href="{{ path('stage_show', { 'id': internship.id }) }}" class="waves-effect waves-light btn indigo darken-4">
+                            {{ 'commons.read'|trans }}
                         </a>
                     </td>
                 </tr>
