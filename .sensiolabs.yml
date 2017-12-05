@@ -5,7 +5,9 @@ global_exclude_dirs:
     - var
 
 rules:
-    web.missing_robots_txt:
-        enabled: true
-    doctrine.database_query_contains_string_and_variable_concatenation:
-        enabled: true
+    php.use_deprecated_function:
+        enabled: false
+    third_party.use_deprecated_class:
+        enabled: false
+    third_party.use_deprecated_service:
+        enabled: false
